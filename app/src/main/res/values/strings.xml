@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LaFavor2024</string>
+    <string name="setting_profile">Profile</string>
+
 </resources>
