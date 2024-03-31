@@ -4,13 +4,16 @@
     <string name="search">Search</string>
     <string name="hi">Hi</string>
 
-<!--    Profile-->
+    <!--    Profile-->
     <string name="setting_my_profile">My Profile</string>
     <string name="setting_my_address">My Address</string>
     <string name="setting_my_orders">My Orders</string>
     <string name="setting">Setting</string>
     <string name="setting_about">About Us</string>
     <string name="setting_logout">Log out</string>
+    <string name="setting_change_theme">Change theme</string>
+    <string name="setting_choose_language">Choose language</string>
+    <string name="setting_security">Security</string>
 
 
 </resources>

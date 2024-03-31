@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/lnlProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -86,7 +86,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp">
 
                         <ImageView
@@ -111,13 +110,17 @@
                             android:src="@drawable/profile_arrow" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line" />
+
 <!--                    My Address-->
                     <LinearLayout
                         android:id="@+id/lnlMyAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp">
 
                         <ImageView
@@ -142,13 +145,17 @@
                             android:src="@drawable/profile_arrow" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line" />
+
 <!--                    My Orders-->
                     <LinearLayout
                         android:id="@+id/lnlMyOrders"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp">
 
                         <ImageView
@@ -173,13 +180,17 @@
                             android:src="@drawable/profile_arrow" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line" />
+
 <!--                    Setting-->
                     <LinearLayout
                         android:id="@+id/lnlSetting"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp">
 
                         <ImageView
@@ -204,13 +215,17 @@
                             android:src="@drawable/profile_arrow" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line" />
+
 <!--                    About us-->
                     <LinearLayout
                         android:id="@+id/lnlAboutUs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp">
 
                         <ImageView
@@ -235,13 +250,17 @@
                             android:src="@drawable/profile_arrow" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line" />
+
 <!--                    Log out-->
                     <LinearLayout
                         android:id="@+id/lnlLogOut"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="15dp"
                         android:paddingVertical="15dp">
 
                         <ImageView
