@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile"
+    android:padding="15dp">
+
+    <ScrollView
+        android:id="@+id/scvProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtMyProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/setting_profile"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imvProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtMyProfile"
+                    app:srcCompat="@drawable/image_profile" />
+
+                <TextView
+                    android:id="@+id/txtFullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Andy Beck"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/imvProfile"
+                    app:layout_constraintStart_toStartOf="@+id/imvProfile"
+                    app:layout_constraintTop_toBottomOf="@+id/imvProfile" />
+
+                <TextView
+                    android:id="@+id/txtEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="andybeck123@gmail.com"
+                    android:textColor="@color/gray1"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/txtFullName"
+                    app:layout_constraintStart_toStartOf="@+id/txtFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/txtFullName" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+                    app:layout_constraintStart_toStartOf="@+id/txtEmail"
+                    app:layout_constraintTop_toBottomOf="@id/txtEmail">
+
+                    <LinearLayout
+                        android:id="@+id/lnlMyProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp">
+
+                        <ImageView
+                            android:id="@+id/imvSettingIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icon_user" />
+
+                        <TextView
+                            android:id="@+id/txtSettingItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="20dp"
+                            android:text="My Profile"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/imvProfileArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/profile_arrow" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
