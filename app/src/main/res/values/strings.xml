@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">LaFavor2024</string>
+    <string name="app_name">La Favor</string>
+    <string name="setting_profile">Profile</string>
+    <string name="search">Search</string>
+    <string name="hi">Hi</string>
+    <string name="shopping_cart">Cart</string>
+
+    <!--    Profile-->
+    <string name="setting_my_profile">My Profile</string>
+    <string name="setting_my_address">My Address</string>
+    <string name="setting_my_orders">My Orders</string>
+    <string name="setting">Setting</string>
+    <string name="setting_about">About Us</string>
+    <string name="setting_logout">Log out</string>
+    <string name="setting_change_theme">Change theme</string>
+    <string name="setting_choose_language">Choose language</string>
+    <string name="setting_security">Security</string>
+    <string name="company_name">LaFavor Corporation Inc</string>
+    <string name="introduction">Lafavor was founded in 2023 by Vision Girl. This is a startup company that made and sold a bunch of bread which are from France. Visit our website to know more: https://lafavor-2c8ce.web. app/</string>
+
+
 </resources>
