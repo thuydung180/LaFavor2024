@@ -11,16 +11,16 @@
         android:id="@+id/scvProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="16dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="15dp">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -60,10 +60,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/imvProfile" />
 
                 <TextView
-                    android:layout_marginTop="4dp"
                     android:id="@+id/txtEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="andybeck123@gmail.com"
                     android:textColor="@color/gray1"
                     android:textSize="14sp"
@@ -71,18 +71,50 @@
                     app:layout_constraintStart_toStartOf="@+id/txtFullName"
                     app:layout_constraintTop_toBottomOf="@+id/txtFullName" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvSettingList"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+                    app:layout_constraintStart_toStartOf="@+id/txtEmail"
+                    app:layout_constraintTop_toBottomOf="@id/txtEmail">
+
+                    <LinearLayout
+                        android:id="@+id/lnlMyProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="20dp">
+
+                        <ImageView
+                            android:id="@+id/imvSettingIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icon_user" />
+
+                        <TextView
+                            android:id="@+id/txtSettingItem"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="20dp"
+                            android:text="My Profile"
+                            android:textSize="20sp" />
+
+                        <ImageView
+                            android:id="@+id/imvProfileArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/profile_arrow" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
