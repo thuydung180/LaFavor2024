@@ -74,40 +74,191 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="30dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="@+id/txtEmail"
                     app:layout_constraintStart_toStartOf="@+id/txtEmail"
                     app:layout_constraintTop_toBottomOf="@id/txtEmail">
 
+<!--                    My Profile-->
                     <LinearLayout
                         android:id="@+id/lnlMyProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="20dp">
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp">
 
                         <ImageView
-                            android:id="@+id/imvSettingIcon"
+                            android:id="@+id/imvMyProfileIcon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:src="@drawable/icon_user" />
 
                         <TextView
-                            android:id="@+id/txtSettingItem"
-                            android:layout_width="match_parent"
+                            android:id="@+id/txtMyProfileItem"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="9"
                             android:gravity="center_vertical"
-                            android:paddingLeft="20dp"
-                            android:text="My Profile"
+                            android:paddingStart="20dp"
+                            android:text="@string/setting_my_profile"
                             android:textSize="18sp" />
 
                         <ImageView
-                            android:id="@+id/imvProfileArrow"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:src="@drawable/profile_arrow" />
+                    </LinearLayout>
+
+<!--                    My Address-->
+                    <LinearLayout
+                        android:id="@+id/lnlMyAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp">
+
+                        <ImageView
+                            android:id="@+id/imvMyAddressIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icon_location" />
+
+                        <TextView
+                            android:id="@+id/txtMyAddressItem"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            android:gravity="center_vertical"
+                            android:paddingStart="20dp"
+                            android:text="@string/setting_my_address"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/profile_arrow" />
+                    </LinearLayout>
+
+<!--                    My Orders-->
+                    <LinearLayout
+                        android:id="@+id/lnlMyOrders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp">
+
+                        <ImageView
+                            android:id="@+id/imvMyOrdersIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icon_order" />
+
+                        <TextView
+                            android:id="@+id/txtMyOrdersItem"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            android:gravity="center_vertical"
+                            android:paddingStart="20dp"
+                            android:text="@string/setting_my_orders"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/profile_arrow" />
+                    </LinearLayout>
+
+<!--                    Setting-->
+                    <LinearLayout
+                        android:id="@+id/lnlSetting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp">
+
+                        <ImageView
+                            android:id="@+id/imvSetting"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icon_setting" />
+
+                        <TextView
+                            android:id="@+id/txtSetting"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            android:gravity="center_vertical"
+                            android:paddingStart="20dp"
+                            android:text="@string/setting"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/profile_arrow" />
+                    </LinearLayout>
+
+<!--                    About us-->
+                    <LinearLayout
+                        android:id="@+id/lnlAboutUs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp">
+
+                        <ImageView
+                            android:id="@+id/imvAboutUs"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icon_about" />
+
+                        <TextView
+                            android:id="@+id/txtAboutUs"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            android:gravity="center_vertical"
+                            android:paddingStart="20dp"
+                            android:text="@string/setting_about"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/profile_arrow" />
+                    </LinearLayout>
+
+<!--                    Log out-->
+                    <LinearLayout
+                        android:id="@+id/lnlLogOut"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="15dp">
+
+                        <ImageView
+                            android:id="@+id/imvLogOut"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icon_out" />
+
+                        <TextView
+                            android:id="@+id/txtLogOut"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            android:gravity="center_vertical"
+                            android:paddingStart="20dp"
+                            android:text="@string/setting_logout"
+                            android:textSize="18sp" />
                     </LinearLayout>
 
 
