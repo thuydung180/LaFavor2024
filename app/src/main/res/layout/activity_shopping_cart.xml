@@ -13,7 +13,7 @@
         android:layout_marginTop="36dp"
         android:text="@string/shopping_cart"
         android:textStyle="bold"
-        android:textSize="32sp"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
