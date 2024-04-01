@@ -51,6 +51,7 @@
     <string name="number_phone">Number Phone</string>
     <string name="i_accepted_terms_and_privacy_policy">I accepted Terms and Privacy Policy</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="username">Username</string>
 
 
 </resources>
