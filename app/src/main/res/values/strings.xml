@@ -37,7 +37,7 @@
     <string name="coupon_content">But don’t worry, you still get to enjoy the best deals and offers with us! </string>
 
 
-<!--     Log in-->
+    <!--     Log in-->
     <string name="log_in">Log In</string>
     <string name="hello_welcome_back_to_your_account">Hello, Welcome back to your account</string>
     <string name="user_name_or_email">User name or email</string>
@@ -55,6 +55,16 @@
     <string name="i_accepted_terms_and_privacy_policy">I accepted Terms and Privacy Policy</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="username">Username</string>
+    <string name="add_address">Add Address</string>
+    <string name="edt_full_name">Your full name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="full_name">Full name</string>
+    <string name="edt_phone_numb">Your phone number</string>
+    <string name="province">Province</string>
+    <string name="district">District</string>
+    <string name="ward">Ward</string>
+    <string name="street">Street (Include house number)</string>
+    <string name="save">Save</string>
 
 
 </resources>
