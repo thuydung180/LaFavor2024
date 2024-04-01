@@ -23,5 +23,14 @@
     <string name="title">Find And Get Your Best Cake</string>
     <string name="description">Find the most delicious food with the best quality and free delivery here</string>
 
+    <!--    Favorite-->
+    <string name="title_favorite">Favorite</string>
+    <string name="favorite">No Favorite yet</string>
+    <string name="favorite_content">Explore more and add some products.</string>
+
+    <!--    Coupon-->
+    <string name="title_coupon">My Coupon</string>
+    <string name="coupon">No Coupon Available</string>
+    <string name="coupon_content">But don’t worry, you still get to enjoy the best deals and offers with us! </string>
 
 </resources>
