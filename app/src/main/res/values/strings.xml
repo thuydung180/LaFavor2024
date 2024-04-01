@@ -17,6 +17,9 @@
     <string name="setting_security">Security</string>
     <string name="company_name">LaFavor Corporation Inc</string>
     <string name="introduction">Lafavor was founded in 2023 by Vision Girl. This is a startup company that made and sold a bunch of bread which are from France. Visit our website to know more: https://lafavor-2c8ce.web. app/</string>
+    <string name="AddressStatus">Default</string>
+    <string name="no_address_added">No Address Added</string>
+    <string name="address_advise">Find and add more address to fulfill your journey with us!</string>
 
     <!--    Splashscreen-->
     <string name="skip">Skip</string>
