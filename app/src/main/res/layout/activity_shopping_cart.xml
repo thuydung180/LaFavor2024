@@ -24,10 +24,10 @@
         android:layout_width="223dp"
         android:layout_height="204dp"
         android:layout_marginTop="96dp"
+        android:src="@drawable/icon_cart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCart"
-        app:srcCompat="@drawable/baseline_add_shopping_cart_24" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCart"/>
 
     <TextView
         android:id="@+id/txt1"
@@ -55,11 +55,13 @@
 
     <Button
         android:id="@+id/btnAddProduct"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Add Product"
         android:backgroundTint="@color/primary"
+        android:textColor="@color/white"
+        android:background="@drawable/corner_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt2" />

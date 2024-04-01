@@ -25,9 +25,10 @@
         android:layout_height="100dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="112dp"
+        android:src="@drawable/splashscreen2"
+        android:background="@drawable/list_product_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -77,11 +78,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <androidx.constraintlayout.widget.Group
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btnDecrease"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="324dp"
+        android:layout_marginTop="188dp"
+        android:padding="1dp"
+        android:text="-"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    </androidx.constraintlayout.widget.Group>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
