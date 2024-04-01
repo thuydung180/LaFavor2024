@@ -33,4 +33,25 @@
     <string name="coupon">No Coupon Available</string>
     <string name="coupon_content">But don’t worry, you still get to enjoy the best deals and offers with us! </string>
 
+
+<!--     Log in-->
+    <string name="log_in">Log In</string>
+    <string name="hello_welcome_back_to_your_account">Hello, Welcome back to your account</string>
+    <string name="user_name_or_email">User name or email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="signup">Sign up?</string>
+    <string name="Signup">Sign up</string>
+    <string name="join_us_on_an_exciting_journey_by_creating_your_account">Join us on an exciting journey by creating your account</string>
+    <string name="text">.</string>
+    <string name="email">Email</string>
+    <string name="number_phone">Number Phone</string>
+    <string name="i_accepted_terms_and_privacy_policy">I accepted Terms and Privacy Policy</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="username">Username</string>
+
+
 </resources>
