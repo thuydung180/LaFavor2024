@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/add_address"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:paddingEnd="20dp"
                     android:layout_weight="9"/>
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/full_name"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"/>
 
@@ -63,7 +63,7 @@
                 android:background="@drawable/custom_shape_edt"
                 android:hint="@string/edt_full_name"
                 android:paddingHorizontal="10dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:inputType="text"/>
 
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/phone_number"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
@@ -82,7 +82,7 @@
                 android:background="@drawable/custom_shape_edt"
                 android:hint="@string/edt_phone_numb"
                 android:paddingHorizontal="10dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:inputType="text"/>
 
             <TextView
@@ -90,12 +90,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/province"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
             <Spinner
                 android:id="@+id/spnProvince"
+                android:accessibilityPaneTitle="Choose Province"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:background="@drawable/custom_shape_edt" />
@@ -105,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/district"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
@@ -120,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ward"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
@@ -135,7 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/street"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
@@ -146,7 +147,7 @@
                 android:background="@drawable/custom_shape_edt"
                 android:hint="Street"
                 android:paddingHorizontal="10dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:inputType="text"/>
 
             <Button
