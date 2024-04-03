@@ -65,6 +65,11 @@
     <string name="ward">Ward</string>
     <string name="street">Street (Include house number)</string>
     <string name="save">Save</string>
+    <!-- My Coupon   -->
+    <string name="coupon_code">Have a Coupon Code</string>
+    <string name="enter_here">Enter here ...</string>
+    <string name="apply">Apply</string>
+    <string name="promo_code">Promo Code</string>
 
 
 </resources>
