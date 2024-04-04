@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/setting"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:paddingEnd="20dp"/>
     </LinearLayout>
@@ -43,8 +43,8 @@
         android:layout_marginTop="20dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/change_theme1" />
 
         <TextView
@@ -52,8 +52,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/setting_change_theme"
-            android:textSize="20sp"
-            android:paddingStart="10dp"/>
+            android:textSize="18sp"
+            android:paddingStart="10dp"
+            android:layout_weight="9"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/vector_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,17 +72,23 @@
         android:layout_marginTop="20dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_choose_language" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_change_language" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/setting_choose_language"
-            android:textSize="20sp"
-            android:paddingStart="10dp"/>
+            android:textSize="18sp"
+            android:paddingStart="10dp"
+            android:layout_weight="9"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/vector_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,17 +101,23 @@
         android:layout_marginTop="20dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_security" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_secu" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/setting_security"
-            android:textSize="20sp"
-            android:paddingStart="10dp"/>
+            android:textSize="18sp"
+            android:paddingStart="10dp"
+            android:layout_weight="9"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/vector_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -112,17 +130,23 @@
         android:layout_marginTop="20dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_about" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/setting_security"
-            android:textSize="20sp"
-            android:paddingStart="10dp"/>
+            android:text="@string/setting_support"
+            android:textSize="18sp"
+            android:paddingStart="10dp"
+            android:layout_weight="9"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/vector_arrow" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

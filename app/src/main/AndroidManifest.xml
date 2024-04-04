@@ -52,7 +52,7 @@
             android:name=".MyAddressEmpty"
             android:exported="false" />
         <activity
-            android:name=".Setting"
+            android:name=".MyCoupon"
             android:exported="false" />
         <activity
             android:name=".Profile"
@@ -66,7 +66,7 @@
         <!-- android:name=".Profile" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".MyCoupon"
+            android:name=".Setting"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
