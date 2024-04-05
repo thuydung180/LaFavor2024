@@ -77,7 +77,10 @@
     <string name="view_all">View all</string>
     <string name="top_pick_for_you">Top pick for you!</string>
     <string name="review">Review</string>
-
+    <string name="orderid">OrderID:</string>
+    <string name="delivered_at">Delivered at </string>
+    <string name="setting_edit_profile">Edit Profile</string>
+    <string name="address">Address</string>
 
 
 </resources>

@@ -43,12 +43,12 @@
                     android:text="@string/add_address"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:paddingEnd="20dp"
                     android:layout_weight="9"/>
             </LinearLayout>
             
             <TextView
-                android:id="@+id/txtFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/full_name"
@@ -67,7 +67,6 @@
                 android:inputType="text"/>
 
             <TextView
-                android:id="@+id/txtMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/phone_number"
@@ -83,10 +82,9 @@
                 android:hint="@string/edt_phone_numb"
                 android:paddingHorizontal="10dp"
                 android:textSize="14sp"
-                android:inputType="text"/>
+                android:inputType="phone"/>
 
             <TextView
-                android:id="@+id/txtProvince"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/province"
@@ -102,7 +100,6 @@
                 android:background="@drawable/custom_shape_edt" />
 
             <TextView
-                android:id="@+id/txtDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/district"
@@ -117,7 +114,6 @@
                 android:background="@drawable/custom_shape_edt" />
 
             <TextView
-                android:id="@+id/txtWard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ward"
@@ -132,7 +128,6 @@
                 android:background="@drawable/custom_shape_edt" />
 
             <TextView
-                android:id="@+id/txtStreet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/street"
