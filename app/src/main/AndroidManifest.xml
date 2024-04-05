@@ -13,10 +13,13 @@
         android:theme="@style/Theme.LaFavor2024"
         tools:targetApi="31">
         <activity
+            android:name=".Favorite"
+            android:exported="false" />
+        <activity
             android:name=".Splashscreen_1"
             android:exported="false" />
         <activity
-            android:name=".Coupon"
+            android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".Signup"
@@ -31,7 +34,7 @@
             android:name=".Checkout"
             android:exported="false" />
         <activity
-            android:name=".Favorite"
+            android:name=".MyCoupon"
             android:exported="false" />
         <activity
             android:name=".MyAddressAdd"
@@ -52,7 +55,7 @@
             android:name=".MyAddressEmpty"
             android:exported="false" />
         <activity
-            android:name=".MyCoupon"
+            android:name=".Coupon"
             android:exported="false" />
         <activity
             android:name=".Setting"
@@ -66,7 +69,7 @@
         <!-- android:name=".Profile" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".Profile"
+            android:name=".MyFavorite"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
