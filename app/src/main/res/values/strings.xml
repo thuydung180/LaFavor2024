@@ -71,6 +71,12 @@
     <string name="apply">Apply</string>
     <string name="promo_code">Promo Code</string>
     <string name="setting_support">Support</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="category">Category</string>
+    <string name="view_all">View all</string>
+    <string name="top_pick_for_you">Top pick for you!</string>
+    <string name="review">Review</string>
 
 
 </resources>
