@@ -23,53 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="112dp"
-            android:background="@drawable/list_product_background"
-            android:src="@drawable/splashscreen2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:layout_marginEnd="104dp"
-            android:text="Strawberry Cupcake"
-            android:textColor="@color/gray2"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:text="Shortbread, chocolate turtle cookies, and red velvet."
-            android:textColor="@color/gray1"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:text="20.000 VND"
-            android:textColor="@color/primary"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <EditText
             android:id="@+id/editText"
@@ -149,37 +103,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="320dp"
-        android:layout_marginTop="188dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/minus"
-            tools:layout_editor_absoluteX="311dp"
-            tools:layout_editor_absoluteY="187dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:text="01"
-            android:textSize="12sp" />
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/plus"
-            tools:layout_editor_absoluteX="311dp"
-            tools:layout_editor_absoluteY="187dp" />
-
-    </LinearLayout>
 
 
 </RelativeLayout>
