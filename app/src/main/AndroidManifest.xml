@@ -19,9 +19,6 @@
             android:name=".MyFavorite"
             android:exported="false" />
         <activity
-            android:name=".MyOrders"
-            android:exported="false" />
-        <activity
             android:name=".Favorite"
             android:exported="false" />
         <activity
@@ -78,8 +75,8 @@
         <!-- android:name=".Profile" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".EditProfile"
-            android:exported="true">
+        android:name=".Reset_Password"
+        android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

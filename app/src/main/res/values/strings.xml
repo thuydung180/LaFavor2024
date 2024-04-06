@@ -25,11 +25,14 @@
     <string name="skip">Skip</string>
     <string name="title">Find And Get Your Best Cake</string>
     <string name="description">Find the most delicious food with the best quality and free delivery here</string>
+    <string name="get_started">GET STARTED</string>
+
 
     <!--    Favorite-->
     <string name="title_favorite">Favorite</string>
     <string name="favorite">No Favorite yet</string>
     <string name="favorite_content">Explore more and add some products.</string>
+
 
     <!--    Coupon-->
     <string name="title_coupon">My Coupon</string>
@@ -40,7 +43,7 @@
     <!--     Log in-->
     <string name="log_in">Log In</string>
     <string name="hello_welcome_back_to_your_account">Hello, Welcome back to your account</string>
-    <string name="user_name_or_email">User name or email</string>
+    <string name="user_name_or_email">  User name or email</string>
     <string name="password">Password</string>
     <string name="remember_me">Remember me</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -77,10 +80,26 @@
     <string name="view_all">View all</string>
     <string name="top_pick_for_you">Top pick for you!</string>
     <string name="review">Review</string>
-    <string name="orderid">OrderID:</string>
-    <string name="delivered_at">Delivered at </string>
-    <string name="setting_edit_profile">Edit Profile</string>
-    <string name="address">Address</string>
+
+    <string name="btn_log_in">Log In</string>
+
+<!--    Dialog Forgot Password-->
+    <string name="forgot_password_dialog">Forgot Password</string>
+    <string name="enter_your_account_email">Enter your account email</string>
+    <string name="reset_password_dialog">Reset Password</string>
+<!--    Dialog Verification Code-->
+    <string name="verification_code">Verification Code</string>
+    <string name="description_dialog">A verification code has been sent to your mail.</string>
+    <string name="enter_your_verification_code">Enter your verification code</string>
+    <string name="change_email"><u>Change email</u></string>
+
+    <!--    Reset Password-->
+    <string name="reset_password">Reset Password</string>
+    <string name="required">Your password must be at least 8 characters long.</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="reconfirm_new_password">Reconfirm new password</string>
+    <string name="savebtn">Save</string>
+
 
 
 </resources>
