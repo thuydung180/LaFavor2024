@@ -104,5 +104,6 @@
     <string name="notification_cart">Are you sure you want to delete this Strawberry Cupcake from cart?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+    <string name="delivered">Delivered</string>
 
 </resources>
