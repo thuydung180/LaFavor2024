@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/orderid"
+            android:text="Order ID: "
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black" />
@@ -37,7 +37,7 @@
             android:textColor="#0B7C31"
             android:textStyle="bold"
             android:background="@drawable/order_status_background_delivered"
-            android:text="Delivered"
+            android:text="@string/delivered"
             android:paddingHorizontal="10dp"/>
     </LinearLayout>
 
@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/delivered_at"
+            android:text="Delivered at"
             android:textSize="16sp"
             android:textColor="@color/black" />
         <TextView
