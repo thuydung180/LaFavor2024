@@ -128,5 +128,10 @@
     <string name="order_verify">Your order has been received</string>
     <string name="thankyou">Thank you for shopping with us!</string>
     <string name="contrinue">Contrinue</string>
+    <string name="order_detail">Order Detail</string>
+    <string name="download_invoice">Download Invoice</string>
+    <string name="rate">Rate</string>
+    <string name="shipping_address">Shipping Address</string>
+    <string name="order_note">Order Note</string>
 
 </resources>
