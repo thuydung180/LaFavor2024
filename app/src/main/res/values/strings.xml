@@ -20,6 +20,8 @@
     <string name="AddressStatus">Default</string>
     <string name="no_address_added">No Address Added</string>
     <string name="address_advise">Find and add more address to fulfill your journey with us!</string>
+    <string name="setting_edit_profile">Edit Profile</string>
+    <string name="address">Address</string>
 
     <!--    Splashscreen-->
     <string name="skip">Skip</string>
