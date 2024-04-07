@@ -228,7 +228,7 @@
                     android:text="-10.000 VND"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textColor="@color/green2"
+                    android:textColor="@color/green"
                     android:layout_gravity="center"
                     android:layout_weight="1"/>
 
