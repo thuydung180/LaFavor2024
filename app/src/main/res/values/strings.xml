@@ -111,5 +111,20 @@
     <string name="add_new_address">Add new address</string>
     <string name="order_summary">Order Summary</string>
     <string name="add_items">Add items</string>
+    <string name="payment">Payment methods</string>
+    <string name="my_coupon">My coupon</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="promo">Promo</string>
+    <string name="Shipping">Shipping</string>
+    <string name="total">Total Payment Amount</string>
+    <string name="place_order">Place Order</string>
+    <string name="product">Strawberry Cupcake</string>
+    <string name="description_product">Shortbread, chocolate turtle cookies, and red velvet.</string>
+
+
+    <!-- Order Complete -->
+    <string name="order_verify">Your order has been received</string>
+    <string name="thankyou">Thank you for shopping with us!</string>
+    <string name="contrinue">Contrinue</string>
 
 </resources>
