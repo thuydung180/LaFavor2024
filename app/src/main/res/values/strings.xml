@@ -85,11 +85,11 @@
 
     <string name="btn_log_in">Log In</string>
 
-<!--    Dialog Forgot Password-->
+    <!--    Dialog Forgot Password-->
     <string name="forgot_password_dialog">Forgot Password</string>
     <string name="enter_your_account_email">Enter your account email</string>
     <string name="reset_password_dialog">Reset Password</string>
-<!--    Dialog Verification Code-->
+    <!--    Dialog Verification Code-->
     <string name="verification_code">Verification Code</string>
     <string name="description_dialog">A verification code has been sent to your mail.</string>
     <string name="enter_your_verification_code">Enter your verification code</string>
@@ -107,5 +107,26 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="delivered">Delivered</string>
+
+    <!-- Checkout -->
+    <string name="checkout">Checkout</string>
+    <string name="add_new_address">Add new address</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="add_items">Add items</string>
+    <string name="payment">Payment methods</string>
+    <string name="my_coupon">My coupon</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="promo">Promo</string>
+    <string name="Shipping">Shipping</string>
+    <string name="total">Total Payment Amount</string>
+    <string name="place_order">Place Order</string>
+    <string name="product">Strawberry Cupcake</string>
+    <string name="description_product">Shortbread, chocolate turtle cookies, and red velvet.</string>
+
+
+    <!-- Order Complete -->
+    <string name="order_verify">Your order has been received</string>
+    <string name="thankyou">Thank you for shopping with us!</string>
+    <string name="contrinue">Contrinue</string>
 
 </resources>
