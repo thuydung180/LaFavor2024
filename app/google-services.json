@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "524984052468",
+    "project_id": "lafavor2024",
+    "storage_bucket": "lafavor2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524984052468:android:6fef747105bc8533c54ca1",
+        "android_client_info": {
+          "package_name": "com.nhom5.lafavor2024"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZpURV8UTbjFWHvdJrunENESJRQWmXul8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
