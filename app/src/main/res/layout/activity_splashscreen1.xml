@@ -19,10 +19,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.041" />
 
-    <ImageView
-        android:id="@+id/imvSplashscreen1"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_height="500dp"
         android:layout_gravity="center"
         android:src="@drawable/splashscreen1"
         android:background="@drawable/round_background"
@@ -34,36 +34,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.259" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="226dp"
-        android:layout_height="69dp"
-        android:layout_gravity="center"
-        android:text="@string/title"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.726" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="310dp"
-        android:layout_height="38dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="4dp"
-        android:text="@string/description"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <LinearLayout
+        android:id="@+id/circle_indicator"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSC1"
+        app:layout_constraintEnd_toEndOf="@+id/viewPager"
+        app:layout_constraintStart_toStartOf="@+id/viewPager"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager"
+        android:orientation="horizontal"/>
 
     <Button
         android:id="@+id/btnSC1"
@@ -80,6 +60,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.972"
-        android:background="@drawable/custom_long_button"/>
+        android:background="@drawable/custom_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

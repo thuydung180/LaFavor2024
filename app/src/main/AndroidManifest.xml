@@ -25,7 +25,7 @@
             android:name=".Favorite"
             android:exported="false" />
         <activity
-            android:name=".Splashscreen_1"
+            android:name=".MyProfile"
             android:exported="false" />
         <activity
             android:name=".Profile"
@@ -78,7 +78,7 @@
         <!-- android:name=".Profile" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".MyProfile"
+            android:name=".Splashscreen_1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
