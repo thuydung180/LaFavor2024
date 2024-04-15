@@ -1,4 +1,4 @@
-package com.nhom5.adapter;
+package com.nhom5.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
