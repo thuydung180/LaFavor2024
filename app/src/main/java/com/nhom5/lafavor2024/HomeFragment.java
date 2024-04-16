@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,10 @@ import com.google.firebase.Firebase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.nhom5.adapters.CategoryAdapter;
 import com.nhom5.adapters.TopPickAdapter;
 import com.nhom5.lafavor2024.databinding.FragmentHomeBinding;
+import com.nhom5.models.Category;
 import com.nhom5.models.Product;
 
 import java.util.ArrayList;
@@ -43,7 +47,9 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private TopPickAdapter adapter;
+    private CategoryAdapter adapter1;
     private List<Product> productList;
+    private List<Category> categoryList;
 
     private FirebaseFirestore db;
 
@@ -87,7 +93,15 @@ public class HomeFragment extends Fragment {
 
         productList = new ArrayList<>();
         adapter = new TopPickAdapter(this, R.layout.item_favorite, productList);
-        binding.gvTopPick.setAdapter(adapter);
+        binding.rcvTopPick.setAdapter(adapter);
+        binding.rcvTopPick.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        categoryList = new ArrayList<>();
+        adapter1 = new CategoryAdapter(this, R.layout.item_category_mini, categoryList);
+        binding.rcvCategory.setAdapter(adapter1);
+        binding.rcvCategory.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL, false));
+
 
         db = FirebaseFirestore.getInstance();
 
@@ -109,6 +123,25 @@ public class HomeFragment extends Fragment {
                                 productList.add(product);
                             }
                             adapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getActivity(),
+                                    "Error getting documents: " + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        
+        db.collection("categories")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Category category = document.toObject(Category.class);
+                                categoryList.add(category);
+                            }
+                            adapter1.notifyDataSetChanged();
                         } else {
                             Toast.makeText(getActivity(),
                                     "Error getting documents: " + task.getException(),

@@ -9,15 +9,15 @@
     app:cardBackgroundColor="@color/gray3">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="175dp"
+        android:layout_width="170dp"
         android:layout_height="260dp"
         android:layout_margin="8dp"
         android:elevation="3dp">
 
         <ImageView
             android:id="@+id/imvProduct"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:background="@drawable/custom_item_product"
             android:src="@drawable/cookies"
             app:layout_constraintEnd_toEndOf="parent"
@@ -25,8 +25,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/baseline_favorite_border_24"
             app:layout_constraintEnd_toEndOf="@+id/imvProduct"
             app:layout_constraintTop_toTopOf="@+id/imvProduct" />
@@ -39,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:text="Cigarette cookies"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/imvProduct"
             app:layout_constraintTop_toBottomOf="@+id/imvProduct" />
 
@@ -50,7 +50,7 @@
             android:layout_marginStart="10dp"
             android:text="30 000 vnd"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/imvProduct"
             app:layout_constraintTop_toBottomOf="@+id/txtProductName" />
 
@@ -58,7 +58,7 @@
             android:id="@+id/imageView6"
             android:layout_width="60dp"
             android:layout_height="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/rate_product"
             app:layout_constraintEnd_toEndOf="@+id/imvProduct"
             app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
