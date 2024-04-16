@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/hi"
+                android:text="@string/home_greeting"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -39,79 +39,58 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/btnCoupon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:src="@drawable/icon_coupon"
                 app:layout_constraintBottom_toBottomOf="@+id/textView17"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintEnd_toStartOf="@+id/btnAlert"
                 app:layout_constraintTop_toTopOf="@+id/textView17"
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/btnAlert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_notify"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                app:layout_constraintBottom_toBottomOf="@+id/btnCoupon"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView7" />
+                app:layout_constraintTop_toTopOf="@+id/btnCoupon" />
 
-            <EditText
-                android:id="@+id/editText2"
+<!--            <EditText-->
+<!--                android:id="@+id/editText2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:background="@drawable/edt_coupon"-->
+<!--                android:padding="10dp"-->
+<!--                android:textSize="20sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textView17" />-->
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/edt_coupon"
-                android:padding="10dp"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/baseline_search_24"
-                app:layout_constraintBottom_toBottomOf="@+id/editText2"
-                app:layout_constraintStart_toStartOf="@+id/editText2"
-                app:layout_constraintTop_toTopOf="@+id/editText2" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/search"
-                android:textColor="@color/gray1"
-                android:textSize="20sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/editText2"
-                app:layout_constraintStart_toEndOf="@+id/imageView10"
-                app:layout_constraintTop_toTopOf="@+id/editText2" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvBanner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_marginTop="20dp"
-
-                app:cardCornerRadius="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bakery"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText2" />
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -123,7 +102,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                app:layout_constraintTop_toBottomOf="@+id/rcvBanner" />
 
             <TextView
                 android:layout_width="wrap_content"

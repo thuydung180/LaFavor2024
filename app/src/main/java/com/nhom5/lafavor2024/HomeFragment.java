@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.google.firebase.Firebase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.nhom5.adapters.BannerAdapter;
 import com.nhom5.adapters.CategoryAdapter;
 import com.nhom5.adapters.TopPickAdapter;
 import com.nhom5.lafavor2024.databinding.FragmentHomeBinding;
@@ -48,8 +50,10 @@ public class HomeFragment extends Fragment {
 
     private TopPickAdapter adapter;
     private CategoryAdapter adapter1;
+    private BannerAdapter bannerAdapter;
     private List<Product> productList;
     private List<Category> categoryList;
+    private List<String> urls;
 
     private FirebaseFirestore db;
 
@@ -91,16 +95,26 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
+        // Top Pick
         productList = new ArrayList<>();
         adapter = new TopPickAdapter(this, R.layout.item_favorite, productList);
         binding.rcvTopPick.setAdapter(adapter);
         binding.rcvTopPick.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
+        // Category
         categoryList = new ArrayList<>();
         adapter1 = new CategoryAdapter(this, R.layout.item_category_mini, categoryList);
         binding.rcvCategory.setAdapter(adapter1);
         binding.rcvCategory.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL, false));
+
+        // Banner
+        getListUrl();
+        bannerAdapter = new BannerAdapter(this.getContext(), urls);
+        binding.rcvBanner.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL, false));
+        binding.rcvBanner.setAdapter(bannerAdapter);
+
 
 
         db = FirebaseFirestore.getInstance();
@@ -108,6 +122,16 @@ public class HomeFragment extends Fragment {
         fetchDataFromFirestore();
 
         return binding.getRoot();
+    }
+
+    private void getListUrl() {
+        urls = new ArrayList<>();
+        urls.add("https://firebasestorage.googleapis.com/v0/b/lafavor2024.appspot" +
+                ".com/o/banner%2Fbanner3.jpg?alt=media&token=bf798d8a-1eb1-4dde-acaf-94fed4aef6dd");
+        urls.add("https://firebasestorage.googleapis.com/v0/b/lafavor2024.appspot" +
+                ".com/o/banner%2Fbanner2.jpg?alt=media&token=88bc7538-b1fe-4b91-ad19-45c05f99d553");
+        urls.add("https://firebasestorage.googleapis.com/v0/b/lafavor2024.appspot" +
+                ".com/o/banner%2Fbanner1.jpg?alt=media&token=a9a0eabb-b64f-4dd7-b7ab-12582e7f73ea");
     }
 
     private void fetchDataFromFirestore() {
