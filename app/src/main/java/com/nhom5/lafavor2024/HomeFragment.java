@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,8 @@ import com.nhom5.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import kotlin.collections.ArrayDeque;
 
@@ -54,6 +58,9 @@ public class HomeFragment extends Fragment {
     private List<Product> productList;
     private List<Category> categoryList;
     private List<String> urls;
+    private Timer timer;
+    private TimerTask timerTask;
+    int position;
 
     private FirebaseFirestore db;
 
@@ -115,6 +122,14 @@ public class HomeFragment extends Fragment {
                 LinearLayoutManager.HORIZONTAL, false));
         binding.rcvBanner.setAdapter(bannerAdapter);
 
+        if(urls != null) {
+            position = Integer.MAX_VALUE /2;
+            binding.rcvBanner.scrollToPosition(position);
+        }
+
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(binding.rcvBanner);
+        binding.rcvBanner.smoothScrollBy(5,0);
 
 
         db = FirebaseFirestore.getInstance();
@@ -122,6 +137,33 @@ public class HomeFragment extends Fragment {
         fetchDataFromFirestore();
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        runAutoScrollBanner();
+    }
+
+    private void runAutoScrollBanner() {
+        if(timer==null&&timerTask==null) {
+            timer=new Timer();
+            timerTask=new TimerTask() {
+                @Override
+                public void run() {
+                    if(position==Integer.MAX_VALUE) {
+                        position=Integer.MAX_VALUE / 2;
+                        binding.rcvBanner.scrollToPosition(position);
+                        binding.rcvBanner.smoothScrollBy(5,0);
+                    } else {
+                        position++;
+                        binding.rcvBanner.smoothScrollToPosition(position);
+                    }
+                }
+            };
+            timer.schedule(timerTask, 4000, 4000);
+
+        }
     }
 
     private void getListUrl() {
