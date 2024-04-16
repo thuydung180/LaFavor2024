@@ -1,5 +1,7 @@
 package com.nhom5.adapters;
 
+import android.content.Context;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.nhom5.lafavor2024.MainActivity;
 import com.nhom5.lafavor2024.R;
 import com.nhom5.lafavor2024.databinding.FragmentHomeBinding;
 import com.nhom5.models.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,12 +34,12 @@ public class TopPickAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return products.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return products.get(position);
     }
 
     @Override
@@ -48,8 +51,11 @@ public class TopPickAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder holder;
         if(view == null){
-            view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.item_favorite, parent, false);
             holder = new ViewHolder();
+            LayoutInflater inflater =
+                    (LayoutInflater) fragment.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(item_layout, null);
+
             holder.imvProduct = view.findViewById(R.id.imvProduct);
             holder.txtName = view.findViewById(R.id.txtProductName);
             holder.txtPrice = view.findViewById(R.id.txtPrice);
@@ -61,10 +67,10 @@ public class TopPickAdapter extends BaseAdapter {
 
         Product product = products.get(position);
 
-
+        Picasso.get().load(product.getProductUrl()).into(holder.imvProduct);
         holder.txtName.setText(product.getProductName());
-        holder.txtPrice.setText((int) product.getProductPrice());
-        holder.txtRating.setText((int) product.getProductRating());
+        holder.txtPrice.setText(String.valueOf(product.getProductPrice()));
+        holder.txtRating.setText(product.getProductRating());
 
         return view;
     }

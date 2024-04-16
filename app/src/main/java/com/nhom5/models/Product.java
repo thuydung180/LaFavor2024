@@ -7,13 +7,19 @@ public class Product {
     double productPrice;
     double productComparePrice;
     String productDescription;
-    float productRating;
+    String productRating;
     String productUrl;
+
+    public Product() {
+
+    }
 
     //Constructor
 
 
-    public Product(int productId, String productName, String productCategory, double productPrice, double productComparePrice, String productDescription, float productRating, String productUrl) {
+    public Product(int productId, String productName, String productCategory, double productPrice
+            , double productComparePrice, String productDescription, String productRating,
+                   String productUrl) {
         this.productId = productId;
         this.productName = productName;
         this.productCategory = productCategory;
@@ -75,11 +81,11 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public float getProductRating() {
+    public String getProductRating() {
         return productRating;
     }
 
-    public void setProductRating(float productRating) {
+    public void setProductRating(String productRating) {
         this.productRating = productRating;
     }
 

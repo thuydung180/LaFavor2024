@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         productList = new ArrayList<>();
         adapter = new TopPickAdapter(this, R.layout.item_favorite, productList);
@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
 
         fetchDataFromFirestore();
 
-        return view;
+        return binding.getRoot();
     }
 
     private void fetchDataFromFirestore() {
