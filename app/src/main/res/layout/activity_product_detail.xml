@@ -29,15 +29,16 @@
 
                 <ImageView
                     android:id="@+id/btnBack"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:src="@drawable/vector_back" />
 
                 <TextView
+                    android:id="@+id/txtProductTitleName"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="8"
                     android:gravity="center"
@@ -57,7 +58,7 @@
                 android:id="@+id/imvThumb"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginVertical="15dp"
                 android:background="@drawable/background_review_product"
                 android:src="@drawable/cookie1" />
 
@@ -68,7 +69,7 @@
                 android:weightSum="10">
 
                 <TextView
-                    android:id="@+id/txtName"
+                    android:id="@+id/txtProductName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -85,7 +86,6 @@
                     android:src="@drawable/heart_icon" />
             </LinearLayout>
 
-
             <TextView
                 android:id="@+id/txtPrice"
                 android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtNetPrice"
+                android:id="@+id/txtComparePrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -119,6 +119,13 @@
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                android:layout_marginVertical="10dp"/>
+
 
             <TextView
                 android:id="@+id/txtDescription"
