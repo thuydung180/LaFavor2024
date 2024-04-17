@@ -149,4 +149,10 @@
     <string name="_4_3">4.3</string>
     <string name="first_fragment_label">First Fragment Label</string>
     <string name="Cooies">Cookies\n</string>
+    <string name="home">Home</string>
+    <string name="favorite_icon">Favorite</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+
+    <!-- MainActivity_Navbar -->
 </resources>
