@@ -135,7 +135,7 @@
     <string name="home_greeting">What are you eating to day?</string>
 
 
-    <!-- Review -->
+    <!-- Product and Review -->
     <string name="l_chung">Lý Chung</string>
     <string name="coconut_cookies">Coconut Cookies</string>
     <string name="_25_000_vnd">25.0000 VND</string>
@@ -148,4 +148,5 @@
     <string name="write_review">Write Review</string>
     <string name="_4_3">4.3</string>
     <string name="first_fragment_label">First Fragment Label</string>
+    <string name="Cooies">Cookies\n</string>
 </resources>
