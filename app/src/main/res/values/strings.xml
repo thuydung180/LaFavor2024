@@ -121,7 +121,6 @@
     <string name="total">Total Payment Amount</string>
     <string name="place_order">Place Order</string>
     <string name="product">Strawberry Cupcake</string>
-    <string name="description_product">Shortbread, chocolate turtle cookies, and red velvet.</string>
 
 
     <!-- Order Complete -->
@@ -135,4 +134,18 @@
     <string name="order_note">Order Note</string>
     <string name="home_greeting">What are you eating to day?</string>
 
+
+    <!-- Review -->
+    <string name="l_chung">Lý Chung</string>
+    <string name="coconut_cookies">Coconut Cookies</string>
+    <string name="_25_000_vnd">25.0000 VND</string>
+    <string name="_30_000_vnd">30.000VND</string>
+    <string name="product_description">Shortbread,chocolate turtle cookies, and red velvet</string>
+    <string name="description_product">Description</string>
+    <string name="review_product">Review</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="write_review">Write Review</string>
+    <string name="_4_3">4.3</string>
+    <string name="first_fragment_label">First Fragment Label</string>
 </resources>
