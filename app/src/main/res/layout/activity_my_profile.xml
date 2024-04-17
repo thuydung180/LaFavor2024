@@ -48,6 +48,7 @@
                     android:layout_weight="9"/>
 
                 <ImageView
+                    android:id="@+id/imvEditButton"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/icon_edit"

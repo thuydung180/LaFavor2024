@@ -1,5 +1,6 @@
 package com.nhom5.lafavor2024;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,12 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nhom5.lafavor2024.databinding.FragmentProfileMainBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProfileMain#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ProfileMain extends Fragment {
+
+    FragmentProfileMainBinding binding;
+    Intent intent;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +65,54 @@ public class ProfileMain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_main, container, false);
+        binding = FragmentProfileMainBinding.inflate(inflater, container, false);
+        addEvent();
+
+        return binding.getRoot();
+    }
+
+    private void addEvent() {
+        binding.lnlProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(ProfileMain.this.getActivity(), MyProfile.class);
+                startActivity(intent);
+            }
+        });
+        binding.lnlMyAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(ProfileMain.this.getActivity(), MyAddressEmpty.class);
+                startActivity(intent);
+            }
+        });
+        binding.lnlMyOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(ProfileMain.this.getActivity(), MyOrders.class);
+                startActivity(intent);
+            }
+        });
+        binding.lnlSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(ProfileMain.this.getActivity(), Setting.class);
+                startActivity(intent);
+            }
+        });
+        binding.lnlAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(ProfileMain.this.getActivity(), AboutUs.class);
+                startActivity(intent);
+            }
+        });
+        binding.lnlLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 }
