@@ -56,10 +56,19 @@ public class TopPickAdapter extends RecyclerView.Adapter<TopPickAdapter.ViewHold
         holder.txtComparePrice.setPaintFlags(holder.txtComparePrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.txtRating.setText(String.valueOf(product.getProductRating()));
 
+        final int currentPosition = position;
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(fragment.getContext(), ProductDetail.class);
+                intent.putExtra("name", products.get(currentPosition).getProductName());
+                intent.putExtra("price", products.get(currentPosition).getProductPrice());
+                intent.putExtra("comparePrice",
+                        products.get(currentPosition).getProductComparePrice());
+                intent.putExtra("image", products.get(currentPosition).getProductUrl());
+                intent.putExtra("desc", products.get(currentPosition).getProductDescription());
+
                 fragment.startActivity(intent);
             }
         });
