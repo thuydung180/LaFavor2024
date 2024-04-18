@@ -46,11 +46,18 @@ public class Login extends AppCompatActivity {
                 
             }
         });
+        binding.txtResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(Login.this, Reset_Password.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loginUser() {
 
-        String userEmail = binding.edtUserMail.getText().toString();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            String userEmail = binding.edtUserMail.getText().toString();
         String userPassword = binding.edtPassword.getText().toString();
 
         if(TextUtils.isEmpty(userEmail)){
@@ -58,20 +65,22 @@ public class Login extends AppCompatActivity {
         }
         else if(TextUtils.isEmpty(userPassword)){
             Toast.makeText(this, "Password is Empty!", Toast.LENGTH_SHORT).show();
-        }
-        //Login user
-        auth.signInWithEmailAndPassword(userEmail, userPassword)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(Login.this, "Login Successfull!", Toast.LENGTH_SHORT).show();
-                            intent = new Intent(Login.this, HomePage.class);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(Login.this, "Error:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+        } else {
+            //Login user
+            auth.signInWithEmailAndPassword(userEmail, userPassword)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "Login Successfull!", Toast.LENGTH_SHORT).show();
+                                intent = new Intent(Login.this, HomePage.class);
+                                startActivity(intent);
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Error:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
+
     }
 }

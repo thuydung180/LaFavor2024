@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.nhom5.lafavor2024.databinding.ActivitySignupBinding;
 import com.nhom5.models.User;
 
+import java.util.Objects;
+
 public class Signup extends AppCompatActivity {
     ActivitySignupBinding binding;
     FirebaseAuth auth;
@@ -49,45 +51,38 @@ public class Signup extends AppCompatActivity {
         String userPassword = binding.edtPassword.getText().toString();
         String userConfirmPassword = binding.edtConfirmPassword.getText().toString();
 
-        if(TextUtils.isEmpty(userName)){
-            Toast.makeText(this, "Name is Empty!", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(userEmail)){
-            Toast.makeText(this, "Email is Empty!", Toast.LENGTH_SHORT).show();
-        }
-        else if(userPhone <0 ){
-            Toast.makeText(this, "Phone is Empty!", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(userPassword)){
-            Toast.makeText(this, "Password is Empty!", Toast.LENGTH_SHORT).show();
-        }
-        else if(!userPassword.equals(userConfirmPassword)) {
-            Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-        }
-        //create user
-        auth.createUserWithEmailAndPassword(userEmail, userPassword)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+        if(TextUtils.isEmpty(userName) && TextUtils.isEmpty(userEmail) && TextUtils.isEmpty(userPassword)
+            && userPhone <0 && !userPassword.equals(userConfirmPassword)){
 
-                            User user = new User(userName, userPhone, userEmail, userPassword);
-                            String id = task.getResult().getUser().getUid();
-                            database.getReference().child("Users").child(id).setValue(user);
+            Toast.makeText(this, "Enter your information!", Toast.LENGTH_SHORT).show();
+        } else {
+            //create user
+            auth.createUserWithEmailAndPassword(userEmail, userPassword)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
 
-                            Toast.makeText(Signup.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                User user = new User(userName, userPhone, userEmail, userPassword);
+                                String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
+                                database.getReference().child("Users").child(id).setValue(user);
 
-                            Intent intent = new Intent(Signup.this, Login.class);
-                            startActivity(intent);
+                                Toast.makeText(Signup.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
 
-                        }else{
-                            Toast.makeText(Signup.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Signup.this, Login.class);
+                                startActivity(intent);
+                                finish();
+
+                            }else{
+                                Toast.makeText(Signup.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+
+                            }
+
 
                         }
+                    });
+        }
 
-
-                    }
-                });
 
 
         }
