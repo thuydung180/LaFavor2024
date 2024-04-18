@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="15dp"
     app:cardUseCompatPadding="true"
-    app:cardBackgroundColor="@color/gray3">
+    app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="170dp"
-        android:layout_height="260dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:elevation="3dp">
 
         <ImageView
             android:id="@+id/imvProduct"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:background="@drawable/custom_item_product"
             android:src="@drawable/cookies"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,14 +54,24 @@
             app:layout_constraintStart_toStartOf="@+id/imvProduct"
             app:layout_constraintTop_toBottomOf="@+id/txtProductName" />
 
+        <TextView
+            android:id="@+id/txtComparePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="30 000 vnd"
+            android:textColor="@color/gray1"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/imvProduct"
+            app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="60dp"
             android:layout_height="20dp"
-            android:layout_marginTop="10dp"
             android:src="@drawable/rate_product"
             app:layout_constraintEnd_toEndOf="@+id/imvProduct"
-            app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/txtComparePrice" />
 
         <TextView
             android:id="@+id/txtRating"
