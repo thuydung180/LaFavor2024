@@ -28,7 +28,7 @@
             android:name=".MyProfile"
             android:exported="false" />
         <activity
-            android:name=".Profile"
+            android:name=".Login"
             android:exported="false" />
         <activity
             android:name=".Signup"
@@ -49,7 +49,7 @@
             android:name=".MyAddressAdd"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".Splashscreen_3"
@@ -58,7 +58,7 @@
             android:name=".Splashscreen_2"
             android:exported="false" />
         <activity
-            android:name=".Splashscreen_1"
+            android:name=".HomePage"
             android:exported="false" />
         <activity
             android:name=".MyAddressEmpty"
@@ -78,7 +78,7 @@
         <!-- android:name=".Profile" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".HomePage"
+            android:name=".Splashscreen_1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

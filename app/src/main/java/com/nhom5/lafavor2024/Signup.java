@@ -51,11 +51,22 @@ public class Signup extends AppCompatActivity {
         String userPassword = binding.edtPassword.getText().toString();
         String userConfirmPassword = binding.edtConfirmPassword.getText().toString();
 
-        if(TextUtils.isEmpty(userName) && TextUtils.isEmpty(userEmail) && TextUtils.isEmpty(userPassword)
-            && userPhone <0 && !userPassword.equals(userConfirmPassword)){
+        if(TextUtils.isEmpty(userName) ){
 
-            Toast.makeText(this, "Enter your information!", Toast.LENGTH_SHORT).show();
-        } else {
+            Toast.makeText(this, "Enter your name!", Toast.LENGTH_SHORT).show();
+        } else if(TextUtils.isEmpty(userEmail)){
+            Toast.makeText(this, "Enter your mail!", Toast.LENGTH_SHORT).show();
+        }
+        else if(userPhone <0){
+            Toast.makeText(this, "Enter your phone!", Toast.LENGTH_SHORT).show();
+        }
+        else if(TextUtils.isEmpty(userPassword)){
+            Toast.makeText(this, "Enter your mail!", Toast.LENGTH_SHORT).show();
+        }
+        else if(!userPassword.equals(userConfirmPassword)){
+            Toast.makeText(this, "Enter wrong password!", Toast.LENGTH_SHORT).show();
+        }
+        else {
             //create user
             auth.createUserWithEmailAndPassword(userEmail, userPassword)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
