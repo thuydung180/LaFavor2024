@@ -37,9 +37,6 @@
             android:name=".Cart"
             android:exported="false" />
         <activity
-            android:name=".ShoppingCart"
-            android:exported="false" />
-        <activity
             android:name=".Checkout"
             android:exported="false" />
         <activity
