@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtPassword">
 
         <CheckBox
-            android:id="@+id/cbLogin"
+            android:id="@+id/cbRemember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5" />
@@ -80,6 +80,7 @@
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/txtResetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -97,7 +98,7 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:background="@drawable/custom_button"/>
+        android:background="@drawable/custom_long_button"/>
 
     <TextView
         android:id="@+id/textView10"

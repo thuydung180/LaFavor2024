@@ -26,7 +26,11 @@
     <!--    Splashscreen-->
     <string name="skip">Skip</string>
     <string name="title">Find And Get Your Best Cake</string>
-    <string name="description">Find the most delicious food with the best quality and free delivery here</string>
+    <string name="title1">New Flavor Shipping Nationwide!</string>
+    <string name="title2">Discover Our Delectable Menu</string>
+    <string name="description">Find the most delicious food with the best quality and free delivery here.</string>
+    <string name="description1">We are now shipping our product to your doorstep.</string>
+    <string name="description2">Make by hand, from scratch with love.</string>
     <string name="get_started">GET STARTED</string>
 
 
@@ -98,9 +102,8 @@
     <!--    Reset Password-->
     <string name="reset_password">Reset Password</string>
     <string name="required">Your password must be at least 8 characters long.</string>
-    <string name="enter_new_password">Enter new password</string>
+    <string name="enter_your_email">Enter your email</string>
     <string name="reconfirm_new_password">Reconfirm new password</string>
-    <string name="savebtn">Save</string>
 
     <!--     Notification Cart -->
     <string name="notification_cart">Are you sure you want to delete this Strawberry Cupcake from cart?</string>
@@ -133,6 +136,7 @@
     <string name="shipping_address">Shipping Address</string>
     <string name="order_note">Order Note</string>
     <string name="home_greeting">What are you eating to day?</string>
+    <string name="reset_password_description">Enter your account email for which your want to reset your password</string>
 
 
     <!-- Product and Review -->
