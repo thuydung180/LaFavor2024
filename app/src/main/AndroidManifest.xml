@@ -28,7 +28,7 @@
             android:name=".MyProfile"
             android:exported="false" />
         <activity
-            android:name=".HomePage"
+            android:name=".Login"
             android:exported="false" />
         <activity
             android:name=".Signup"
@@ -55,7 +55,7 @@
             android:name=".Splashscreen_2"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".Splashscreen_1"
             android:exported="false" />
         <activity
             android:name=".MyAddressEmpty"
@@ -67,10 +67,13 @@
             android:name=".Setting"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".HomePage"
             android:exported="false" />
         <activity
             android:name=".ProductDetail"
+            android:exported="false" />
+        <activity
+            android:name=".Product"
             android:exported="false" />
         <activity
             android:name=".ProductCategory"
@@ -81,7 +84,7 @@
         <!-- android:name=".Profile" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".Splashscreen_1"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
