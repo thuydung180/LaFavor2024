@@ -28,14 +28,14 @@ public class SplashscreenAdapter extends PagerAdapter {
 
     int heading[] = {
             R.string.title,
-            R.string.title,
-            R.string.title,
+            R.string.title1,
+            R.string.title2,
     };
 
     int description[] = {
             R.string.description,
-            R.string.description,
-            R.string.description,
+            R.string.description1,
+            R.string.description2,
     };
 
     public SplashscreenAdapter(Context context) {

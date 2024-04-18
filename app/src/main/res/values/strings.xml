@@ -26,7 +26,11 @@
     <!--    Splashscreen-->
     <string name="skip">Skip</string>
     <string name="title">Find And Get Your Best Cake</string>
-    <string name="description">Find the most delicious food with the best quality and free delivery here</string>
+    <string name="title1">New Flavor Shipping Nationwide!</string>
+    <string name="title2">Discover Our Delectable Menu</string>
+    <string name="description">Find the most delicious food with the best quality and free delivery here.</string>
+    <string name="description1">We are now shipping our product to your doorstep.</string>
+    <string name="description2">Make by hand, from scratch with love.</string>
     <string name="get_started">GET STARTED</string>
 
 
