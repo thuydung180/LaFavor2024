@@ -44,7 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categories.get(position);
 
-        SVGHelper.loadSvgFromUrl(category.getCategoryImage(), holder.imvCategoryPhoto);
+        Picasso.get().load(category.getCategoryImage()).into(holder.imvCategoryPhoto);
         holder.txtCategoryName.setText(category.getCategoryName());
     }
 
