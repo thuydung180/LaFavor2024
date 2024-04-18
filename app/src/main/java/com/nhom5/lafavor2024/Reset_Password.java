@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.nhom5.lafavor2024.databinding.ActivityResetPasswordBinding;
 
 public class Reset_Password extends AppCompatActivity {
@@ -53,6 +54,7 @@ public class Reset_Password extends AppCompatActivity {
                         Intent intent = new Intent(Reset_Password.this, Login.class);
                         startActivity(intent);
                         finish();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

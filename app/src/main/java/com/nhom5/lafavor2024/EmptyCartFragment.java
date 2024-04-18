@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.nhom5.lafavor2024.databinding.FragmentEmptyCartBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link EmptyCartFragment#newInstance} factory method to
@@ -25,6 +27,8 @@ public class EmptyCartFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    FragmentEmptyCartBinding binding;
+
 
     public EmptyCartFragment() {
         // Required empty public constructor
@@ -60,18 +64,15 @@ public class EmptyCartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_empty_cart, container, false);
+        binding = FragmentEmptyCartBinding.inflate(inflater, container, false);
 
-        Button button = view.findViewById(R.id.btnAddProduct);
-        button.setOnClickListener(new View.OnClickListener() {
+        binding.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent đến một trang web
                 Intent intent = new Intent(getActivity(), Product.class);
                 startActivity(intent);
             }
         });
-
-        return view;
+    return binding.getRoot();
     }
 }

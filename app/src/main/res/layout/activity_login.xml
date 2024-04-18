@@ -98,7 +98,7 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:background="@drawable/custom_button"/>
+        android:background="@drawable/custom_long_button"/>
 
     <TextView
         android:id="@+id/textView10"

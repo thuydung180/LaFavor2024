@@ -14,4 +14,5 @@
         android:name="com.nhom5.lafavor2024.HomeFragment"
         tools:layout="@layout/fragment_home" />
 
+
 </LinearLayout>

@@ -42,9 +42,10 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/setting_about"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:paddingEnd="20dp"/>
+                    android:paddingEnd="20dp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <ImageView

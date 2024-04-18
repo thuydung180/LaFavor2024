@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.containerLayout, fragment, "FragFavorite");
                 transaction.addToBackStack("FFavorite");
             } else if (view.equals(binding.lnlCart)) {
-                fragment = new ShoppingCartFragment();
+                fragment = new EmptyCartFragment();
                 transaction.replace(R.id.containerLayout, fragment, "FragCart");
                 transaction.addToBackStack("FCart");
             } else if (view.equals(binding.lnlProfile)) {
