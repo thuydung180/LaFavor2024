@@ -1,5 +1,6 @@
 package com.nhom5.lafavor2024;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -131,12 +133,32 @@ public class HomeFragment extends Fragment {
         snapHelper.attachToRecyclerView(binding.rcvBanner);
         binding.rcvBanner.smoothScrollBy(5,0);
 
+        //binding action
+        addEvents();
 
         db = FirebaseFirestore.getInstance();
 
         fetchDataFromFirestore();
 
         return binding.getRoot();
+    }
+
+    private void addEvents() {
+        binding.txtViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProductCategory.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.btnCoupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyCoupon.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
