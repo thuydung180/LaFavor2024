@@ -1,5 +1,7 @@
 package com.nhom5.lafavor2024;
 
+import static java.util.regex.Pattern.matches;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,22 +48,25 @@ public class Signup extends AppCompatActivity {
 
     private void createUser() {
         String userName = binding.edtName.getText().toString();
-        double userPhone = Double.parseDouble(binding.edtNumberphone.getText().toString());
+        String userPhone = binding.edtNumberphone.getText().toString();
         String userEmail = binding.edtEmail.getText().toString();
         String userPassword = binding.edtPassword.getText().toString();
         String userConfirmPassword = binding.edtConfirmPassword.getText().toString();
 
         if(TextUtils.isEmpty(userName) ){
-
             Toast.makeText(this, "Enter your name!", Toast.LENGTH_SHORT).show();
         } else if(TextUtils.isEmpty(userEmail)){
             Toast.makeText(this, "Enter your mail!", Toast.LENGTH_SHORT).show();
-        }
-        else if(userPhone <0){
+        }else if(!userEmail.matches("[a-zA-z0-9._-]+@[a-z]+\\.+[a-z]+")){
+            Toast.makeText(this, "Enter valid mail!", Toast.LENGTH_SHORT).show();
+        } else if(TextUtils.isEmpty(userPhone)){
             Toast.makeText(this, "Enter your phone!", Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(userPassword)){
+        } else if (!userPhone.matches("^0[0-9]{9}$")){
+            Toast.makeText(this, "Enter correct your phone!", Toast.LENGTH_SHORT).show();
+        } else if(TextUtils.isEmpty(userPassword)){
             Toast.makeText(this, "Enter your mail!", Toast.LENGTH_SHORT).show();
+        } else if (userPassword.length() <= 5){
+            Toast.makeText(this, "Minimum 6 character required!", Toast.LENGTH_SHORT).show();
         }
         else if(!userPassword.equals(userConfirmPassword)){
             Toast.makeText(this, "Enter wrong password!", Toast.LENGTH_SHORT).show();

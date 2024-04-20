@@ -2,11 +2,11 @@ package com.nhom5.models;
 
 public class User {
     String userName;
-    double userPhone;
+    String userPhone;
     String userEmail;
     String userPassword;
 
-    public User(String userName, double userPhone, String userEmail, String userPassword) {
+    public User(String userName, String userPhone, String userEmail, String userPassword) {
         this.userName = userName;
         this.userPhone = userPhone;
         this.userEmail = userEmail;
@@ -21,11 +21,11 @@ public class User {
         this.userName = userName;
     }
 
-    public double getUserPhone() {
+    public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(double userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 
