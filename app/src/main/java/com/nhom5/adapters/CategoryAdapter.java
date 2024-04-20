@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.caverock.androidsvg.SVG;
+import com.nhom5.lafavor2024.Product;
 import com.nhom5.lafavor2024.R;
 import com.nhom5.models.Category;
 import com.squareup.picasso.Picasso;
@@ -48,7 +49,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         Picasso.get().load(category.getCategoryImage()).into(holder.imvCategoryPhoto);
         holder.txtCategoryName.setText(category.getCategoryName());
         holder.itemView.setOnClickListener(v -> {
-
+            Intent intent = new Intent(fragment.getContext(), Product.class);
+            intent.putExtra("categoryId", category.getCategoryName());
+            intent.putExtra("categoryName", category.getCategoryName());
+            fragment.startActivity(intent);
         });
     }
 
