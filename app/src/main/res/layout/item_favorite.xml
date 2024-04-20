@@ -9,15 +9,15 @@
     app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:elevation="3dp">
 
         <ImageView
             android:id="@+id/imvProduct"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
             android:background="@drawable/custom_item_product"
             android:src="@drawable/cookies"
             app:layout_constraintEnd_toEndOf="parent"

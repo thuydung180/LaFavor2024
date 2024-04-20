@@ -83,7 +83,8 @@ public class ProductCategoryAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Category category = categories.get(position);
                 Intent intent = new Intent(activity, Product.class);
-                intent.putExtra("categoryId", category.getCategoryId());
+                intent.putExtra("categoryId", category.getCategoryName());
+                intent.putExtra("categoryName", category.getCategoryName());
                 activity.startActivity(intent);
             }
         });

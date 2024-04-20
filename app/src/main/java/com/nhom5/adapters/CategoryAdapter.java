@@ -1,5 +1,6 @@
 package com.nhom5.adapters;
 
+import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
 import android.icu.util.ULocale;
 import android.net.Uri;
@@ -46,6 +47,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         Picasso.get().load(category.getCategoryImage()).into(holder.imvCategoryPhoto);
         holder.txtCategoryName.setText(category.getCategoryName());
+        holder.itemView.setOnClickListener(v -> {
+
+        });
     }
 
     @Override
