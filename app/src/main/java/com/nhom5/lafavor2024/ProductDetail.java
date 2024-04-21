@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nhom5.lafavor2024.databinding.ActivityProductDetailBinding;
+import com.nhom5.models.Cart;
 import com.squareup.picasso.Picasso;
 
 public class ProductDetail extends AppCompatActivity {
@@ -40,7 +41,23 @@ public class ProductDetail extends AppCompatActivity {
                 //
             }
         });
+        binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int productQuantity = 1;
+                if (MainActivity.cartArrayList.size() >0){
+
+                }else {
+                    Intent intent = getIntent();
+                    double productPrice = intent.getDoubleExtra("price", 0.0);
+                    double total = productQuantity * productPrice;
+
+                }
+            }
+        });
+
     }
+
 
     private void getBundles() {
         Intent intent = getIntent();

@@ -26,6 +26,9 @@ public class Product extends AppCompatActivity {
     private ProductAdapter productAdapter;
     private List<com.nhom5.models.Product> products;
 
+    public Product(String productName, double productPrice, double productComparePrice, String productDescription, String productImageUrl) {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
