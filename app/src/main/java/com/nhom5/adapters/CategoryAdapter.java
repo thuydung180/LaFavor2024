@@ -76,7 +76,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
 }
 class SVGHelper {
-
     public static void loadSvgFromUrl(String url, ImageView imageView) {
         // Tạo Uri từ URL
         Uri uri = Uri.parse(url);

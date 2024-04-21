@@ -31,7 +31,7 @@ public class ProductDetail extends AppCompatActivity {
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getOnBackPressedDispatcher();
+                finish();
             }
         });
         binding.btnCart.setOnClickListener(new View.OnClickListener() {
