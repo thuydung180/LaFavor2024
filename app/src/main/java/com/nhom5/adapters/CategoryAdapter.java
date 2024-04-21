@@ -45,7 +45,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categories.get(position);
-
         Picasso.get().load(category.getCategoryImage()).into(holder.imvCategoryPhoto);
         holder.txtCategoryName.setText(category.getCategoryName());
         holder.itemView.setOnClickListener(v -> {
@@ -74,18 +73,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
 
-}
-class SVGHelper {
-    public static void loadSvgFromUrl(String url, ImageView imageView) {
-        // Tạo Uri từ URL
-        Uri uri = Uri.parse(url);
-        // Sử dụng AndroidSVG để tải và hiển thị hình ảnh SVG từ Uri
-        try (InputStream inputStream = imageView.getContext().getContentResolver().openInputStream(uri)) {
-            SVG svg = SVG.getFromInputStream(inputStream);
-            PictureDrawable drawable = new PictureDrawable(svg.renderToPicture());
-            imageView.setImageDrawable(drawable);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

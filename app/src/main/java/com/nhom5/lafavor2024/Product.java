@@ -26,14 +26,13 @@ public class Product extends AppCompatActivity {
     private ProductAdapter productAdapter;
     private List<com.nhom5.models.Product> products;
 
-    public Product(String productName, double productPrice, double productComparePrice, String productDescription, String productImageUrl) {
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        db = FirebaseFirestore.getInstance();
 
         setupRecyclerView();
         loadProducts();
@@ -63,7 +62,6 @@ public class Product extends AppCompatActivity {
             String categoryName = intent.getStringExtra("categoryName");
             binding.txtProductTitleName.setText(categoryName);
             if (categoryId != null) {
-                db = FirebaseFirestore.getInstance();
                 db.collection("products")
                         .whereEqualTo("productCategory", categoryId)
                         .get()
