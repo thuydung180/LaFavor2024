@@ -67,6 +67,7 @@ public class ProductDetail extends AppCompatActivity {
         String productDescription = intent.getStringExtra("desc");
         String productImageUrl = intent.getStringExtra("image");
 
+        binding.txtProductTitleName.setText(productName);
         binding.txtProductName.setText(productName);
         binding.txtPrice.setText(String.valueOf(productPrice));
         binding.txtComparePrice.setText(String.valueOf(productComparePrice));
