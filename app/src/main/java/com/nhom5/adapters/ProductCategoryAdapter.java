@@ -18,6 +18,7 @@ import com.nhom5.lafavor2024.Product;
 import com.nhom5.lafavor2024.ProductCategory;
 import com.nhom5.lafavor2024.R;
 import com.nhom5.models.Category;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -66,24 +67,16 @@ public class ProductCategoryAdapter extends BaseAdapter {
 
         //Binding data
         Category category = categories.get(position);
+        Picasso.get().load(category.getCategoryImage()).into(holder.imvCategoryPhoto);
         holder.txtCategoryName.setText(category.getCategoryName());
-
-        RequestOptions requestOptions = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.DATA) // Không lưu cache
-                .placeholder(R.drawable.background_product) // Ảnh thay thế trong quá trình tải
-                .error(R.drawable.background_product); // Ảnh thay thế nếu có lỗi
-
-        Glide.with(activity)
-                .load(category.getCategoryImage())
-                .apply(requestOptions)
-                .into(holder.imvCategoryPhoto);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Category category = categories.get(position);
                 Intent intent = new Intent(activity, Product.class);
-                intent.putExtra("categoryId", category.getCategoryId());
+                intent.putExtra("categoryId", category.getCategoryName());
+                intent.putExtra("categoryName", category.getCategoryName());
                 activity.startActivity(intent);
             }
         });
