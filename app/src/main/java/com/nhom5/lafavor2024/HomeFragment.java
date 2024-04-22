@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.nhom5.adapters.BannerAdapter;
 import com.nhom5.adapters.CategoryAdapter;
+import com.nhom5.adapters.SearchAdapter;
 import com.nhom5.adapters.TopPickAdapter;
 import com.nhom5.lafavor2024.databinding.FragmentHomeBinding;
 import com.nhom5.models.Category;
@@ -56,6 +59,7 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private TopPickAdapter adapter;
+    private SearchAdapter searchAdapter;
     private CategoryAdapter adapter1;
     private BannerAdapter bannerAdapter;
     private List<Product> productList;
@@ -125,6 +129,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void bindView() {
+        //Search Adapter
+        searchAdapter = new SearchAdapter(this, R.layout.item_search_result, new ArrayList<>());
+        binding.rcvSearchResult.setAdapter(searchAdapter);
+        binding.rcvSearchResult.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvSearchResult.setVisibility(View.GONE); // Ẩn ban đầu
         // Top Pick
         productList = new ArrayList<>();
         adapter = new TopPickAdapter(this, R.layout.item_favorite, productList);
@@ -171,6 +180,65 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                performSearch(newText);
+                return true;
+            }
+        });
+    }
+
+    private void performSearch(String query) {
+        if (!query.isEmpty()) {
+            // Ẩn các thành phần không cần thiết
+            binding.rcvBanner.setVisibility(View.GONE);
+            binding.rcvCategory.setVisibility(View.GONE);
+            binding.rcvTopPick.setVisibility(View.GONE);
+            binding.textView18.setVisibility(View.GONE);
+            binding.txtViewAll.setVisibility(View.GONE);
+            binding.textView19.setVisibility(View.GONE);
+
+            // Thực hiện tìm kiếm
+            db.collection("products")
+                    .orderBy("productName")
+                    .startAt(query)
+                    .endAt(query + "\uf8ff")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            List<Product> filteredProducts = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                filteredProducts.add(document.toObject(Product.class));
+                            }
+                            // Cập nhật dữ liệu và hiển thị RecyclerView
+                            searchAdapter.updateData(filteredProducts);
+                            binding.rcvSearchResult.setVisibility(View.VISIBLE);
+                        } else {
+                            Log.d("SearchError", "Error getting documents: ", task.getException());
+                        }
+                    });
+        } else {
+            // Hiển thị lại các thành phần và ẩn kết quả tìm kiếm
+            binding.rcvBanner.setVisibility(View.VISIBLE);
+            binding.rcvCategory.setVisibility(View.VISIBLE);
+            binding.rcvTopPick.setVisibility(View.VISIBLE);
+            binding.textView18.setVisibility(View.VISIBLE);
+            binding.txtViewAll.setVisibility(View.VISIBLE);
+            binding.textView19.setVisibility(View.VISIBLE);
+            binding.rcvSearchResult.setVisibility(View.GONE);
+        }
+    }
+
+
+    public void updateData(List<Product> newData) {
+        productList.clear();
+        productList.addAll(newData);
     }
 
     @Override
