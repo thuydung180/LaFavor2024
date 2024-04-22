@@ -3,6 +3,7 @@ package com.nhom5.lafavor2024;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ public class ProductDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityProductDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.txtComparePrice.setPaintFlags(binding.txtComparePrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         getBundles();
 
@@ -41,6 +44,34 @@ public class ProductDetail extends AppCompatActivity {
                 //
             }
         });
+        binding.btnDecrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decreaseQuantity();
+            }
+
+            private void decreaseQuantity() {
+                int quantity = Integer.parseInt(binding.txtQuantity.getText().toString());
+                if (quantity > 1) {
+                    quantity--;
+                    binding.txtQuantity.setText(String.valueOf(quantity));
+                }
+            }
+        });
+
+        binding.btnIncrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increaseQuantity();
+            }
+
+            private void increaseQuantity() {
+                int quantity = Integer.parseInt(binding.txtQuantity.getText().toString());
+                quantity++;
+                binding.txtQuantity.setText(String.valueOf(quantity));
+            }
+        });
+
         binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +87,7 @@ public class ProductDetail extends AppCompatActivity {
             }
         });
 
-    }
+    };
 
 
     private void getBundles() {
@@ -67,6 +98,7 @@ public class ProductDetail extends AppCompatActivity {
         String productDescription = intent.getStringExtra("desc");
         String productImageUrl = intent.getStringExtra("image");
 
+        binding.txtProductTitleName.setText(productName);
         binding.txtProductName.setText(productName);
         binding.txtPrice.setText(String.valueOf(productPrice));
         binding.txtComparePrice.setText(String.valueOf(productComparePrice));
