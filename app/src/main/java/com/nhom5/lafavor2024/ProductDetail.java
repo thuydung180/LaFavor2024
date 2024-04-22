@@ -3,12 +3,14 @@ package com.nhom5.lafavor2024;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nhom5.lafavor2024.databinding.ActivityProductDetailBinding;
+import com.nhom5.models.Cart;
 import com.squareup.picasso.Picasso;
 
 public class ProductDetail extends AppCompatActivity {
@@ -21,6 +23,8 @@ public class ProductDetail extends AppCompatActivity {
         binding = ActivityProductDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.txtComparePrice.setPaintFlags(binding.txtComparePrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
         getBundles();
 
         addEvents();
@@ -31,7 +35,7 @@ public class ProductDetail extends AppCompatActivity {
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getOnBackPressedDispatcher();
+                finish();
             }
         });
         binding.btnCart.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +44,51 @@ public class ProductDetail extends AppCompatActivity {
                 //
             }
         });
-    }
+        binding.btnDecrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decreaseQuantity();
+            }
+
+            private void decreaseQuantity() {
+                int quantity = Integer.parseInt(binding.txtQuantity.getText().toString());
+                if (quantity > 1) {
+                    quantity--;
+                    binding.txtQuantity.setText(String.valueOf(quantity));
+                }
+            }
+        });
+
+        binding.btnIncrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                increaseQuantity();
+            }
+
+            private void increaseQuantity() {
+                int quantity = Integer.parseInt(binding.txtQuantity.getText().toString());
+                quantity++;
+                binding.txtQuantity.setText(String.valueOf(quantity));
+            }
+        });
+
+        binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int productQuantity = 1;
+                if (MainActivity.cartArrayList.size() >0){
+
+                }else {
+                    Intent intent = getIntent();
+                    double productPrice = intent.getDoubleExtra("price", 0.0);
+                    double total = productQuantity * productPrice;
+
+                }
+            }
+        });
+
+    };
+
 
     private void getBundles() {
         Intent intent = getIntent();
@@ -50,6 +98,7 @@ public class ProductDetail extends AppCompatActivity {
         String productDescription = intent.getStringExtra("desc");
         String productImageUrl = intent.getStringExtra("image");
 
+        binding.txtProductTitleName.setText(productName);
         binding.txtProductName.setText(productName);
         binding.txtPrice.setText(String.valueOf(productPrice));
         binding.txtComparePrice.setText(String.valueOf(productComparePrice));

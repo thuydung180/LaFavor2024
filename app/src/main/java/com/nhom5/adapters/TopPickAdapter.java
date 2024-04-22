@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.text.Layout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -134,6 +136,13 @@ public class TopPickAdapter extends RecyclerView.Adapter<TopPickAdapter.ViewHold
             txtPrice = itemView.findViewById(R.id.txtPrice);
             txtRating = itemView.findViewById(R.id.txtRating);
             txtComparePrice = itemView.findViewById(R.id.txtComparePrice);
+
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, // Chiều rộng
+                    ViewGroup.LayoutParams.WRAP_CONTENT  // Chiều cao
+            );
+            params.gravity = Gravity.CENTER;
+            itemView.setLayoutParams(params);
         }
     }
 }

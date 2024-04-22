@@ -10,8 +10,11 @@ import android.view.View;
 
 import com.nhom5.lafavor2024.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    public static ArrayList<Cart> cartArrayList;
 
     HomeFragment homeFragment = new HomeFragment();
     @Override
@@ -32,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         binding.lnlFavorite.setOnClickListener(clickListener);
         binding.lnlCart.setOnClickListener(clickListener);
         binding.lnlProfile.setOnClickListener(clickListener);
+
+        if (cartArrayList != null){
+
+        }else {
+            cartArrayList = new ArrayList<>();
+        }
 
     }
 

@@ -45,7 +45,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:background="@drawable/custom_long_button"
-        android:text="@string/contrinue"
+        android:text="Continue"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"

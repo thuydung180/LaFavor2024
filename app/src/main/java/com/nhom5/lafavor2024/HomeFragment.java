@@ -104,6 +104,17 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
+        bindView();
+        addEvents();
+
+
+
+        db = FirebaseFirestore.getInstance();
+        fetchDataFromFirestore();
+        return binding.getRoot();
+    }
+
+    private void bindView() {
         // Top Pick
         productList = new ArrayList<>();
         adapter = new TopPickAdapter(this, R.layout.item_favorite, productList);
@@ -132,15 +143,6 @@ public class HomeFragment extends Fragment {
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(binding.rcvBanner);
         binding.rcvBanner.smoothScrollBy(5,0);
-
-        //binding action
-        addEvents();
-
-        db = FirebaseFirestore.getInstance();
-
-        fetchDataFromFirestore();
-
-        return binding.getRoot();
     }
 
     private void addEvents() {

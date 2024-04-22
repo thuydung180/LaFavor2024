@@ -1,5 +1,6 @@
 package com.nhom5.adapters;
 
+import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
 import android.icu.util.ULocale;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.caverock.androidsvg.SVG;
+import com.nhom5.lafavor2024.Product;
 import com.nhom5.lafavor2024.R;
 import com.nhom5.models.Category;
 import com.squareup.picasso.Picasso;
@@ -43,9 +45,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categories.get(position);
-
-        SVGHelper.loadSvgFromUrl(category.getCategoryImage(), holder.imvCategoryPhoto);
+        Picasso.get().load(category.getCategoryImage()).into(holder.imvCategoryPhoto);
         holder.txtCategoryName.setText(category.getCategoryName());
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(fragment.getContext(), Product.class);
+            intent.putExtra("categoryId", category.getCategoryName());
+            intent.putExtra("categoryName", category.getCategoryName());
+            fragment.startActivity(intent);
+        });
     }
 
     @Override
@@ -66,19 +73,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
 
-}
-class SVGHelper {
-
-    public static void loadSvgFromUrl(String url, ImageView imageView) {
-        // Tạo Uri từ URL
-        Uri uri = Uri.parse(url);
-        // Sử dụng AndroidSVG để tải và hiển thị hình ảnh SVG từ Uri
-        try (InputStream inputStream = imageView.getContext().getContentResolver().openInputStream(uri)) {
-            SVG svg = SVG.getFromInputStream(inputStream);
-            PictureDrawable drawable = new PictureDrawable(svg.renderToPicture());
-            imageView.setImageDrawable(drawable);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
