@@ -25,17 +25,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
+<!--        app:menu="@menu/bottom_nav_menu"-->
+        <!--        app:itemIconTint="@color/color_selected_icon"-->
 
-        <LinearLayout
+
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="4"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            >
             <LinearLayout
                 android:id="@+id/lnlHome"
                 android:layout_width="50dp"
@@ -47,8 +52,7 @@
                     android:id="@+id/imvHomeIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/home"
-                    />
+                    android:src="@drawable/home"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

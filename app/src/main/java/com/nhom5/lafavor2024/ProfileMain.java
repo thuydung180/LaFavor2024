@@ -8,6 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 import com.nhom5.lafavor2024.databinding.FragmentProfileMainBinding;
 
@@ -72,6 +80,9 @@ public class ProfileMain extends Fragment {
     }
 
     private void addEvent() {
+
+        binding.txtFullName.setText();
+
         binding.lnlProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
