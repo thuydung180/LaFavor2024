@@ -1,5 +1,6 @@
 package com.nhom5.lafavor2024;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -107,11 +108,20 @@ public class HomeFragment extends Fragment {
         bindView();
         addEvents();
 
-
-
         db = FirebaseFirestore.getInstance();
         fetchDataFromFirestore();
         return binding.getRoot();
+    }
+
+    public class CustomGridLayoutManager extends GridLayoutManager {
+        public CustomGridLayoutManager(Context context, int spanCount) {
+            super(context, spanCount);
+        }
+        @Override
+        public boolean canScrollVertically() {
+            // Trả về false để ngăn không cho RecyclerView cuộn
+            return false;
+        }
     }
 
     private void bindView() {
@@ -119,7 +129,7 @@ public class HomeFragment extends Fragment {
         productList = new ArrayList<>();
         adapter = new TopPickAdapter(this, R.layout.item_favorite, productList);
         binding.rcvTopPick.setAdapter(adapter);
-        binding.rcvTopPick.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        binding.rcvTopPick.setLayoutManager(new CustomGridLayoutManager(getContext(), 2));
 
         // Category
         categoryList = new ArrayList<>();
