@@ -31,14 +31,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkEvents() {
-        // Kiểm tra xem có dữ liệu để hiển thị CartFragment không
         if (getIntent().getBooleanExtra("showCartFragment", false)) {
-            // Thực hiện giao diện đa fragment để hiển thị CartFragment
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.containerLayout, new ShoppingCartFragment())
                     .commit();
         }
     }
+
 
 
     private void addEvents() {
