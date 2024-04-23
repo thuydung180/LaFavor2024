@@ -16,10 +16,11 @@ public class Checkout extends AppCompatActivity {
         binding = ActivityCheckoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Nhận thông tin sản phẩm từ Intent
-        Intent intent = getIntent();
-        String productName = intent.getStringExtra("productName");
-        double productPrice = intent.getDoubleExtra("productPrice", 0.0);
+        loadData();
+
+    }
+
+    private void loadData() {
 
     }
 }

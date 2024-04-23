@@ -21,6 +21,7 @@ import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     Fragment fragment;
+    int item_checkout;
     private List<Product> products;
 
     public CartAdapter(Fragment fragment, List<Product> products) {
