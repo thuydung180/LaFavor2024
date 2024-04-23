@@ -3,13 +3,26 @@ package com.nhom5.lafavor2024;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.nhom5.adapters.CartAdapter;
 import com.nhom5.lafavor2024.databinding.FragmentShoppingCartBinding;
+import com.nhom5.models.Cart;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +40,11 @@ public class ShoppingCartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     FragmentShoppingCartBinding binding;
+    RecyclerView recyclerView;
+    DatabaseReference database;
+    CartAdapter cartAdapter;
+    ArrayList<Cart> list;
+
 
     public ShoppingCartFragment() {
         // Required empty public constructor
@@ -53,6 +71,7 @@ public class ShoppingCartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -62,7 +81,37 @@ public class ShoppingCartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentShoppingCartBinding.inflate(inflater, container, false);
+        View view = inflater.inflate(R.layout.fragment_shopping_cart,container,false);
+        binding = FragmentShoppingCartBinding.bind(view);
+
+        recyclerView = view.findViewById(R.id.rvCart);
+        database = FirebaseDatabase.getInstance().getReference("Orders");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        list = new ArrayList<>();
+        cartAdapter = new CartAdapter(getContext(), list);
+        recyclerView.setAdapter(cartAdapter);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                    Cart cart = dataSnapshot.getValue(Cart.class);
+                    list.add(cart);
+                }
+                cartAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
         binding.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +120,6 @@ public class ShoppingCartFragment extends Fragment {
             }
         });
         // Inflate the layout for this fragment
-     return binding.getRoot();
+     return view;
     }
 }
