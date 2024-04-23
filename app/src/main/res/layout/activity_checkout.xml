@@ -96,8 +96,8 @@
                         android:layout_weight="3"/>
                 </LinearLayout>
 
-                <GridView
-                    android:id="@+id/gvCheckout"
+                <ListView
+                    android:id="@+id/lvCheckout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

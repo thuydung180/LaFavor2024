@@ -45,23 +45,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.txtPrice.setText(String.format("%d VNĐ", (int) product.getProductPrice()));
         holder.txtDescription.setText(product.getProductDescription());
 
-//        final int currentPosition = position;
+        final int currentPosition = position;
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(fragment.getContext(), ProductDetail.class);
-//                intent.putExtra("name", products.get(currentPosition).getProductName());
-//                intent.putExtra("price", products.get(currentPosition).getProductPrice());
-//                intent.putExtra("comparePrice",
-//                        products.get(currentPosition).getProductComparePrice());
-//                intent.putExtra("image", products.get(currentPosition).getProductUrl());
-//                intent.putExtra("desc", products.get(currentPosition).getProductDescription());
-//
-//                fragment.startActivity(intent);
-//            }
-//        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(fragment.getContext(), ProductDetail.class);
+                intent.putExtra("name", products.get(currentPosition).getProductName());
+                intent.putExtra("price", products.get(currentPosition).getProductPrice());
+                // Nếu cần, bạn có thể thêm các thông tin khác của sản phẩm vào intent
+                fragment.startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {

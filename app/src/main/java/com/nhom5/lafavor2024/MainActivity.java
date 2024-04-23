@@ -26,8 +26,19 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.containerLayout, homeFragment).commit();
 
         addEvents();
+        checkEvents();
+
     }
 
+    private void checkEvents() {
+        // Kiểm tra xem có dữ liệu để hiển thị CartFragment không
+        if (getIntent().getBooleanExtra("showCartFragment", false)) {
+            // Thực hiện giao diện đa fragment để hiển thị CartFragment
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.containerLayout, new ShoppingCartFragment())
+                    .commit();
+        }
+    }
 
 
     private void addEvents() {
@@ -43,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
     View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
@@ -60,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.containerLayout, fragment, "FragFavorite");
                 transaction.addToBackStack("FFavorite");
             } else if (view.equals(binding.lnlCart)) {
-                fragment = new EmptyCartFragment();
+                fragment = new ShoppingCartFragment();
                 transaction.replace(R.id.containerLayout, fragment, "FragCart");
                 transaction.addToBackStack("FCart");
             } else if (view.equals(binding.lnlProfile)) {
@@ -69,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 transaction.addToBackStack("FProfile");
             }
             transaction.commit();
+
         }
+
     };
+
+
 }
