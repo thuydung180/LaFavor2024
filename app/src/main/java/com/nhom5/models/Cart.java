@@ -6,6 +6,9 @@ public class Cart {
     double productPrice;
 //    String productImage;
     int productQuantity;
+    public Cart() {
+        // Cần thiết cho việc deserialize từ Firebase
+    }
 
     public Cart(String productName, double productPrice, int productQuantity) {
 //        this.orderId = orderId;
