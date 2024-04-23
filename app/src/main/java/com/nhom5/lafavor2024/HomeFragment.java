@@ -235,12 +235,6 @@ public class HomeFragment extends Fragment {
         }
     }
 
-
-    public void updateData(List<Product> newData) {
-        productList.clear();
-        productList.addAll(newData);
-    }
-
     @Override
     public void onResume() {
         super.onResume();
