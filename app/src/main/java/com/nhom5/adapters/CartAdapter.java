@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.lafavor2024.ProductDetail;
 import com.nhom5.lafavor2024.R;
+import com.nhom5.models.Cart;
 import com.nhom5.models.Product;
 import com.squareup.picasso.Picasso;
 
@@ -22,11 +23,11 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     Fragment fragment;
     int item_checkout;
-    private List<Product> products;
+    private List<Cart> carts;
 
-    public CartAdapter(Fragment fragment, List<Product> products) {
+    public CartAdapter(Fragment fragment, List<Cart> carts) {
         this.fragment = fragment;
-        this.products = products;
+        this.carts = carts;
     }
 
 
@@ -39,12 +40,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        Product product = products.get(position);
+        Cart cart = carts.get(position);
 
-        Picasso.get().load(product.getProductUrl()).into(holder.imvProduct);
-        holder.txtName.setText(product.getProductName());
-        holder.txtPrice.setText(String.format("%d VNĐ", (int) product.getProductPrice()));
-        holder.txtDescription.setText(product.getProductDescription());
+//        Picasso.get().load(cart.getProductImage()).into(holder.imvProduct);
+        holder.txtName.setText(cart.getProductName());
+        holder.txtPrice.setText(String.format("%d VNĐ", (int) cart.getProductPrice()));
 
         final int currentPosition = position;
 
@@ -52,8 +52,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(fragment.getContext(), ProductDetail.class);
-                intent.putExtra("name", products.get(currentPosition).getProductName());
-                intent.putExtra("price", products.get(currentPosition).getProductPrice());
+                intent.putExtra("name", carts.get(currentPosition).getProductName());
+                intent.putExtra("price", carts.get(currentPosition).getProductPrice());
                 // Nếu cần, bạn có thể thêm các thông tin khác của sản phẩm vào intent
                 fragment.startActivity(intent);
             }
@@ -63,7 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return carts.size();
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
