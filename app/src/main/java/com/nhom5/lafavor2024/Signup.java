@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,6 +62,25 @@ public class Signup extends AppCompatActivity {
                 createUser();
             }
         });
+        binding.cbLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(compoundButton.isChecked()){
+                    SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("remember", "true");
+                    editor.apply();
+                    Toast.makeText(getApplicationContext(), "Checked", Toast.LENGTH_SHORT).show();
+
+                }else if(!compoundButton.isChecked()){
+                    SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
+                    Toast.makeText(getApplicationContext(), "Unchecked", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void createUser() {
@@ -68,6 +89,9 @@ public class Signup extends AppCompatActivity {
         String userEmail = binding.edtEmail.getText().toString();
         String userPassword = binding.edtPassword.getText().toString();
         String userConfirmPassword = binding.edtConfirmPassword.getText().toString();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        String rememberValue = sharedPreferences.getString("remember", "false");
 
         if (TextUtils.isEmpty(userName)) {
             Toast.makeText(this, "Enter your name!", Toast.LENGTH_SHORT).show();
@@ -85,7 +109,10 @@ public class Signup extends AppCompatActivity {
             Toast.makeText(this, "Minimum 6 character required!", Toast.LENGTH_SHORT).show();
         } else if (!userPassword.equals(userConfirmPassword)) {
             Toast.makeText(this, "Enter wrong password!", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if (rememberValue.equals("false")){
+            Toast.makeText(this, "Please accept Terms and Privacy Policy!", Toast.LENGTH_SHORT).show();
+        }
+        else {
             auth.createUserWithEmailAndPassword(userEmail, userPassword)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
