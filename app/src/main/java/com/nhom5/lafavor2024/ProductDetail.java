@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
 import com.nhom5.lafavor2024.databinding.ActivityProductDetailBinding;
 import com.nhom5.models.Cart;
 import com.nhom5.models.Product;
@@ -150,11 +151,37 @@ public class ProductDetail extends AppCompatActivity {
 
 
     private void addCartToOrders(Cart cart, DatabaseReference userOrdersRef) {
-        // Tham chiếu đến trường count trong "Orders" của người dùng
-        DatabaseReference countRef = userOrdersRef.child("count");
+        // Kiểm tra xem sản phẩm đã tồn tại trong đơn hàng chưa
+        userOrdersRef.orderByChild("productName").equalTo(cart.getProductName()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Nếu sản phẩm đã tồn tại trong đơn hàng, tăng số lượng
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Cart existingCart = snapshot.getValue(Cart.class);
+                        assert existingCart != null;
+                        int updatedQuantity = existingCart.getProductQuantity() + cart.getProductQuantity();
+                        snapshot.getRef().child("productQuantity").setValue(updatedQuantity);
+                    }
+                    // Hiển thị thông báo thành công
+                    Toast.makeText(ProductDetail.this, "Đã cập nhật số lượng sản phẩm trong giỏ hàng", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu sản phẩm chưa tồn tại trong đơn hàng, tạo đơn hàng mới
+                    createNewOrder(cart, userOrdersRef);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Xử lý lỗi nếu có
+                Toast.makeText(ProductDetail.this, "Lỗi: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void createNewOrder(Cart cart, DatabaseReference userOrdersRef) {
         // Thực hiện transaction để tăng count lên một đơn vị và sử dụng count đó làm orderId
-        countRef.runTransaction(new Transaction.Handler() {
+        userOrdersRef.child("count").runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -193,6 +220,7 @@ public class ProductDetail extends AppCompatActivity {
             }
         });
     }
+
 
 
 }

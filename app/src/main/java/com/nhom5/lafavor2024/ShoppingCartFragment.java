@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.nhom5.lafavor2024.databinding.FragmentShoppingCartBinding;
 
 /**
@@ -27,6 +28,7 @@ public class ShoppingCartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     FragmentShoppingCartBinding binding;
+    FirebaseAuth firebaseAuth;
 
     public ShoppingCartFragment() {
         // Required empty public constructor
@@ -63,6 +65,18 @@ public class ShoppingCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentShoppingCartBinding.inflate(inflater, container, false);
+        bindView();
+        addEvents();
+
+        // Inflate the layout for this fragment
+     return binding.getRoot();
+    }
+
+    private void bindView() {
+
+    }
+
+    private void addEvents() {
         binding.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +84,5 @@ public class ShoppingCartFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        // Inflate the layout for this fragment
-     return binding.getRoot();
     }
 }
