@@ -123,7 +123,7 @@ public class ProductDetail extends AppCompatActivity {
 
                 Cart cart = new Cart(productName, productPrice, productQuantity);
                 onClickAddCart(cart);
-                finish();
+//                finish();
 
             }
          
@@ -136,12 +136,11 @@ public class ProductDetail extends AppCompatActivity {
         String pathObject = String.valueOf(cart.getProductName());
 
         databaseReference.child(pathObject).setValue(cart, new DatabaseReference.CompletionListener() {
+
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 Toast.makeText(ProductDetail.this, "Add product successfully", Toast.LENGTH_SHORT).show();
             }
-
         });
-
     }
 }
