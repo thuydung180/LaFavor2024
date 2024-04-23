@@ -148,29 +148,7 @@ public class ProductDetail extends AppCompatActivity {
         });
     }
 
-//    private void addCartToOrders(Cart cart, DatabaseReference ordersRef) {
-//    }
 
-//    private void initOrders() {
-//        binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String productName = binding.txtProductName.getText().toString();
-//                double productPrice = Double.parseDouble(binding.txtPrice.getText().toString());
-//                int productQuantity = Integer.parseInt(binding.txtQuantity.getText().toString());
-//
-//                Cart cart = new Cart(productName, productPrice, productQuantity);
-//                String userId = "Id 2"; // Thay thế bằng userId thực tế của người dùng
-//
-//                // Tham chiếu đến "Orders" node của người dùng
-//                DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
-//
-//                // Thêm đơn hàng vào "Orders" của người dùng
-//                addCartToOrders(cart, ordersRef);
-//            }
-//        });
-//    }
-//
     private void addCartToOrders(Cart cart, DatabaseReference userOrdersRef) {
         // Tham chiếu đến trường count trong "Orders" của người dùng
         DatabaseReference countRef = userOrdersRef.child("count");
