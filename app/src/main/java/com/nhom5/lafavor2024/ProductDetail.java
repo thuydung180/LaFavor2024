@@ -64,7 +64,22 @@ public class ProductDetail extends AppCompatActivity {
             }
         });
 
+        binding.btnDecrease.setOnClickListener(v -> decreaseQuantity());
+        binding.btnIncrease.setOnClickListener(v -> increaseQuantity());
+    }
 
+    private void increaseQuantity() {
+        int quantity = Integer.parseInt(binding.txtQuantity.getText().toString());
+        quantity++;
+        binding.txtQuantity.setText(String.valueOf(quantity));
+    }
+
+    private void decreaseQuantity() {
+        int quantity = Integer.parseInt(binding.txtQuantity.getText().toString());
+        if (quantity > 1) {
+            quantity--;
+            binding.txtQuantity.setText(String.valueOf(quantity));
+        }
     }
 
 
