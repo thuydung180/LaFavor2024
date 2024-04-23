@@ -15,9 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.nhom5.lafavor2024.databinding.ActivityProductDetailBinding;
 import com.nhom5.models.Cart;
 import com.nhom5.models.Product;
@@ -113,6 +118,7 @@ public class ProductDetail extends AppCompatActivity {
         binding.txtDescription.setText(productDescription);
         Picasso.get().load(productImageUrl).into(binding.imvThumb);
     }
+
     private void initOrders() {
         binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,25 +128,97 @@ public class ProductDetail extends AppCompatActivity {
                 int productQuantity = Integer.parseInt(binding.txtQuantity.getText().toString());
 
                 Cart cart = new Cart(productName, productPrice, productQuantity);
-                onClickAddCart(cart);
-//                finish();
 
+                // Lấy người dùng hiện tại đã đăng nhập
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    String userId = user.getUid();
+
+                    // Tham chiếu đến "Orders" node của người dùng
+                    DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
+
+                    // Thêm đơn hàng vào "Orders" của người dùng
+                    addCartToOrders(cart, ordersRef);
+                } else {
+                    // Người dùng chưa đăng nhập, xử lý tùy ý
+                    Toast.makeText(ProductDetail.this, "Bạn cần đăng nhập để thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                    // Redirect to login or handle as per your requirement
+                }
             }
-         
         });
     }
 
-    private void onClickAddCart(Cart cart) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("Orders");
-        String pathObject = String.valueOf(cart.getProductName());
+//    private void addCartToOrders(Cart cart, DatabaseReference ordersRef) {
+//    }
 
-        databaseReference.child(pathObject).setValue(cart, new DatabaseReference.CompletionListener() {
+//    private void initOrders() {
+//        binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String productName = binding.txtProductName.getText().toString();
+//                double productPrice = Double.parseDouble(binding.txtPrice.getText().toString());
+//                int productQuantity = Integer.parseInt(binding.txtQuantity.getText().toString());
+//
+//                Cart cart = new Cart(productName, productPrice, productQuantity);
+//                String userId = "Id 2"; // Thay thế bằng userId thực tế của người dùng
+//
+//                // Tham chiếu đến "Orders" node của người dùng
+//                DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
+//
+//                // Thêm đơn hàng vào "Orders" của người dùng
+//                addCartToOrders(cart, ordersRef);
+//            }
+//        });
+//    }
+//
+    private void addCartToOrders(Cart cart, DatabaseReference userOrdersRef) {
+        // Tham chiếu đến trường count trong "Orders" của người dùng
+        DatabaseReference countRef = userOrdersRef.child("count");
+
+        // Thực hiện transaction để tăng count lên một đơn vị và sử dụng count đó làm orderId
+        countRef.runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Long count = mutableData.getValue(Long.class);
+                if (count == null) {
+                    // Nếu count chưa được khởi tạo, thiết lập count bằng 1
+                    count = 1L;
+                } else {
+                    // Nếu count đã tồn tại, tăng count lên một đơn vị
+                    count = count + 1;
+                }
+                // Lưu lại giá trị count mới
+                mutableData.setValue(count);
+                return Transaction.success(mutableData);
+            }
 
             @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                Toast.makeText(ProductDetail.this, "Add product successfully", Toast.LENGTH_SHORT).show();
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                if (databaseError == null) {
+                    if (dataSnapshot != null) {
+                        // Lấy giá trị count sau khi đã tăng
+                        Long count = dataSnapshot.getValue(Long.class);
+                        if (count != null) {
+                            // Sử dụng count làm orderId
+                            String orderId = "Order" + String.valueOf(count);
+                            // Thêm đơn hàng vào "Orders" của người dùng với orderId là count tăng
+                            userOrdersRef.child(orderId).setValue(cart);
+                            // Hiển thị thông báo thành công
+                            Toast.makeText(ProductDetail.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    // Hiển thị thông báo lỗi nếu có lỗi xảy ra
+                    Toast.makeText(ProductDetail.this, "Thêm sản phẩm không thành công", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+
+
 }
+
+
+
+
