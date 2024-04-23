@@ -14,70 +14,77 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.lafavor2024.ProductDetail;
 import com.nhom5.lafavor2024.R;
+import com.nhom5.models.Cart;
 import com.nhom5.models.Product;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
-    Fragment fragment;
-    private List<Product> products;
+    Context context;
+    ArrayList<Cart> list;
 
-    public CartAdapter(Fragment fragment, List<Product> products) {
-        this.fragment = fragment;
-        this.products = products;
+    public CartAdapter(Context fragment, ArrayList<Cart> list) {
+        this.context = context;
+        this.list = list;
     }
+
+    //    private List<Cart> carts;
+//
+//    public CartAdapter(Fragment fragment, List<Cart> carts) {
+//        this.fragment = fragment;
+//        this.carts = carts;
+//    }
 
 
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.listview_order, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.listview_order, parent, false);
         return new CartViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        Product product = products.get(position);
+        Cart cart = list.get(position);
 
-        Picasso.get().load(product.getProductUrl()).into(holder.imvProduct);
-        holder.txtName.setText(product.getProductName());
-        holder.txtPrice.setText(String.format("%d VNĐ", (int) product.getProductPrice()));
-        holder.txtDescription.setText(product.getProductDescription());
+//        Picasso.get().load(cart.getProductImage()).into(holder.imvProduct);
+        holder.productName.setText(cart.getProductName());
+        holder.productPrice.setText(String.format("%d VNĐ", (int) cart.getProductPrice()));
+        holder.productQuantity.setText(cart.getProductQuantity());
+
 
 //        final int currentPosition = position;
-
+//
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                Intent intent = new Intent(fragment.getContext(), ProductDetail.class);
-//                intent.putExtra("name", products.get(currentPosition).getProductName());
-//                intent.putExtra("price", products.get(currentPosition).getProductPrice());
-//                intent.putExtra("comparePrice",
-//                        products.get(currentPosition).getProductComparePrice());
-//                intent.putExtra("image", products.get(currentPosition).getProductUrl());
-//                intent.putExtra("desc", products.get(currentPosition).getProductDescription());
-//
+//                intent.putExtra("name", carts.get(currentPosition).getProductName());
+//                intent.putExtra("price", carts.get(currentPosition).getProductPrice());
+//                // Nếu cần, bạn có thể thêm các thông tin khác của sản phẩm vào intent
 //                fragment.startActivity(intent);
 //            }
 //        });
     }
 
+
     @Override
     public int getItemCount() {
-        return products.size();
+        return list.size();
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
-        ImageView imvProduct;
-        TextView txtName, txtDescription, txtPrice;
+//        ImageView imvProduct;
+        TextView productName, productPrice, productQuantity;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
-            imvProduct = itemView.findViewById(R.id.imvProduct);
-            txtName = itemView.findViewById(R.id.txtName);
-            txtDescription = itemView.findViewById(R.id.txtDescription);
-            txtPrice = itemView.findViewById(R.id.txtPrice);
+            productName = itemView.findViewById(R.id.txtName);
+            productPrice = itemView.findViewById(R.id.txtPrice);
+            productQuantity = itemView.findViewById(R.id.txtQuantity);
         }
     }
 }

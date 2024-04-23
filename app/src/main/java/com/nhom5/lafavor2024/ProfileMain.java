@@ -2,9 +2,13 @@ package com.nhom5.lafavor2024;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -37,6 +41,7 @@ public class ProfileMain extends Fragment {
     DatabaseReference databaseReference;
     String uid;
     User user;
+    SharedPreferences sharedPreferences;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -177,20 +182,42 @@ public class ProfileMain extends Fragment {
                 startActivity(intent);
             }
         });
+//        binding.lnlLogOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//                intent = new Intent(ProfileMain.this.getActivity(), Login.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        logOut();
+
+
+
+    }
+
+    private void logOut() {
         binding.lnlLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Get the context from the Fragment
+                Context context = getContext();
+                if (context != null) {
+                    sharedPreferences = context.getSharedPreferences("checkbox", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
 
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-
-                Intent intent = new Intent(ProfileMain.this.getActivity(), Login.class);
-                startActivity(intent);
+                    intent = new Intent(ProfileMain.this.getActivity(), Login.class);
+                    startActivity(intent);
+                }
             }
 
         });
 
     }
+
+
 }

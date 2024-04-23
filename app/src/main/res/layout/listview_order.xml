@@ -84,6 +84,7 @@
                         tools:layout_editor_absoluteY="187dp" />
 
                     <TextView
+                        android:id="@+id/txtQuantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingStart="5dp"

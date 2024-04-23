@@ -1,29 +1,41 @@
 package com.nhom5.models;
 
 public class Cart {
-    int productId;
+//    int orderId;
     String productName;
-    String productDescription;
     double productPrice;
-    String productImage;
+//    String productImage;
     int productQuantity;
-
     public Cart() {
-        this.productId = productId;
+        // Cần thiết cho việc deserialize từ Firebase
+    }
+
+    public Cart(String productName, double productPrice, int productQuantity) {
+//        this.orderId = orderId;
+//        this.productId = productId;
         this.productName = productName;
-        this.productDescription = productDescription;
         this.productPrice = productPrice;
-        this.productImage = productImage;
+//        this.productImage = productImage;
         this.productQuantity = productQuantity;
     }
 
-    public int getProductId() {
-        return productId;
-    }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+
+//    public int getOrderId() {
+//        return orderId;
+//    }
+
+//    public void setOrderId(int orderId) {
+//        this.orderId = orderId;
+//    }
+
+//    public int getProductId() {
+//        return productId;
+//    }
+//
+//    public void setProductId(int productId) {
+//        this.productId = productId;
+//    }
 
     public String getProductName() {
         return productName;
@@ -33,13 +45,13 @@ public class Cart {
         this.productName = productName;
     }
 
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
+//    public String getProductDescription() {
+//        return productDescription;
+//    }
+//
+//    public void setProductDescription(String productDescription) {
+//        this.productDescription = productDescription;
+//    }
 
     public double getProductPrice() {
         return productPrice;
@@ -49,13 +61,13 @@ public class Cart {
         this.productPrice = productPrice;
     }
 
-    public String getProductImage() {
-        return productImage;
-    }
-
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
-    }
+//    public String getProductImage() {
+//        return productImage;
+//    }
+//
+//    public void setProductImage(String productImage) {
+//        this.productImage = productImage;
+//    }
 
     public int getProductQuantity() {
         return productQuantity;
