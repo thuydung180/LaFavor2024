@@ -92,12 +92,22 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
-            <Spinner
-                android:id="@+id/spnProvince"
-                android:accessibilityPaneTitle="Choose Province"
+            <EditText
+                android:id="@+id/edtProvince"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:background="@drawable/custom_shape_edt" />
+                android:background="@drawable/custom_shape_edt"
+                android:hint="@string/province"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+<!--            <Spinner-->
+<!--                android:id="@+id/spnProvince"-->
+<!--                android:accessibilityPaneTitle="Choose Province"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="52dp"-->
+<!--                android:background="@drawable/custom_shape_edt"/>-->
 
             <TextView
                 android:layout_width="match_parent"
@@ -106,12 +116,21 @@
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
-
-            <Spinner
-                android:id="@+id/spnDistrict"
+            <EditText
+                android:id="@+id/edtDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:background="@drawable/custom_shape_edt" />
+                android:background="@drawable/custom_shape_edt"
+                android:hint="@string/district"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+<!--            <Spinner-->
+<!--                android:id="@+id/spnDistrict"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="52dp"-->
+<!--                android:background="@drawable/custom_shape_edt" />-->
 
             <TextView
                 android:layout_width="match_parent"
@@ -120,12 +139,21 @@
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
-
-            <Spinner
-                android:id="@+id/spnWard"
+            <EditText
+                android:id="@+id/edtWard"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:background="@drawable/custom_shape_edt" />
+                android:background="@drawable/custom_shape_edt"
+                android:hint="@string/ward"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+<!--            <Spinner-->
+<!--                android:id="@+id/spnWard"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="52dp"-->
+<!--                android:background="@drawable/custom_shape_edt" />-->
 
             <TextView
                 android:layout_width="match_parent"

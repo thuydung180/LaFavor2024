@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -44,7 +46,8 @@
             android:exported="false" />
         <activity
             android:name=".MyAddressAdd"
-            android:exported="false" />
+            android:exported="false">
+        </activity>
         <activity
             android:name=".Profile"
             android:exported="false" />
@@ -59,16 +62,24 @@
             android:exported="false" />
         <activity
             android:name=".MyAddressEmpty"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".Coupon"
             android:exported="false" />
         <activity
             android:name=".Setting"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ProductDetail"
             android:exported="false" />
@@ -83,12 +94,12 @@
         <activity
             android:name=".Splashscreen_1"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
+        <activity android:name=".EditProfile"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

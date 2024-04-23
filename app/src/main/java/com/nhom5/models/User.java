@@ -5,12 +5,35 @@ public class User {
     String userPhone;
     String userEmail;
     String userPassword;
+    String userAddress;
+    String userPhoto;
+
+    public User(String userAddress, String userPhoto) {
+        this.userAddress = userAddress;
+        this.userPhoto = userPhoto;
+    }
 
     public User(String userName, String userPhone, String userEmail, String userPassword) {
         this.userName = userName;
         this.userPhone = userPhone;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public String getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
     }
 
     public String getUserName() {

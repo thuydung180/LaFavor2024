@@ -18,24 +18,8 @@ public class Profile extends AppCompatActivity {
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        logOut();
 
 
     }
 
-    private void logOut() {
-        binding.lnlLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                SharedPreferences sharedPreferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-
-                Intent intent = new Intent(Profile.this, Login.class);
-                startActivity(intent);
-            }
-        });
-    }
 }

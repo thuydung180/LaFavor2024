@@ -15,116 +15,121 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005">
-
-
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0.005"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-
+        app:itemBackground="@color/white"
+        app:itemIconTint="@color/color_selected_icon"
+        app:itemIconSize="23dp"
+        app:itemTextColor="@color/color_selected_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-<!--        app:menu="@menu/bottom_nav_menu"-->
-        <!--        app:itemIconTint="@color/color_selected_icon"-->
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled">
 
 
-            <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="4"
-            android:layout_gravity="center_vertical"
-            >
-            <LinearLayout
-                android:id="@+id/lnlHome"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/imvHomeIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/home"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/home"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
+    <!--            <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:weightSum="4"-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            >-->
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/lnlHome"-->
+        <!--                android:layout_width="50dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="vertical"-->
+        <!--                android:gravity="center"-->
+        <!--                android:layout_weight="1">-->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imvHomeIcon"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:src="@drawable/home"-->
+        <!--                    android:onClick="onClickImageView"/>-->
+        <!--                <TextView-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="@string/home"-->
+        <!--                    android:textSize="14sp"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:onClick="onClickTextView"/>-->
 
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/lnlFavorite"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/imvFavoriteIcon"
-                    android:layout_width="24sp"
-                    android:layout_height="24sp"
-                    android:src="@drawable/favorite"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/favorite_icon"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
+        <!--            </LinearLayout>-->
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/lnlFavorite"-->
+        <!--                android:layout_width="50dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="vertical"-->
+        <!--                android:gravity="center"-->
+        <!--                android:layout_weight="1">-->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imvFavoriteIcon"-->
+        <!--                    android:layout_width="24sp"-->
+        <!--                    android:layout_height="24sp"-->
+        <!--                    android:src="@drawable/favorite"-->
+        <!--                    android:onClick="onClickImageView"/>-->
+        <!--                <TextView-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="@string/favorite_icon"-->
+        <!--                    android:textSize="14sp"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:onClick="onClickTextView"/>-->
 
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/lnlCart"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/imvCartIcon"
-                    android:layout_width="24sp"
-                    android:layout_height="24sp"
-                    android:src="@drawable/carthome"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cart"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
+        <!--            </LinearLayout>-->
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/lnlCart"-->
+        <!--                android:layout_width="50dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="vertical"-->
+        <!--                android:gravity="center"-->
+        <!--                android:layout_weight="1">-->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imvCartIcon"-->
+        <!--                    android:layout_width="24sp"-->
+        <!--                    android:layout_height="24sp"-->
+        <!--                    android:src="@drawable/carthome"-->
+        <!--                    android:onClick="onClickImageView"/>-->
+        <!--                <TextView-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="@string/cart"-->
+        <!--                    android:textSize="14sp"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:onClick="onClickTextView"/>-->
 
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/lnlProfile"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/imvSettingIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/profile"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/profile"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
+        <!--            </LinearLayout>-->
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/lnlProfile"-->
+        <!--                android:layout_width="50dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="vertical"-->
+        <!--                android:gravity="center"-->
+        <!--                android:layout_weight="1">-->
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/imvSettingIcon"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:src="@drawable/profile"-->
+        <!--                    android:onClick="onClickImageView"/>-->
+        <!--                <TextView-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="@string/profile"-->
+        <!--                    android:textSize="14sp"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:onClick="onClickTextView"/>-->
 
-            </LinearLayout>
-        </LinearLayout>
+        <!--            </LinearLayout>-->
+        <!--        </LinearLayout>-->
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

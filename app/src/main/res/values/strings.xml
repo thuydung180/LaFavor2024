@@ -5,6 +5,12 @@
     <string name="hi">Hi</string>
     <string name="shopping_cart">Cart</string>
 
+    <!-- Navbar-->
+    <string name="nav_home">Home</string>
+    <string name="nav_fav">Favorite</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_prof">Profile</string>
+
     <!--    Profile-->
     <string name="setting_my_profile">My Profile</string>
     <string name="setting_my_address">My Address</string>
