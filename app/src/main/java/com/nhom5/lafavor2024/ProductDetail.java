@@ -142,7 +142,8 @@ public class ProductDetail extends AppCompatActivity {
                     addCartToOrders(cart, ordersRef);
                 } else {
                     // Người dùng chưa đăng nhập, xử lý tùy ý
-                    Toast.makeText(ProductDetail.this, "Bạn cần đăng nhập để thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetail.this, "\n" +
+                            "You need to log in to add to cart", Toast.LENGTH_SHORT).show();
                     // Redirect to login or handle as per your requirement
                 }
             }
@@ -164,7 +165,7 @@ public class ProductDetail extends AppCompatActivity {
                         snapshot.getRef().child("productQuantity").setValue(updatedQuantity);
                     }
                     // Hiển thị thông báo thành công
-                    Toast.makeText(ProductDetail.this, "Đã cập nhật số lượng sản phẩm trong giỏ hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetail.this, "Updated products in your cart", Toast.LENGTH_SHORT).show();
                 } else {
                     // Nếu sản phẩm chưa tồn tại trong đơn hàng, tạo đơn hàng mới
                     createNewOrder(cart, userOrdersRef);
@@ -210,7 +211,7 @@ public class ProductDetail extends AppCompatActivity {
                             // Thêm đơn hàng vào "Orders" của người dùng với orderId là count tăng
                             userOrdersRef.child(orderId).setValue(cart);
                             // Hiển thị thông báo thành công
-                            Toast.makeText(ProductDetail.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProductDetail.this, "Product added to cart successfully", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
