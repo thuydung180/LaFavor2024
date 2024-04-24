@@ -163,6 +163,8 @@
     <string name="favorite_icon">Favorite</string>
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
+    <string name="get_started_splash1">GET STARTED</string>
+    <string name="next">NEXT</string>
 
     <!-- MainActivity_Navbar -->
 </resources>
