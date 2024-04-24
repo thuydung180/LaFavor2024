@@ -10,21 +10,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <ImageView
             android:id="@+id/imvProduct"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/list_product_background"
-            android:src="@drawable/splashscreen2"/>
+            android:src="@drawable/splashscreen2"
+            android:padding="10dp"
+            android:layout_weight="1"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:layout_weight="8">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -33,18 +37,14 @@
 
                 <TextView
                     android:id="@+id/txtName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Strawberry Cupcake"
                     android:textColor="@color/gray2"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:src="@drawable/trash" />
+
 
             </LinearLayout>
 
@@ -58,23 +58,25 @@
                 android:textSize="14sp"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="10">
 
                 <TextView
                     android:id="@+id/txtPrice"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="20.000 VND"
+                    android:text="0 VND"
                     android:textColor="@color/primary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:layout_weight="5"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginStart="100dp">
+                    android:layout_weight="5">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -103,6 +105,14 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imvTrash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/trash"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="30dp"/>
 
     </LinearLayout>
 

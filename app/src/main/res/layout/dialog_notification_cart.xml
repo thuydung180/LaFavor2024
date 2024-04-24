@@ -24,6 +24,7 @@
         android:layout_gravity="center">
 
         <Button
+            android:id="@+id/btnNo"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:text="@string/no"
@@ -33,6 +34,7 @@
             />
 
         <Button
+            android:id="@+id/btnYes"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:text="@string/yes"

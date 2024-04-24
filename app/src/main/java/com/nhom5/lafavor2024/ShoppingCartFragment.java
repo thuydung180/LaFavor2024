@@ -1,14 +1,18 @@
 package com.nhom5.lafavor2024;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -66,12 +70,11 @@ public class ShoppingCartFragment extends Fragment {
         setupCheckoutButton(); // Kích hoạt phương thức setupCheckoutButton() để thiết lập nút thanh toán
 
 
+        binding.lvCart.setAdapter(adapter);
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
 
-
-    // Khai báo biến tổng hóa đơn
 
     private void fetchCartData() {
         // Lấy người dùng hiện tại đã đăng nhập
@@ -140,6 +143,8 @@ public class ShoppingCartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Checkout.class);
+                // Truyền tổng tiền qua Intent
+                intent.putExtra("TOTAL_BILL", totalBill);
                 startActivity(intent);
             }
         });

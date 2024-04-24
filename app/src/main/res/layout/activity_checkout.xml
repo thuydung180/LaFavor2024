@@ -104,6 +104,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lnlPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -117,7 +118,7 @@
                     android:layout_weight="1"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/payment"
                     android:textSize="15sp"
@@ -126,12 +127,13 @@
                     android:layout_gravity="center"
                     android:layout_weight="8"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <RadioButton
+                    android:id="@+id/rdCash"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_next"
-                    android:layout_weight="1"
-                    android:layout_gravity="end"/>
+                    android:button="@drawable/icon_next"
+                    android:layout_weight="1"/>
+
 
             </LinearLayout>
 
@@ -156,7 +158,7 @@
                     android:layout_weight="1"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/my_coupon"
                     android:textSize="15sp"
@@ -165,10 +167,11 @@
                     android:layout_gravity="center"
                     android:layout_weight="8"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <RadioButton
+                    android:id="@+id/rdCoupon"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_next"
+                    android:button="@drawable/icon_next"
                     android:layout_weight="1"
                     android:layout_gravity="end"/>
 
@@ -184,6 +187,7 @@
 
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/subtotal"
@@ -193,6 +197,7 @@
                     android:layout_weight="9"/>
 
                 <TextView
+                    android:id="@+id/txtSubtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0 VND"
@@ -223,6 +228,7 @@
                     android:layout_weight="9"/>
 
                 <TextView
+                    android:id="@+id/txtPromo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0 VND"
@@ -253,9 +259,10 @@
                     android:layout_weight="9"/>
 
                 <TextView
+                    android:id="@+id/txtShipping"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0 VND"
+                    android:text="20.000 VND"
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/primary"
@@ -292,6 +299,7 @@
                     android:layout_weight="9"/>
 
                 <TextView
+                    android:id="@+id/txtTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0 VND"
@@ -308,7 +316,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnPlaceOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
