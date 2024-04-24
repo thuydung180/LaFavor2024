@@ -69,22 +69,6 @@ public class ProductDetail extends AppCompatActivity {
             }
         });
 
-        binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int productQuantity = 1;
-//                if (MainActivity.cartArrayList.size() >0){
-//
-//                }else {
-//                    Intent intent = getIntent();
-//                    double productPrice = intent.getDoubleExtra("price", 0.0);
-//                    double total = productQuantity * productPrice;
-//
-//                }
-
-
-            }
-        });
 
         binding.btnDecrease.setOnClickListener(v -> decreaseQuantity());
         binding.btnIncrease.setOnClickListener(v -> increaseQuantity());
@@ -144,7 +128,7 @@ public class ProductDetail extends AppCompatActivity {
                     // Người dùng chưa đăng nhập, xử lý tùy ý
                     Toast.makeText(ProductDetail.this, "\n" +
                             "You need to log in to add to cart", Toast.LENGTH_SHORT).show();
-                    // Redirect to login or handle as per your requirement
+
                 }
             }
         });
