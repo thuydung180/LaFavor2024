@@ -49,6 +49,8 @@ dependencies {
 
     implementation ("me.relex:circleindicator:2.1.6")
 
+    implementation ("com.firebaseui:firebase-ui-database:8.0.0")
+
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
     implementation ("com.squareup.picasso:picasso:2.71828")
