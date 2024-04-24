@@ -96,8 +96,8 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(), "Login Successfull!", Toast.LENGTH_SHORT).show();
-                                intent = new Intent(Login.this, HomePage.class);
+                                Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                                intent = new Intent(Login.this, MainActivity.class);
                                 startActivity(intent);
                             }else{
                                 Toast.makeText(getApplicationContext(), "Error:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
@@ -113,7 +113,7 @@ public class Login extends AppCompatActivity {
         String checkbox = sharedPreferences.getString("remember", "");
 
         if(checkbox.equals("true")){
-            intent = new Intent(Login.this, HomePage.class);
+            intent = new Intent(Login.this, MainActivity.class);
             startActivity(intent);
         } else if(checkbox.equals("false")){
             Toast.makeText(this, "Please Sign In", Toast.LENGTH_SHORT).show();

@@ -2,18 +2,31 @@ package com.nhom5.lafavor2024;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DatabaseReference;
+
+
 import com.nhom5.lafavor2024.databinding.FragmentProfileMainBinding;
+import com.nhom5.models.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +36,11 @@ import com.nhom5.lafavor2024.databinding.FragmentProfileMainBinding;
 public class ProfileMain extends Fragment {
 
     FragmentProfileMainBinding binding;
+
     Intent intent;
+    DatabaseReference databaseReference;
+    String uid;
+    User user;
     SharedPreferences sharedPreferences;
 
 
@@ -72,11 +89,64 @@ public class ProfileMain extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentProfileMainBinding.inflate(inflater, container, false);
         addEvent();
+        showUserInfo();
 
         return binding.getRoot();
     }
 
+    public void showUserInfo() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            return;
+
+        }
+        for (UserInfo profile : user.getProviderData()) {
+            // Id of the provider (ex: google.com)
+            String providerId = profile.getProviderId();
+
+            // UID specific to the provider
+            String uid = profile.getUid();
+
+            // Name, email address, and profile photo Url
+            String name = profile.getDisplayName();
+            String email = profile.getEmail();
+            Uri photoUrl = profile.getPhotoUrl();
+            String phone = profile.getPhoneNumber();
+            if (name == null) {
+                binding.txtFullName.setVisibility(View.GONE);
+            } else {
+                binding.txtFullName.setVisibility(View.VISIBLE);
+                ///Not displayed yet
+                binding.txtFullName.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.txtFullName.setText(name);
+                    }
+                },500);
+            }
+            binding.txtEmail.setText(email);
+            Glide.with(this).load(photoUrl).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
+//        String name = user.getDisplayName();
+//        String email = user.getEmail();
+//        Uri photoUrl = user.getPhotoUrl();
+//
+//            if (name == null) {
+//                binding.txtFullName.setVisibility(View.GONE);
+//            } else {
+//                binding.txtFullName.setVisibility(View.VISIBLE);
+//                binding.txtFullName.setText(name);
+//                ///Not displayed yet
+//            }
+//            binding.txtEmail.setText(email);
+//            Glide.with(this).load(photoUrl).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
+
+    }}
+
     private void addEvent() {
+
+//        binding.txtFullName.setText();
+
         binding.lnlProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +214,9 @@ public class ProfileMain extends Fragment {
                     startActivity(intent);
                 }
             }
+
         });
+
     }
 
 

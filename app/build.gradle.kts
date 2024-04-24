@@ -55,4 +55,8 @@ dependencies {
     implementation ("com.caverock:androidsvg:1.4")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
     implementation ("androidx.fragment:fragment:1.6.2")
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 }
