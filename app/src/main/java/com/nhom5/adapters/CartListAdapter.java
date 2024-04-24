@@ -56,7 +56,8 @@ public class CartListAdapter extends BaseAdapter {
 
         // Đặt dữ liệu vào các thành phần tương ứng
         txtName.setText(cart.getProductName());
-        txtPrice.setText(String.valueOf(cart.getProductPrice()));
+        String formattedPrice = String.format("%,.0f VND", cart.getProductPrice());
+        txtPrice.setText(formattedPrice);
         txtQuantity.setText(String.valueOf(cart.getProductQuantity()));
 
         // Bạn cũng có thể sử dụng thư viện Picasso hoặc Glide để tải ảnh vào ImageView

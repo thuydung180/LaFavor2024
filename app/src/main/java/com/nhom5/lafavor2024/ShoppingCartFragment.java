@@ -117,7 +117,8 @@ public class ShoppingCartFragment extends Fragment {
                     }
 
                     // Hiển thị tổng hóa đơn trên giao diện người dùng (ví dụ: bằng cách sử dụng một TextView)
-                    binding.txtTotal.setText(String.valueOf(totalBill));
+                    String formattedTotalBill = String.format("%,.0f VND", totalBill); // Format tổng hóa đơn với VND ở cuối
+                    binding.txtTotal.setText(formattedTotalBill);
 
                 }
 
