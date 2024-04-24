@@ -77,7 +77,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
-//        ImageView imvProduct;
+        //        ImageView imvProduct;
         TextView productName, productPrice, productQuantity;
 
         public CartViewHolder(@NonNull View itemView) {
@@ -88,4 +88,3 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         }
     }
 }
-

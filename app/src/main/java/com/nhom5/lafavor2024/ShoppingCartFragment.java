@@ -71,6 +71,6 @@ public class ShoppingCartFragment extends Fragment {
             }
         });
         // Inflate the layout for this fragment
-     return binding.getRoot();
+        return binding.getRoot();
     }
 }
