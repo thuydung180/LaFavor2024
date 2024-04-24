@@ -142,6 +142,13 @@ public class EditProfile extends AppCompatActivity {
 
             }
         });
+
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void initListener() {
