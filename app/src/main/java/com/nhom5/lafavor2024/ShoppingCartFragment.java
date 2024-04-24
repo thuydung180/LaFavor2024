@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -19,7 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.nhom5.adapters.CartAdapter;
+import com.nhom5.adapters.CartListAdapter;
 import com.nhom5.lafavor2024.databinding.FragmentShoppingCartBinding;
 import com.nhom5.models.Cart;
 
@@ -35,6 +34,7 @@ public class ShoppingCartFragment extends Fragment {
     private String mParam2;
     FragmentShoppingCartBinding binding;
     FirebaseAuth firebaseAuth;
+    CartListAdapter adapter;
 
     public ShoppingCartFragment() {
         // Required empty public constructor
@@ -63,11 +63,6 @@ public class ShoppingCartFragment extends Fragment {
         binding = FragmentShoppingCartBinding.inflate(inflater, container, false);
         fetchCartData(); // Kích hoạt phương thức fetchCartData() để lấy dữ liệu giỏ hàng
         setupCheckoutButton(); // Kích hoạt phương thức setupCheckoutButton() để thiết lập nút thanh toán
-
-        // Gắn LinearLayoutManager cho RecyclerView
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        binding.rvCart.setLayoutManager(layoutManager);
-
 
         // Inflate the layout for this fragment
         return binding.getRoot();
@@ -107,9 +102,9 @@ public class ShoppingCartFragment extends Fragment {
                         }
                     }
 
-                    // Tạo Adapter và gán Adapter cho RecyclerView
-                    CartAdapter adapter = new CartAdapter(ShoppingCartFragment.this, cartList);
-                    binding.rvCart.setAdapter(adapter);
+                    // Tạo Adapter và gán Adapter cho ListView
+                    CartListAdapter adapter = new CartListAdapter(getContext(), cartList);
+                    binding.lvCart.setAdapter(adapter);
 
                 }
 
