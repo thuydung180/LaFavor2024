@@ -35,6 +35,7 @@ public class ShoppingCartFragment extends Fragment {
     FragmentShoppingCartBinding binding;
     FirebaseAuth firebaseAuth;
     CartListAdapter adapter;
+    private double totalBill = 0;
 
     public ShoppingCartFragment() {
         // Required empty public constructor
@@ -64,9 +65,13 @@ public class ShoppingCartFragment extends Fragment {
         fetchCartData(); // Kích hoạt phương thức fetchCartData() để lấy dữ liệu giỏ hàng
         setupCheckoutButton(); // Kích hoạt phương thức setupCheckoutButton() để thiết lập nút thanh toán
 
+
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
+
+
+    // Khai báo biến tổng hóa đơn
 
     private void fetchCartData() {
         // Lấy người dùng hiện tại đã đăng nhập
@@ -105,6 +110,14 @@ public class ShoppingCartFragment extends Fragment {
                     // Tạo Adapter và gán Adapter cho ListView
                     CartListAdapter adapter = new CartListAdapter(getContext(), cartList);
                     binding.lvCart.setAdapter(adapter);
+                    // Lặp qua danh sách đơn hàng và tính tổng hóa đơn
+                    for (Cart cart : cartList) {
+                        // Nhân giá của sản phẩm với số lượng của sản phẩm và cộng vào tổng hóa đơn
+                        totalBill += cart.getProductPrice() * cart.getProductQuantity();
+                    }
+
+                    // Hiển thị tổng hóa đơn trên giao diện người dùng (ví dụ: bằng cách sử dụng một TextView)
+                    binding.txtTotal.setText(String.valueOf(totalBill));
 
                 }
 
