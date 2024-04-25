@@ -36,6 +36,7 @@ public class Checkout extends AppCompatActivity {
         binding.txtTotal.setText(formatAmount(total));
 
 
+        addEvents();
         loadData();
 
         binding.rdCash.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -62,6 +63,15 @@ public class Checkout extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void addEvents() {
+        binding.imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private String formatAmount(double amount) {
