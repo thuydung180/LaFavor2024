@@ -113,36 +113,6 @@ public class CartListAdapter extends BaseAdapter {
                 }
             }
         });
-//        imvDelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-//                if (currentUser != null) {
-//                    String userId = currentUser.getUid();
-//                    DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
-//                    ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            // Duyệt qua các sản phẩm trong đơn hàng
-//                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                                Cart existingCart = snapshot.getValue(Cart.class);
-//                                if (existingCart != null && existingCart.getProductName().equals(cart.getProductName())) {
-//                                    // Xóa sản phẩm khỏi đơn hàng
-//                                    snapshot.getRef().removeValue();
-//                                    break; // Kết thúc khi đã xóa sản phẩm
-//                                }
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//                            // Xử lý lỗi nếu có
-//                        }
-//                    });
-//                }
-//            }
-//        });
-
 
         imvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
