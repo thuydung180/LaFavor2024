@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import com.nhom5.adapters.CartListAdapter;
+import com.nhom5.lafavor2024.Checkout;
 import com.nhom5.lafavor2024.databinding.FragmentShoppingCartBinding;
 import com.nhom5.models.Cart;
 
@@ -32,10 +33,10 @@ public class ShoppingCartFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private double totalBill = 0;
     FragmentShoppingCartBinding binding;
     FirebaseAuth firebaseAuth;
     CartListAdapter adapter;
-    private double totalBill = 0;
 
     public ShoppingCartFragment() {
         // Required empty public constructor
@@ -84,6 +85,7 @@ public class ShoppingCartFragment extends Fragment {
             ordersRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    double totalBill = 0;
                     List<Cart> cartList = new ArrayList<>();
                     for (DataSnapshot orderSnapshot : dataSnapshot.getChildren()) {
                         // Kiểm tra xem dữ liệu có tồn tại không
@@ -115,7 +117,8 @@ public class ShoppingCartFragment extends Fragment {
                     }
 
                     // Hiển thị tổng hóa đơn trên giao diện người dùng (ví dụ: bằng cách sử dụng một TextView)
-                    binding.txtTotal.setText(String.valueOf(totalBill));
+                    String formattedTotalBill = String.format("%,.0f VND", totalBill);
+                    binding.txtTotal.setText(formattedTotalBill);
 
                 }
 
@@ -136,7 +139,10 @@ public class ShoppingCartFragment extends Fragment {
         binding.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Tạo Intent và truyền giá trị totalBillText sang trang Checkout
                 Intent intent = new Intent(getActivity(), Checkout.class);
+                intent.putExtra("TOTAL_BILL", totalBill);
                 startActivity(intent);
             }
         });
