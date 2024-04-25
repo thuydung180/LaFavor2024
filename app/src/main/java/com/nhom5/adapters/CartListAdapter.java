@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,9 +30,12 @@ public class CartListAdapter extends BaseAdapter {
     private Context context;
     private List<Cart> cartList;
 
+    private OnItemDeleteListener deleteListener;
+
     public CartListAdapter(Context context, List<Cart> cartList) {
         this.context = context;
         this.cartList = cartList;
+        this.deleteListener = deleteListener;
     }
 
     @Override
@@ -56,6 +60,7 @@ public class CartListAdapter extends BaseAdapter {
 
         // Ánh xạ các thành phần trong layout item
         ImageView imvProduct = itemView.findViewById(R.id.imvProduct);
+        ImageView imvTrash = itemView.findViewById(R.id.imvTrash);
         TextView txtName = itemView.findViewById(R.id.txtName);
         TextView txtDescription = itemView.findViewById(R.id.txtDescription);
         TextView txtPrice = itemView.findViewById(R.id.txtPrice);
@@ -64,13 +69,25 @@ public class CartListAdapter extends BaseAdapter {
         ImageView imvPlus = itemView.findViewById(R.id.imvPlus);
         ImageView imvDelete = itemView.findViewById(R.id.imvDelete);
 
+
         // Lấy thông tin đơn hàng từ cartList tại vị trí position
         Cart cart = cartList.get(position);
 
         // Đặt dữ liệu vào các thành phần tương ứng
         txtName.setText(cart.getProductName());
-        txtPrice.setText(String.valueOf(cart.getProductPrice()));
+        String formattedPrice = String.format("%,.0f VND", cart.getProductPrice());
+        txtPrice.setText(formattedPrice);
         txtQuantity.setText(String.valueOf(cart.getProductQuantity()));
+
+        imvTrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Gọi phương thức xóa sản phẩm của interface và chuyển vị trí của sản phẩm
+                if (deleteListener != null) {
+                    deleteListener.onItemDelete(position);
+                }
+            }
+        });
 
         // Bạn cũng có thể sử dụng thư viện Picasso hoặc Glide để tải ảnh vào ImageView
 //        Picasso.get().load(cart.getProductImageUrl()).into(imvProduct);
@@ -134,5 +151,8 @@ public class CartListAdapter extends BaseAdapter {
 
 
         return itemView;
+    }
+    public interface OnItemDeleteListener {
+        void onItemDelete(int position);
     }
 }

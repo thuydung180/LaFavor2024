@@ -58,10 +58,14 @@ public class Splashscreen_1 extends AppCompatActivity {
             public void onClick(View v) {
                 if (getitem(0) < 2){
                     viewPager.setCurrentItem(getitem(1), true);
-                }else{
-                    intent = new Intent(Splashscreen_1.this, Login.class);
-                    startActivity(intent);
                 }
+            }
+        });
+        binding.btnSC2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(Splashscreen_1.this, Login.class);
+                startActivity(intent);
             }
         });
 
@@ -104,6 +108,14 @@ public class Splashscreen_1 extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             setUpIndicator(position);
+
+            if (position < 2){
+                binding.btnSC1.setVisibility(View.VISIBLE);
+                binding.btnSC2.setVisibility(View.INVISIBLE);
+            }else{
+                binding.btnSC2.setVisibility(View.VISIBLE);
+                binding.btnSC1.setVisibility(View.INVISIBLE);
+            }
 
         }
 
