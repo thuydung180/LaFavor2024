@@ -76,4 +76,7 @@ public class Cart {
     public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
     }
+
+    public void setCartId(String orderId) {
+    }
 }
