@@ -112,55 +112,41 @@ public class Checkout extends AppCompatActivity {
     }
 
     private void fetchCartData() {
-        // Lấy người dùng hiện tại đã đăng nhập
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
-
-            // Tham chiếu đến "Orders" của người dùng
             DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(userId);
-
-            // Lắng nghe sự kiện khi dữ liệu thay đổi
             ordersRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     List<Cart> cartList = new ArrayList<>();
                     double totalBill = 0;
                     for (DataSnapshot orderSnapshot : dataSnapshot.getChildren()) {
-                        // Kiểm tra xem dữ liệu có tồn tại không
                         if (orderSnapshot.exists()) {
-                            // Lấy thông tin của mỗi đơn hàng
                             String productName = orderSnapshot.child("productName").getValue(String.class);
                             Long productPriceLong = orderSnapshot.child("productPrice").getValue(Long.class);
                             Integer productQuantityInteger = orderSnapshot.child("productQuantity").getValue(Integer.class);
-
-                            // Kiểm tra xem dữ liệu có null không
                             if (productName != null && productPriceLong != null && productQuantityInteger != null) {
-                                double productPrice = productPriceLong.doubleValue(); // Chuyển đổi Long thành double
+                                double productPrice = productPriceLong.doubleValue();
                                 int productQuantity = productQuantityInteger.intValue();
-
-                                // Tạo đối tượng Cart từ thông tin đơn hàng và thêm vào danh sách
                                 Cart cart = new Cart(productName, productPrice, productQuantity);
                                 cartList.add(cart);
-
-                                // Tính tổng hóa đơn
                                 totalBill += productPrice * productQuantity;
                             }
                         }
                     }
-
-                    // Tạo Adapter và gán Adapter cho ListView
-                    CheckoutListAdapter adapter = new CheckoutListAdapter(getContext(), cartList);
+                    CheckoutListAdapter adapter = new CheckoutListAdapter(Checkout.this, cartList);
                     binding.lvCheckout.setAdapter(adapter);
-
-                    // Hiển thị tổng hóa đơn trên giao diện người dùng
                     binding.txtTotal.setText(String.valueOf(totalBill));
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Xử lý lỗi nếu có
+                    Toast.makeText(Checkout.this, "Failed to fetch cart data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+        } else {
+            Toast.makeText(Checkout.this, "User not logged in", Toast.LENGTH_SHORT).show();
         }
-    }}
+    }
+}
