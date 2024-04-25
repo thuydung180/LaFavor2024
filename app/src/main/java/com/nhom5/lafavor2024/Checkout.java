@@ -37,6 +37,7 @@ public class Checkout extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         fetchCartData();
+        addEvents();
 
 
 
@@ -57,8 +58,6 @@ public class Checkout extends AppCompatActivity {
 //        double total = subtotal + promo + shipping;
 //        binding.txtTotal.setText(formatAmount(total));
 //
-//
-//        addEvents();
 //        loadData();
 //
         binding.rdCash.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -109,6 +108,15 @@ public class Checkout extends AppCompatActivity {
 //
 
 
+    }
+
+    private void addEvents() {
+        binding.imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void fetchCartData() {
