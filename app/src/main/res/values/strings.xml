@@ -112,7 +112,7 @@
     <string name="reconfirm_new_password">Reconfirm new password</string>
 
     <!--     Notification Cart -->
-    <string name="notification_cart">Are you sure you want to delete this Strawberry Cupcake from cart?</string>
+    <string name="notification_cart">Are you sure you want to delete?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="delivered">Delivered</string>
@@ -163,6 +163,8 @@
     <string name="favorite_icon">Favorite</string>
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
+    <string name="get_started_splash1">GET STARTED</string>
+    <string name="next">NEXT</string>
 
     <!-- MainActivity_Navbar -->
 </resources>

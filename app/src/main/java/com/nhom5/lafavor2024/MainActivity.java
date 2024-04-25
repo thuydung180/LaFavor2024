@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (itemId == NAV_FAV) {
                     replaceFragment(new FavoriteFragment());
                 } else if (itemId == NAV_CART) {
-                    replaceFragment(new EmptyAddressFragment());
+                    replaceFragment(new ShoppingCartFragment());
                 } else if (itemId == NAV_PROF) {
                     replaceFragment(new ProfileMain());
                 } else {

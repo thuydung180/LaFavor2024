@@ -31,14 +31,14 @@
 
                 <ImageView
                     android:id="@+id/btnBack"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/icon_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vector_back"
                     android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/add_address"
                     android:textSize="20sp"
@@ -172,18 +172,17 @@
                 android:paddingHorizontal="10dp"
                 android:textSize="14sp"
                 android:inputType="text"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_long_button"
+                android:textColor="@color/white"
+                android:text="@string/save"/>
         </LinearLayout>
 
     </ScrollView>
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_long_button"
-        android:textColor="@color/white"
-        android:text="@string/save"
-        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

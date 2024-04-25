@@ -44,13 +44,12 @@
         app:layout_constraintStart_toStartOf="@+id/viewPager"
         app:layout_constraintTop_toBottomOf="@+id/viewPager"
         android:orientation="horizontal"/>
-
     <Button
-        android:id="@+id/btnSC1"
+        android:id="@+id/btnSC2"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primary"
-        android:text="NEXT"
+        android:text="@string/get_started_splash1"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -61,5 +60,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.972"
         android:background="@drawable/custom_long_button"/>
+    <Button
+        android:id="@+id/btnSC1"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
+        android:text="@string/next"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972"
+        android:background="@drawable/custom_long_button"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

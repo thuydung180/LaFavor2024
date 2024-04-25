@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,21 +10,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <ImageView
             android:id="@+id/imvProduct"
+            android:padding="5dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/list_product_background"
-            android:src="@drawable/splashscreen2"/>
+            android:src="@drawable/splashscreen2"
+            android:layout_weight="1"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="154dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:layout_weight="8"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -40,11 +43,6 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:src="@drawable/trash" />
 
             </LinearLayout>
 
@@ -55,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:text="Shortbread, chocolate turtle cookies, and red velvet."
                 android:textColor="@color/gray1"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -68,15 +66,16 @@
                     android:layout_height="wrap_content"
                     android:text="20.000 VND"
                     android:textColor="@color/primary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="100dp">
+                    android:layout_marginStart="100dp"
+                    android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/imvMinus"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/minus"
@@ -93,6 +92,7 @@
                         android:textSize="12sp" />
 
                     <ImageView
+                        android:id="@+id/imvPlus"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/plus"
@@ -104,6 +104,15 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/imvDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/trash"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"/>
+
     </LinearLayout>
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
