@@ -25,7 +25,7 @@ public class OrderComplete extends AppCompatActivity {
         binding.btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OrderComplete.this, HomePage.class);
+                Intent intent = new Intent(OrderComplete.this, MainActivity.class);
                 startActivity(intent);
             }
         });

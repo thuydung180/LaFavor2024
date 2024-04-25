@@ -2,6 +2,9 @@ package com.nhom5.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -154,6 +157,10 @@ public class CartListAdapter extends BaseAdapter {
 
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+
+                alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                alertDialog.getWindow().setGravity(Gravity.CENTER );
 
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
