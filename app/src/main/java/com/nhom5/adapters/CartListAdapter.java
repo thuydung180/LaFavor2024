@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,7 +62,6 @@ public class CartListAdapter extends BaseAdapter {
 
         // Ánh xạ các thành phần trong layout item
         ImageView imvProduct = itemView.findViewById(R.id.imvProduct);
-        ImageView imvTrash = itemView.findViewById(R.id.imvTrash);
         TextView txtName = itemView.findViewById(R.id.txtName);
         TextView txtDescription = itemView.findViewById(R.id.txtDescription);
         TextView txtPrice = itemView.findViewById(R.id.txtPrice);
@@ -79,15 +80,6 @@ public class CartListAdapter extends BaseAdapter {
         txtPrice.setText(formattedPrice);
         txtQuantity.setText(String.valueOf(cart.getProductQuantity()));
 
-        imvTrash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Gọi phương thức xóa sản phẩm của interface và chuyển vị trí của sản phẩm
-                if (deleteListener != null) {
-                    deleteListener.onItemDelete(position);
-                }
-            }
-        });
 
         // Bạn cũng có thể sử dụng thư viện Picasso hoặc Glide để tải ảnh vào ImageView
 //        Picasso.get().load(cart.getProductImageUrl()).into(imvProduct);
@@ -118,36 +110,91 @@ public class CartListAdapter extends BaseAdapter {
                 }
             }
         });
+//        imvDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//                if (currentUser != null) {
+//                    String userId = currentUser.getUid();
+//                    DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
+//                    ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            // Duyệt qua các sản phẩm trong đơn hàng
+//                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                                Cart existingCart = snapshot.getValue(Cart.class);
+//                                if (existingCart != null && existingCart.getProductName().equals(cart.getProductName())) {
+//                                    // Xóa sản phẩm khỏi đơn hàng
+//                                    snapshot.getRef().removeValue();
+//                                    break; // Kết thúc khi đã xóa sản phẩm
+//                                }
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//                            // Xử lý lỗi nếu có
+//                        }
+//                    });
+//                }
+//            }
+//        });
+
+
         imvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                if (currentUser != null) {
-                    String userId = currentUser.getUid();
-                    DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
-                    ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            // Duyệt qua các sản phẩm trong đơn hàng
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                Cart existingCart = snapshot.getValue(Cart.class);
-                                if (existingCart != null && existingCart.getProductName().equals(cart.getProductName())) {
-                                    // Xóa sản phẩm khỏi đơn hàng
-                                    snapshot.getRef().removeValue();
-                                    break; // Kết thúc khi đã xóa sản phẩm
-                                }
-                            }
-                        }
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                LayoutInflater inflater = LayoutInflater.from(context);
+                View dialogView = inflater.inflate(R.layout.dialog_notification_cart, null);
+                builder.setView(dialogView);
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            // Xử lý lỗi nếu có
+                Button btnCancel = dialogView.findViewById(R.id.btnNo);
+                Button btnConfirm = dialogView.findViewById(R.id.btnYes);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss(); // Hủy dialog nếu người dùng chọn "Hủy"
+                    }
+                });
+
+                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Xóa sản phẩm khi người dùng xác nhận
+                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                        if (currentUser != null) {
+                            String userId = currentUser.getUid();
+                            DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
+                            ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    // Duyệt qua các sản phẩm trong đơn hàng
+                                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                        Cart existingCart = snapshot.getValue(Cart.class);
+                                        if (existingCart != null && existingCart.getProductName().equals(cart.getProductName())) {
+                                            // Xóa sản phẩm khỏi đơn hàng
+                                            snapshot.getRef().removeValue();
+                                            break; // Kết thúc khi đã xóa sản phẩm
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    // Xử lý lỗi nếu có
+                                }
+                            });
                         }
-                    });
-                }
+                        alertDialog.dismiss(); // Đóng dialog sau khi xóa
+                    }
+                });
             }
         });
-
 
 
         return itemView;

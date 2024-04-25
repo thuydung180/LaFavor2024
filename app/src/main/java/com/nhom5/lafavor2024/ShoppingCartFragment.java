@@ -32,6 +32,7 @@ public class ShoppingCartFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private double totalBill = 0;
     FragmentShoppingCartBinding binding;
     FirebaseAuth firebaseAuth;
     CartListAdapter adapter;
@@ -83,7 +84,7 @@ public class ShoppingCartFragment extends Fragment {
             ordersRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    double totalBill = 0;
+                    totalBill = 0;
                     List<Cart> cartList = new ArrayList<>();
                     for (DataSnapshot orderSnapshot : dataSnapshot.getChildren()) {
                         // Kiểm tra xem dữ liệu có tồn tại không
@@ -115,7 +116,8 @@ public class ShoppingCartFragment extends Fragment {
                     }
 
                     // Hiển thị tổng hóa đơn trên giao diện người dùng (ví dụ: bằng cách sử dụng một TextView)
-                    binding.txtTotal.setText(String.valueOf(totalBill));
+                    String formattedTotalBill = String.format("%,.0f VND", totalBill);
+                    binding.txtTotal.setText(formattedTotalBill);
 
                 }
 
@@ -136,7 +138,10 @@ public class ShoppingCartFragment extends Fragment {
         binding.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Tạo Intent và truyền giá trị totalBillText sang trang Checkout
                 Intent intent = new Intent(getActivity(), Checkout.class);
+                intent.putExtra("TOTAL_BILL", totalBill);
                 startActivity(intent);
             }
         });

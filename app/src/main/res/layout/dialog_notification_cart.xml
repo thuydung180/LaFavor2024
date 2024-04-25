@@ -2,31 +2,34 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="350dp"
-    android:layout_height="150dp"
-    app:cardCornerRadius="15dp"
-    android:padding="20dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="30dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/notification_cart"
+        android:padding="15dp"
         android:textStyle="bold"
         android:textSize="14sp"
         android:gravity="center"
-        android:textColor="@color/gray2"/>
+        android:textColor="@color/gray2"
+        android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:padding="10dp"
         android:layout_gravity="center">
 
         <Button
             android:id="@+id/btnNo"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:text="@string/no"
             android:textStyle="bold"
             android:textSize="12sp"
@@ -35,8 +38,8 @@
 
         <Button
             android:id="@+id/btnYes"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:text="@string/yes"
             android:textStyle="bold"
             android:textSize="12sp"

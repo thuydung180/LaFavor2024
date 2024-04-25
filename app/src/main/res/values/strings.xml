@@ -112,7 +112,7 @@
     <string name="reconfirm_new_password">Reconfirm new password</string>
 
     <!--     Notification Cart -->
-    <string name="notification_cart">Are you sure you want to delete this Strawberry Cupcake from cart?</string>
+    <string name="notification_cart">Are you sure you want to delete?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="delivered">Delivered</string>

@@ -23,10 +23,12 @@ public class Checkout extends AppCompatActivity {
         double subtotal = getIntent().getDoubleExtra("TOTAL_BILL", 0.0);
         binding.txtSubtotal.setText(formatAmount(subtotal));
 
-        // Gán giá trị cho txtPromo và txtShipping (ví dụ)
-        double promo = 0; // Giả sử giá trị promo là 10.000 VND
-        double shipping = 20000; // Giả sử giá trị shipping là 20.000 VND
+        // Giá trị promo mặc định là 0
+        double promo = 0;
         binding.txtPromo.setText(formatAmount(promo));
+
+        // Giá trị shipping (ví dụ)
+        double shipping = 20000; // Giả sử giá trị shipping là 20.000 VND
         binding.txtShipping.setText(formatAmount(shipping));
 
         // Tính tổng tiền và đặt giá trị vào txtTotal
