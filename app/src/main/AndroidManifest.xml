@@ -88,6 +88,8 @@
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".Profile" -->
         <!-- android:exported="false" /> -->
+        <activity android:name=".EditProfile"
+            android:exported="false" />
         <activity
             android:name=".Splashscreen_1"
             android:exported="true">

@@ -18,8 +18,8 @@
         android:layout_marginTop="10dp"
         android:textColor="@color/black"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCart"
+    <ListView
+        android:id="@+id/lvCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -94,7 +94,7 @@
                 android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/txtTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20.000 VND"

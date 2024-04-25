@@ -100,16 +100,15 @@ public class CartListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int quantity = cart.getProductQuantity();
                 if (quantity > 1) {
-                    quantity--;
-                    // Tạo một đối tượng Cart mới với số lượng giảm đi 1
-                    Cart updatedCart = new Cart(cart.getProductName(), cart.getProductPrice(), quantity);
+                    quantity--; // Giảm số lượng đi 1 nếu số lượng hiện tại lớn hơn 1
+                    cart.setProductQuantity(quantity);
                     txtQuantity.setText(String.valueOf(quantity));
-                    cartList.set(position, updatedCart); // Cập nhật cartList với đối tượng Cart mới
+                    cartList.set(position, cart);
                     notifyDataSetChanged();
-//                    updateDatabaseFirebase(updatedCart);
                 }
             }
         });
+
 //        imvDelete.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

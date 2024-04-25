@@ -2,45 +2,45 @@ package com.nhom5.lafavor2024;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
+import android.support.annotation.NonNull;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import com.nhom5.adapters.CartListAdapter;
 import com.nhom5.lafavor2024.databinding.FragmentShoppingCartBinding;
+import com.nhom5.models.Cart;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ShoppingCartFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShoppingCartFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     FragmentShoppingCartBinding binding;
+    FirebaseAuth firebaseAuth;
+    CartListAdapter adapter;
+    private double totalBill = 0;
 
     public ShoppingCartFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ShoppingCartFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ShoppingCartFragment newInstance(String param1, String param2) {
         ShoppingCartFragment fragment = new ShoppingCartFragment();
         Bundle args = new Bundle();
@@ -60,9 +60,79 @@ public class ShoppingCartFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentShoppingCartBinding.inflate(inflater, container, false);
+        fetchCartData(); // Kích hoạt phương thức fetchCartData() để lấy dữ liệu giỏ hàng
+        setupCheckoutButton(); // Kích hoạt phương thức setupCheckoutButton() để thiết lập nút thanh toán
+
+        // Inflate the layout for this fragment
+        return binding.getRoot();
+    }
+
+    // Khai báo biến tổng hóa đơn
+
+    private void fetchCartData() {
+        // Lấy người dùng hiện tại đã đăng nhập
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            // Tham chiếu đến "Orders" của người dùng
+            DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(userId);
+
+            // Lắng nghe sự kiện khi dữ liệu thay đổi
+            ordersRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    List<Cart> cartList = new ArrayList<>();
+                    for (DataSnapshot orderSnapshot : dataSnapshot.getChildren()) {
+                        // Kiểm tra xem dữ liệu có tồn tại không
+                        if (orderSnapshot.exists()) {
+                            // Lấy thông tin của mỗi đơn hàng
+                            String productName = orderSnapshot.child("productName").getValue(String.class);
+                            Long productPriceLong = orderSnapshot.child("productPrice").getValue(Long.class);
+                            Integer productQuantityInteger = orderSnapshot.child("productQuantity").getValue(Integer.class);
+
+                            // Kiểm tra xem dữ liệu có null không
+                            if (productName != null && productPriceLong != null && productQuantityInteger != null) {
+                                double productPrice = productPriceLong.doubleValue(); // Chuyển đổi Long thành double
+                                int productQuantity = productQuantityInteger.intValue();
+
+                                // Tạo đối tượng Cart từ thông tin đơn hàng và thêm vào danh sách
+                                Cart cart = new Cart(productName, productPrice, productQuantity);
+                                cartList.add(cart);
+                            }
+                        }
+                    }
+
+                    // Tạo Adapter và gán Adapter cho ListView
+                    CartListAdapter adapter = new CartListAdapter(getContext(), cartList);
+                    binding.lvCart.setAdapter(adapter);
+                    // Lặp qua danh sách đơn hàng và tính tổng hóa đơn
+                    for (Cart cart : cartList) {
+                        // Nhân giá của sản phẩm với số lượng của sản phẩm và cộng vào tổng hóa đơn
+                        totalBill += cart.getProductPrice() * cart.getProductQuantity();
+                    }
+
+                    // Hiển thị tổng hóa đơn trên giao diện người dùng (ví dụ: bằng cách sử dụng một TextView)
+                    binding.txtTotal.setText(String.valueOf(totalBill));
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Xử lý lỗi nếu có
+                    Toast.makeText(getContext(), "Lỗi: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            // Người dùng chưa đăng nhập, xử lý tùy ý
+            Toast.makeText(getContext(), "Bạn cần đăng nhập để xem giỏ hàng", Toast.LENGTH_SHORT).show();
+            // Redirect to login or handle as per your requirement
+        }
+    }
+
+    private void setupCheckoutButton() {
         binding.btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +140,5 @@ public class ShoppingCartFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        // Inflate the layout for this fragment
-     return binding.getRoot();
     }
 }
