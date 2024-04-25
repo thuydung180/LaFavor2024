@@ -60,7 +60,6 @@ public class CartListAdapter extends BaseAdapter {
 
         // Ánh xạ các thành phần trong layout item
         ImageView imvProduct = itemView.findViewById(R.id.imvProduct);
-        ImageView imvTrash = itemView.findViewById(R.id.imvTrash);
         TextView txtName = itemView.findViewById(R.id.txtName);
         TextView txtDescription = itemView.findViewById(R.id.txtDescription);
         TextView txtPrice = itemView.findViewById(R.id.txtPrice);
@@ -79,15 +78,6 @@ public class CartListAdapter extends BaseAdapter {
         txtPrice.setText(formattedPrice);
         txtQuantity.setText(String.valueOf(cart.getProductQuantity()));
 
-        imvTrash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Gọi phương thức xóa sản phẩm của interface và chuyển vị trí của sản phẩm
-                if (deleteListener != null) {
-                    deleteListener.onItemDelete(position);
-                }
-            }
-        });
 
         // Bạn cũng có thể sử dụng thư viện Picasso hoặc Glide để tải ảnh vào ImageView
 //        Picasso.get().load(cart.getProductImageUrl()).into(imvProduct);
