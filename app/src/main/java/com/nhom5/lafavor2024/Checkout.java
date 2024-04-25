@@ -48,7 +48,7 @@ public class Checkout extends AppCompatActivity {
                     binding.rdCash.setButtonDrawable(null);
                 } else {
                     // Nếu không chọn, hiển thị thông báo cho người dùng
-                    Toast.makeText(Checkout.this, "Bạn chưa chọn phương thức thanh toán", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Checkout.this, "You have not selected a payment method", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -56,10 +56,16 @@ public class Checkout extends AppCompatActivity {
         binding.btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Xử lý khi nhấn nút "Place Order" ở đây
-                // Ví dụ: Chuyển sang màn hình khác
-                Intent intent = new Intent(Checkout.this, OrderComplete.class);
-                startActivity(intent);
+                // Kiểm tra xem RadioButton rdCash có được chọn không
+                if (binding.rdCash.isChecked()) {
+                    // Nếu được chọn, xử lý khi nhấn nút "Place Order"
+                    // Ví dụ: Chuyển sang màn hình khác
+                    Intent intent = new Intent(Checkout.this, OrderComplete.class);
+                    startActivity(intent);
+                } else {
+                    // Nếu RadioButton chưa được chọn, hiển thị thông báo cho người dùng
+                    Toast.makeText(Checkout.this, "You have not selected a payment method", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
