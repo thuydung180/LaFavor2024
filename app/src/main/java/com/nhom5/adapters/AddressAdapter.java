@@ -1,9 +1,9 @@
 package com.nhom5.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,13 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nhom5.lafavor2024.R;
 import com.nhom5.models.Address;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
 
-    private List<Address> listAddress;
+    Context context;
+    ArrayList<Address> listAddress;
 
-    public AddressAdapter(List<Address> listAddress) {
+    public AddressAdapter(Context context, ArrayList<Address> listAddress) {
+        this.context = context;
         this.listAddress = listAddress;
     }
 
@@ -43,10 +45,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        if (listAddress != null) {
-            return listAddress.size();
-        }
-        return 0;
+        return listAddress.size();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

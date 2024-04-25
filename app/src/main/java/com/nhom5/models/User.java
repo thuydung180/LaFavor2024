@@ -22,6 +22,8 @@ public class User {
         this.userPassword = userPassword;
     }
 
+    public User(String fullName, String email, String phoneNumber, String adddress) {
+    }
 
 
     public int getUserId() {

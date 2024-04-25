@@ -73,7 +73,8 @@ public class MyProfile extends AppCompatActivity {
             }
             binding.txtMail.setText(email);
             binding.txtPhone.setText("(+84) " + phone);
-            Glide.with(this).load(photoUrl).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
+            Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
+
 
 
         }

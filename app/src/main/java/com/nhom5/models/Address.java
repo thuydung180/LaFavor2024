@@ -68,4 +68,7 @@ public class Address {
     public String setAddress() {
         return street + ", " + ward + ", " + district +", "+ province;
     }
+
+
+
 }

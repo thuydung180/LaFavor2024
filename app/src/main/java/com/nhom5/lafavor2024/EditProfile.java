@@ -96,12 +96,8 @@ public class EditProfile extends AppCompatActivity {
             return;
         }
         for (UserInfo profile : user.getProviderData()) {
-            // Id of the provider (ex: google.com)
             String providerId = profile.getProviderId();
-
-            // UID specific to the provider
             String uid = profile.getUid();
-
             // Name, email address, and profile photo Url
             String name = profile.getDisplayName();
             String email = profile.getEmail();
@@ -111,7 +107,6 @@ public class EditProfile extends AppCompatActivity {
                 binding.edtUsername.setVisibility(View.GONE);
             } else {
                 binding.edtUsername.setVisibility(View.VISIBLE);
-                ///Not displayed yet
                 binding.edtUsername.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -136,7 +131,6 @@ public class EditProfile extends AppCompatActivity {
                 String adddress = binding.edtAddress.getText().toString();
 
                 User user = new User(fullName,email,phoneNumber,adddress);
-
 //                onClickAddAddress(user);
                 finish();
 
@@ -162,8 +156,6 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EditProfile.this, MyAddressEmpty.class);
-
-
 
                 startActivity(intent);
             }
