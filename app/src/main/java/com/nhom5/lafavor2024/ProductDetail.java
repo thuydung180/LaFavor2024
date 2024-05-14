@@ -35,6 +35,7 @@ public class ProductDetail extends AppCompatActivity {
 
     ActivityProductDetailBinding binding;
     List<Cart> carts;
+    private String productImageUrl;
 
 
     @Override
@@ -102,7 +103,9 @@ public class ProductDetail extends AppCompatActivity {
         binding.txtComparePrice.setText(String.valueOf(productComparePrice));
         binding.txtDescription.setText(productDescription);
         Picasso.get().load(productImageUrl).into(binding.imvThumb);
+        this.productImageUrl = productImageUrl;
     }
+
 
     private void initOrders() {
         binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +115,8 @@ public class ProductDetail extends AppCompatActivity {
                 double productPrice = Double.parseDouble(binding.txtPrice.getText().toString());
                 int productQuantity = Integer.parseInt(binding.txtQuantity.getText().toString());
 
-                Cart cart = new Cart(productName, productPrice, productQuantity);
+
+                Cart cart = new Cart(productName, productPrice, productImageUrl, productQuantity);
 
                 // Lấy người dùng hiện tại đã đăng nhập
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

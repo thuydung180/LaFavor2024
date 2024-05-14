@@ -23,33 +23,33 @@
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="64dp"
         android:text="Strawberry Cupcake"
         android:textColor="@color/gray2"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/txtPrice"
+        app:layout_constraintStart_toEndOf="@+id/txtQuantity"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtDescription"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="152dp"
+        android:layout_marginTop="16dp"
         android:text="@string/description_product"
         android:textColor="@color/gray1"
+
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtName"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <TextView
         android:id="@+id/txtQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="12dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
         android:text="1"
         android:textColor="@color/primary"
         android:textSize="20sp"

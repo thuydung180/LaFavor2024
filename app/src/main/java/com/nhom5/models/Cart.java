@@ -1,41 +1,22 @@
 package com.nhom5.models;
 
 public class Cart {
-//    int orderId;
+    //    int orderId;
     String productName;
     double productPrice;
-//    String productImage;
     int productQuantity;
+    String productImageUrl;
+
     public Cart() {
         // Cần thiết cho việc deserialize từ Firebase
     }
 
-    public Cart(String productName, double productPrice, int productQuantity) {
-//        this.orderId = orderId;
-//        this.productId = productId;
+    public Cart(String productName, double productPrice, String productImageUrl, int productQuantity) {
         this.productName = productName;
         this.productPrice = productPrice;
-//        this.productImage = productImage;
+        this.productImageUrl = productImageUrl;
         this.productQuantity = productQuantity;
     }
-
-
-
-//    public int getOrderId() {
-//        return orderId;
-//    }
-
-//    public void setOrderId(int orderId) {
-//        this.orderId = orderId;
-//    }
-
-//    public int getProductId() {
-//        return productId;
-//    }
-//
-//    public void setProductId(int productId) {
-//        this.productId = productId;
-//    }
 
     public String getProductName() {
         return productName;
@@ -45,14 +26,6 @@ public class Cart {
         this.productName = productName;
     }
 
-//    public String getProductDescription() {
-//        return productDescription;
-//    }
-//
-//    public void setProductDescription(String productDescription) {
-//        this.productDescription = productDescription;
-//    }
-
     public double getProductPrice() {
         return productPrice;
     }
@@ -61,13 +34,13 @@ public class Cart {
         this.productPrice = productPrice;
     }
 
-//    public String getProductImage() {
-//        return productImage;
-//    }
-//
-//    public void setProductImage(String productImage) {
-//        this.productImage = productImage;
-//    }
+    public String getProductImageUrl() {
+        return productImageUrl;
+    }
+
+    public void setProductImageUrl(String productImageUrl) {
+        this.productImageUrl = productImageUrl;
+    }
 
     public int getProductQuantity() {
         return productQuantity;
@@ -75,8 +48,5 @@ public class Cart {
 
     public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
-    }
-
-    public void setCartId(String orderId) {
     }
 }
