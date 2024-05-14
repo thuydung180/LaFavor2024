@@ -61,6 +61,7 @@ public class ShoppingCartFragment extends Fragment {
     }
 
     @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentShoppingCartBinding.inflate(inflater, container, false);
         fetchCartData(); // Kích hoạt phương thức fetchCartData() để lấy dữ liệu giỏ hàng
@@ -94,6 +95,8 @@ public class ShoppingCartFragment extends Fragment {
                             String productName = orderSnapshot.child("productName").getValue(String.class);
                             Long productPriceLong = orderSnapshot.child("productPrice").getValue(Long.class);
                             Integer productQuantityInteger = orderSnapshot.child("productQuantity").getValue(Integer.class);
+                            String productImageUrl = orderSnapshot.child("productImageUrl").getValue(String.class); // Lấy URL ảnh sản phẩm
+
 
                             // Kiểm tra xem dữ liệu có null không
                             if (productName != null && productPriceLong != null && productQuantityInteger != null) {
@@ -101,7 +104,7 @@ public class ShoppingCartFragment extends Fragment {
                                 int productQuantity = productQuantityInteger.intValue();
 
                                 // Tạo đối tượng Cart từ thông tin đơn hàng và thêm vào danh sách
-                                Cart cart = new Cart(productName, productPrice, productQuantity);
+                                Cart cart = new Cart(productName, productPrice, productImageUrl, productQuantity);
                                 cartList.add(cart);
                             }
                         }

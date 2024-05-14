@@ -8,7 +8,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,12 +34,9 @@ public class CartListAdapter extends BaseAdapter {
     private Context context;
     private List<Cart> cartList;
 
-    private OnItemDeleteListener deleteListener;
-
     public CartListAdapter(Context context, List<Cart> cartList) {
         this.context = context;
         this.cartList = cartList;
-        this.deleteListener = deleteListener;
     }
 
     @Override
@@ -60,7 +56,7 @@ public class CartListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = LayoutInflater.from(context);
         @SuppressLint("ViewHolder") View itemView = inflater.inflate(R.layout.listview_order, parent, false);
 
         // Ánh xạ các thành phần trong layout item
@@ -73,7 +69,6 @@ public class CartListAdapter extends BaseAdapter {
         ImageView imvPlus = itemView.findViewById(R.id.imvPlus);
         ImageView imvDelete = itemView.findViewById(R.id.imvDelete);
 
-
         // Lấy thông tin đơn hàng từ cartList tại vị trí position
         Cart cart = cartList.get(position);
 
@@ -83,9 +78,10 @@ public class CartListAdapter extends BaseAdapter {
         txtPrice.setText(formattedPrice);
         txtQuantity.setText(String.valueOf(cart.getProductQuantity()));
 
+        // Sử dụng thư viện Picasso hoặc Glide để tải ảnh vào ImageView
+        Picasso.get().load(cart.getProductImageUrl()).into(imvProduct);
 
-        // Bạn cũng có thể sử dụng thư viện Picasso hoặc Glide để tải ảnh vào ImageView
-//        Picasso.get().load(cart.getProductImageUrl()).into(imvProduct);
+        // Xử lý sự kiện khi nhấn vào nút Plus (+)
         imvPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,52 +89,88 @@ public class CartListAdapter extends BaseAdapter {
                 quantity++;
                 cart.setProductQuantity(quantity);
                 txtQuantity.setText(String.valueOf(quantity));
-                cartList.set(position, cart);
-                notifyDataSetChanged();
+                updateProductQuantity(cart); // Cập nhật productQuantity trên Firebase
             }
         });
 
+        // Xử lý sự kiện khi nhấn vào nút Minus (-)
         imvMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int quantity = cart.getProductQuantity();
                 if (quantity > 1) {
-                    quantity--; // Giảm số lượng đi 1 nếu số lượng hiện tại lớn hơn 1
+                    quantity--;
                     cart.setProductQuantity(quantity);
                     txtQuantity.setText(String.valueOf(quantity));
-                    cartList.set(position, cart);
-                    notifyDataSetChanged();
+                    updateProductQuantity(cart); // Cập nhật productQuantity trên Firebase
                 }
             }
         });
 
-
+        // Xử lý sự kiện khi nhấn vào nút Delete
         imvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                LayoutInflater inflater = LayoutInflater.from(context);
-                View dialogView = inflater.inflate(R.layout.dialog_notification_cart, null);
-                builder.setView(dialogView);
+                showDeleteConfirmationDialog(cart); // Hiển thị hộp thoại xác nhận xóa
+            }
+        });
 
-                Button btnCancel = dialogView.findViewById(R.id.btnNo);
-                Button btnConfirm = dialogView.findViewById(R.id.btnYes);
+        return itemView;
+    }
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
-                alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                alertDialog.getWindow().setGravity(Gravity.CENTER );
-
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss(); // Hủy dialog nếu người dùng chọn "Hủy"
+    // Phương thức để cập nhật productQuantity trên Firebase
+    private void updateProductQuantity(Cart cart) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
+            ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    // Duyệt qua các sản phẩm trong đơn hàng
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Cart existingCart = snapshot.getValue(Cart.class);
+                        if (existingCart != null && existingCart.getProductName().equals(cart.getProductName())) {
+                            // Cập nhật productQuantity trên Firebase
+                            snapshot.getRef().child("productQuantity").setValue(cart.getProductQuantity());
+                            break; // Kết thúc khi đã cập nhật productQuantity
+                        }
                     }
-                });
+                }
 
-                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Xử lý lỗi nếu có
+                }
+            });
+        }
+    }
+
+    // Phương thức để hiển thị hộp thoại xác nhận xóa
+    private void showDeleteConfirmationDialog(Cart cart) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.dialog_notification_cart, null);
+        builder.setView(dialogView);
+
+        Button btnCancel = dialogView.findViewById(R.id.btnNo);
+        Button btnConfirm = dialogView.findViewById(R.id.btnYes);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.getWindow().setGravity(Gravity.CENTER);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss(); // Hủy dialog nếu người dùng chọn "Hủy"
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // Xóa sản phẩm khi người dùng xác nhận
@@ -170,12 +202,7 @@ public class CartListAdapter extends BaseAdapter {
                     }
                 });
             }
-        });
-
-
-        return itemView;
-    }
-    public interface OnItemDeleteListener {
-        void onItemDelete(int position);
-    }
 }
+
+
+
