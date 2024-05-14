@@ -45,7 +45,7 @@ public class CheckoutListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("ViewHolder") View itemView = inflater.inflate(R.layout.listview_order, parent, false);
+        @SuppressLint("ViewHolder") View itemView = inflater.inflate(R.layout.item_checkout, parent, false);
 
         // Ánh xạ các thành phần trong layout item
         TextView txtName = itemView.findViewById(R.id.txtName);
