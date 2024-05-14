@@ -159,9 +159,11 @@ public class CartListAdapter extends BaseAdapter {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        alertDialog.getWindow().setLayout(dpToPx(300), dpToPx(500));
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.getWindow().setGravity(Gravity.CENTER);
+
+
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,6 +204,11 @@ public class CartListAdapter extends BaseAdapter {
                     }
                 });
             }
+    // Chuyển đổi dp sang pixel
+    private int dpToPx(int dp) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
+    }
 }
 
 

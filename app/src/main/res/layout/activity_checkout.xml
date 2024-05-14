@@ -87,14 +87,6 @@
                         android:textColor="@color/gray2"
                         android:layout_weight="7"/>
 
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:text="@string/add_items"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/corner_add_items"
-                        android:layout_weight="3"/>
                 </LinearLayout>
 
                 <ListView
