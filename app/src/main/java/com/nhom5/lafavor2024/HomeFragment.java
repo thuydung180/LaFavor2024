@@ -265,11 +265,11 @@ public class HomeFragment extends Fragment {
     private void getListUrl() {
         urls = new ArrayList<>();
         urls.add("https://firebasestorage.googleapis.com/v0/b/lafavor2024.appspot" +
-                ".com/o/banner%2Fbanner3.jpg?alt=media&token=bf798d8a-1eb1-4dde-acaf-94fed4aef6dd");
+                ".com/o/banner%2Fbanner4.png?alt=media&token=61bd5e9f-b160-4469-9280-0dcb67ff0274");
         urls.add("https://firebasestorage.googleapis.com/v0/b/lafavor2024.appspot" +
-                ".com/o/banner%2Fbanner2.jpg?alt=media&token=88bc7538-b1fe-4b91-ad19-45c05f99d553");
+                ".com/o/banner%2Fbanner5.png?alt=media&token=89e4aa8e-8d98-4b19-8e90-ea516ad95a17");
         urls.add("https://firebasestorage.googleapis.com/v0/b/lafavor2024.appspot" +
-                ".com/o/banner%2Fbanner1.jpg?alt=media&token=a9a0eabb-b64f-4dd7-b7ab-12582e7f73ea");
+                ".com/o/banner%2Fbanner6.png?alt=media&token=2bd14277-fb86-400f-9b51-95a309d191b6");
     }
 
     private void fetchDataFromFirestore() {
