@@ -6,12 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nhom5.lafavor2024.R;
 import com.nhom5.models.Cart;
+import com.squareup.picasso.Picasso;
 
-import java.security.AccessControlContext;
 import java.util.List;
 
 public class CheckoutListAdapter extends BaseAdapter {
@@ -22,9 +23,6 @@ public class CheckoutListAdapter extends BaseAdapter {
     public CheckoutListAdapter(Context context, List<Cart> cartList) {
         this.context = context;
         this.cartList = cartList;
-    }
-
-    public CheckoutListAdapter(AccessControlContext context, List<Cart> cartList) {
     }
 
     @Override
@@ -48,8 +46,8 @@ public class CheckoutListAdapter extends BaseAdapter {
         @SuppressLint("ViewHolder") View itemView = inflater.inflate(R.layout.item_checkout, parent, false);
 
         // Ánh xạ các thành phần trong layout item
+        ImageView imvProduct = itemView.findViewById(R.id.imvProduct);
         TextView txtName = itemView.findViewById(R.id.txtName);
-        TextView txtDescription = itemView.findViewById(R.id.txtDescription);
         TextView txtPrice = itemView.findViewById(R.id.txtPrice);
         TextView txtQuantity = itemView.findViewById(R.id.txtQuantity);
 
@@ -58,12 +56,15 @@ public class CheckoutListAdapter extends BaseAdapter {
 
         // Đặt dữ liệu vào các thành phần tương ứng
         txtName.setText(cart.getProductName());
-        String formattedPrice = String.format("%,.0f VND", cart.getProductPrice());
+        int quantity = cart.getProductQuantity();
+        double price = cart.getProductPrice();
+        double totalPrice = price * quantity;
+        String formattedPrice = String.format("%,.0f VND", totalPrice);
         txtPrice.setText(formattedPrice);
-        txtQuantity.setText(String.valueOf(cart.getProductQuantity()));
+        txtQuantity.setText(String.valueOf(quantity));
 
-        // Bạn cũng có thể sử dụng thư viện Picasso hoặc Glide để tải ảnh vào ImageView
-        // Picasso.get().load(cart.getProductImageUrl()).into(imvProduct);
+        // Sử dụng thư viện Picasso để tải ảnh vào ImageView
+        Picasso.get().load(cart.getProductImageUrl()).into(imvProduct);
 
         return itemView;
     }

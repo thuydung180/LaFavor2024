@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -56,34 +58,71 @@ public class Checkout extends AppCompatActivity {
                 }
             }
         });
-//
         binding.btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Kiểm tra xem RadioButton rdCash có được chọn không
+                // Check if the rdCash RadioButton is checked
                 if (binding.rdCash.isChecked()) {
-                    // Nếu được chọn, xử lý khi nhấn nút "Place Order"
-                    // Ví dụ: Chuyển sang màn hình khác
-                    Intent intent = new Intent(Checkout.this, OrderComplete.class);
-                    startActivity(intent);
+                    // Get the currently logged-in user
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        String userId = user.getUid();
+
+                        // Reference the "Orders" node for the current user
+                        DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("Orders").child(userId);
+
+                        // Reference the user's specific order under "Order1"
+                        DatabaseReference userOrderRef = FirebaseDatabase.getInstance().getReference().child("UserOrders").child(userId).child("Order1");
+
+                        // Read data from "Orders" node
+                        ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot orderSnapshot : dataSnapshot.getChildren()) {
+                                    // Check if the data exists before accessing it
+                                    if (orderSnapshot.exists()) {
+                                        // Get order details
+                                        String productName = orderSnapshot.child("productName").getValue(String.class);
+                                        Double productPrice = orderSnapshot.child("productPrice").getValue(Double.class);
+                                        Integer productQuantity = orderSnapshot.child("productQuantity").getValue(Integer.class);
+                                        String productImageUrl = orderSnapshot.child("productImageUrl").getValue(String.class);
+
+                                        // Check if any of the data is null before using it
+                                        if (productName != null && productPrice != null && productQuantity != null && productImageUrl != null) {
+                                            // Create a new order item
+                                            Cart orderItem = new Cart(productName, productPrice, productImageUrl, productQuantity);
+
+                                            // Add the order item to the user's specific order under "Order1"
+                                            userOrderRef.push().setValue(orderItem);
+                                        }
+                                    }
+                                }
+
+                            // If the process is completed successfully, navigate to another screen
+                                Intent intent = new Intent(Checkout.this, OrderComplete.class);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Handle any errors
+                                Toast.makeText(Checkout.this, "Failed to place order. Please try again.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(Checkout.this, "You need to log in to place an order", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    // Nếu RadioButton chưa được chọn, hiển thị thông báo cho người dùng
+                    // If the RadioButton is not checked, display a message to the user
                     Toast.makeText(Checkout.this, "You have not selected a payment method", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+
+
     }
 
-//    private void addEvents() {
-//        binding.imvBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
-//    }
-//
     private String formatAmount(double amount) {
         // Định dạng số thành chuỗi với ký tự phân cách hàng nghìn và VND ở cuối
         return String.format("%,.0f VND", amount);
@@ -129,7 +168,11 @@ public class Checkout extends AppCompatActivity {
                     CheckoutListAdapter adapter = new CheckoutListAdapter(Checkout.this, cartList);
                     binding.lvCheckout.setAdapter(adapter);
                     binding.txtSubtotal.setText(String.valueOf(subtotalBill));
-                    binding.txtTotal.setText(String.valueOf(subtotalBill + 20000));
+                    binding.txtTotal.setText(String.valueOf(subtotalBill + 20000));String formattedSubtotal = String.format("%,.0f VND", subtotalBill);
+                    String formattedTotal = String.format("%,.0f VND", subtotalBill + 20000);
+
+                    binding.txtSubtotal.setText(formattedSubtotal);
+                    binding.txtTotal.setText(formattedTotal);
                 }
 
                 @Override

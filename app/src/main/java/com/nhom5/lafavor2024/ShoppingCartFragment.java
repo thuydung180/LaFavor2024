@@ -67,6 +67,7 @@ public class ShoppingCartFragment extends Fragment {
         fetchCartData(); // Kích hoạt phương thức fetchCartData() để lấy dữ liệu giỏ hàng
         setupCheckoutButton(); // Kích hoạt phương thức setupCheckoutButton() để thiết lập nút thanh toán
 
+
         // Inflate the layout for this fragment
         return binding.getRoot();
     }

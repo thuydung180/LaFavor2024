@@ -6,6 +6,19 @@
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:id="@+id/imvProduct"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/list_product_background"
+        android:padding="5dp"
+        android:src="@drawable/splashscreen2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/txtPrice"
         android:layout_width="wrap_content"
@@ -23,8 +36,8 @@
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
         android:text="Strawberry Cupcake"
         android:textColor="@color/gray2"
         android:textSize="16sp"
@@ -33,23 +46,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtDescription"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/description_product"
-        android:textColor="@color/gray1"
-
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/txtName"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
-
-    <TextView
         android:id="@+id/txtQuantity"
         android:layout_width="12dp"
         android:layout_height="29dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="44dp"
         android:text="1"
         android:textColor="@color/primary"
         android:textSize="20sp"

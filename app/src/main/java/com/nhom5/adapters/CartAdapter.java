@@ -30,14 +30,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         this.list = list;
     }
 
-    //    private List<Cart> carts;
-//
-//    public CartAdapter(Fragment fragment, List<Cart> carts) {
-//        this.fragment = fragment;
-//        this.carts = carts;
-//    }
-
-
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,19 +47,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.productPrice.setText(String.format("%d VNĐ", (int) cart.getProductPrice()));
         holder.productQuantity.setText(cart.getProductQuantity());
 
-
-//        final int currentPosition = position;
-//
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(fragment.getContext(), ProductDetail.class);
-//                intent.putExtra("name", carts.get(currentPosition).getProductName());
-//                intent.putExtra("price", carts.get(currentPosition).getProductPrice());
-//                // Nếu cần, bạn có thể thêm các thông tin khác của sản phẩm vào intent
-//                fragment.startActivity(intent);
-//            }
-//        });
     }
 
 

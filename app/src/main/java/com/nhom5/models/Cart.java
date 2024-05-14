@@ -1,7 +1,6 @@
 package com.nhom5.models;
 
 public class Cart {
-    //    int orderId;
     String productName;
     double productPrice;
     int productQuantity;

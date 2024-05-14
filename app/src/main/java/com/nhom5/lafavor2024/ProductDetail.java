@@ -45,10 +45,8 @@ public class ProductDetail extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         getBundles();
-
         addEvents();
         initOrders();
-
     }
 
 
@@ -204,14 +202,11 @@ public class ProductDetail extends AppCompatActivity {
                     }
                 } else {
                     // Hiển thị thông báo lỗi nếu có lỗi xảy ra
-                    Toast.makeText(ProductDetail.this, "Thêm sản phẩm không thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetail.this, "Product added to cart unsuccessfully", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
-
-
 }
 
 
