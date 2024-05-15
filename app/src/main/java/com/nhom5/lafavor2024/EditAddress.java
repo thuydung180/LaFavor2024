@@ -44,7 +44,6 @@ public class EditAddress extends AppCompatActivity {
 
     private void getData() {
         Intent intent = getIntent();
-
         provinceData = (String) intent.getSerializableExtra("data");
     }
 

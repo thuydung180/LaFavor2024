@@ -11,6 +11,9 @@ public class Address {
     String street;
 
     AdapterView.OnItemLongClickListener longClickListener;
+    public Address() {
+
+    }
 
     public Address(String fullName, String phoneNumber, String province, String district, String ward, String street) {
         this.fullName = fullName;
@@ -20,17 +23,6 @@ public class Address {
         this.ward = ward;
         this.street = street;
     }
-
-//    public Address(String fullName, String phoneNumber, String province, String district, String ward, String street) {
-//        this.fullName = fullName;
-//        this.phoneNumber = phoneNumber;
-//        this.province = province;
-//        this.district = district;
-//        this.ward = ward;
-//        this.street = street;
-//
-//    }
-
 
 
     public void setLongClickListener(AdapterView.OnItemLongClickListener longClickListener) {

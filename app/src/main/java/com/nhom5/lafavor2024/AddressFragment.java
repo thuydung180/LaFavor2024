@@ -266,8 +266,6 @@ public class AddressFragment extends Fragment {
                             .addOnFailureListener(e -> {
                                 Toast.makeText(getActivity(), "Fail!", Toast.LENGTH_SHORT).show();
                             });
-
-
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
