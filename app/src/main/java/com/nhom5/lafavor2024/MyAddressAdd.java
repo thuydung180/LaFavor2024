@@ -46,6 +46,7 @@ public class MyAddressAdd extends AppCompatActivity {
                 String ward = binding.edtWard.getText().toString();
                 String street = binding.edtStreet.getText().toString();
 
+
                 Address address = new Address(fullName,phoneNumber,province,district,ward,street);
 
                 onClickAddAddress(address);

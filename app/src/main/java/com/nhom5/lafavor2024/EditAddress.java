@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class EditAddress extends AppCompatActivity {
 
     ActivityEditAddressBinding binding;
     Address address;
+    String provinceData;
 
 
     AddressFragment addressFragment;
@@ -35,8 +37,15 @@ public class EditAddress extends AppCompatActivity {
         binding = ActivityEditAddressBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getData();
         getAddress();
         initListener();
+    }
+
+    private void getData() {
+        Intent intent = getIntent();
+
+        provinceData = (String) intent.getSerializableExtra("data");
     }
 
     private void getAddress() {
@@ -46,13 +55,14 @@ public class EditAddress extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Addresses").child(currentUserId);
-//        String pathObject = String.valueOf(address.getProvince());
-        myRef.addValueEventListener(new ValueEventListener() {
+
+        myRef.child(provinceData).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 // Get user data
                 Address address = snapshot.getValue(Address.class);
+
                 if (address != null) {
 
                     String name = address.getFullName();
@@ -73,6 +83,7 @@ public class EditAddress extends AppCompatActivity {
                 }
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -101,9 +112,13 @@ public class EditAddress extends AppCompatActivity {
         String ward = binding.edtWard.getText().toString();
         String street = binding.edtStreet.getText().toString();
 
+        Intent intent = getIntent();
+
+        String provinceOf = (String) intent.getSerializableExtra("data");
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        String pathObject = String.valueOf(address.getProvince());
-        DatabaseReference myRef = database.getReference("Addresses").child(currentUserId);
+        DatabaseReference myRef = database.getReference("Addresses").child(currentUserId).child(provinceOf);
 
         Map<String, Object> updateMap = new HashMap<>();
         updateMap.put("fullName", fullName);

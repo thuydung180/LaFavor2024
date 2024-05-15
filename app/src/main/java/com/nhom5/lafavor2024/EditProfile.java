@@ -167,7 +167,7 @@ public class EditProfile extends AppCompatActivity {
         myRef.updateChildren(updateMap, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                progressDialog.show();
+
                 Toast.makeText(EditProfile.this, "Update successfully", Toast.LENGTH_SHORT).show();
                 myProfile.getUserInfo();
                 profileMain.showUserInfo();

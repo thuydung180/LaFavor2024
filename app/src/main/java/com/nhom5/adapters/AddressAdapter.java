@@ -24,14 +24,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     public interface OnItemLongClickListener {
         void onItemLongClick(Address address);
     }
-    public AddressAdapter(Context context, ArrayList<Address> listAddress) {
+    public AddressAdapter(Context context, ArrayList<Address> listAddress, OnItemLongClickListener longClickListener) {
         this.context = context;
         this.listAddress = listAddress;
-    }
-
-    public AddressAdapter(OnItemLongClickListener longClickListener) {
         this.longClickListener = longClickListener;
     }
+
 
     @NonNull
     @Override
@@ -50,15 +48,24 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.fullName.setText(address.getFullName());
         holder.phoneNumb.setText(address.getPhoneNumber());
         holder.fullAddress.setText(address.getStreet() + ", " + address.getWard() +", " + address.getDistrict() +", "+ address.getProvince());
-        holder.itemView.setOnLongClickListener(v -> {
-            v.showContextMenu();
-            return true;
-        });
-        holder.itemView.setOnClickListener(v -> {
-            if (longClickListener != null) {
+//        holder.itemView.setOnLongClickListener(v -> {
+//            v.showContextMenu();
+//            return true;
+//        });
+//        holder.itemView.setOnClickListener(v -> {
+//            if (longClickListener != null) {
+//                longClickListener.onItemLongClick(address);
+//            }
+//        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
                 longClickListener.onItemLongClick(address);
+            return false;
             }
+
         });
+
     }
 
     @Override

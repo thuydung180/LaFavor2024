@@ -48,7 +48,8 @@ public class AddressFragment extends Fragment {
     AddressAdapter addressAdapter;
     ArrayList<Address> listAddress;
 
-    Address address;
+    Address selectedAddress;
+
     //Menu/////
 
     // TODO: Rename parameter arguments, choose names that match
@@ -103,21 +104,9 @@ public class AddressFragment extends Fragment {
         getAddressFromFirebase();
         getAddress();
         addEvent();
-
         registerForContextMenu(binding.rcvMyAddress);
 
         return binding.getRoot();
-    }
-
-    private void getAddress() {
-        addressRecycler = binding.rcvMyAddress;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
-        addressRecycler.setLayoutManager(linearLayoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getActivity(), DividerItemDecoration.VERTICAL);
-        addressRecycler.addItemDecoration(dividerItemDecoration);
-        listAddress = new ArrayList<>();
-        addressAdapter = new AddressAdapter(this.getContext(), listAddress);
-        addressRecycler.setAdapter(addressAdapter);
     }
 
     public void getAddressFromFirebase() {
@@ -144,7 +133,14 @@ public class AddressFragment extends Fragment {
 //        }
 //
 //        );
+//        if (listAddress == null) {
+//            listAddress = new ArrayList<>();
+//        } else {
+//            // Clear the listAddress ArrayList before adding new addresses
+//            listAddress.clear();
+//        }
         databaseReference.addChildEventListener(new ChildEventListener() {
+
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Address address = snapshot.getValue(Address.class);
@@ -172,6 +168,46 @@ public class AddressFragment extends Fragment {
 
             }
         });
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                listAddress.clear();
+//
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    Address address = dataSnapshot.getValue(Address.class);
+//                    if (address != null) {
+//                        // Check if the list is empty before adding new addresses
+//                        if (listAddress.isEmpty() || !listAddress.contains(address)) {
+//                            listAddress.add(address);
+//                        }
+//                    }
+//                }
+//                // Notify adapter after adding addresses
+//                addressAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+    }
+
+    private void getAddress() {
+        addressRecycler = binding.rcvMyAddress;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+        addressRecycler.setLayoutManager(linearLayoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getActivity(), DividerItemDecoration.VERTICAL);
+        addressRecycler.addItemDecoration(dividerItemDecoration);
+        listAddress = new ArrayList<>();
+        addressAdapter = new AddressAdapter(this.getContext(), listAddress, new AddressAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(Address address) {
+                //Code here
+                selectedAddress = address;
+            }
+        });
+        addressRecycler.setAdapter(addressAdapter);
     }
 
     private void addEvent() {
@@ -196,35 +232,42 @@ public class AddressFragment extends Fragment {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String province = selectedAddress.getProvince();
         if (item.getItemId() == R.id.mnSetDefault) {
             //Code Set Default
+//            setDefaultAddress(selectedAddress);
         }
         if (item.getItemId() == R.id.mnEdit) {
             Intent intent = new Intent(this.getContext(), EditAddress.class);
             //Code edit
+            if (province != null) {
+                intent.putExtra("data", province);
 
-            startActivity(intent);
+                startActivity(intent);
+            }
         }
         if (item.getItemId() == R.id.mnDelete) {
+            if (selectedAddress != null) {
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
             builder.setTitle("Confirm Detele?");
             builder.setIcon(android.R.drawable.ic_input_delete);
-
-            String pathObject = String.valueOf(address.getProvince());
             builder.setMessage("Do you want to delete this address?");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     // Code delete
-                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     FirebaseDatabase.getInstance().getReference("Addresses").child(userId)
-                            .child(pathObject).removeValue().addOnSuccessListener(aVoid -> {
+                            .child(province).removeValue().addOnSuccessListener(aVoid -> {
                                 Toast.makeText(getActivity(), "Successfully deleted", Toast.LENGTH_SHORT).show();
                                 getAddressFromFirebase();
                             })
                             .addOnFailureListener(e -> {
                                 Toast.makeText(getActivity(), "Fail!", Toast.LENGTH_SHORT).show();
                             });
+
+
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -236,8 +279,36 @@ public class AddressFragment extends Fragment {
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+
+    }
         return super.onContextItemSelected(item);
     }
+
+//    private void setDefaultAddress(Address selectedAddress) {
+//        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Addresses").child(userId);
+//
+//        // Get all addresses
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    Address address = snapshot.getValue(Address.class);
+//                    if (address != null) {
+//                        // Update the default status
+//                        address.setDefault(address.getProvince().equals(selectedAddress.getProvince()));
+//                        databaseReference.child(snapshot.getKey()).setValue(address);
+//                    }
+//                }
+//                Toast.makeText(getActivity(), "Default address set successfully", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Toast.makeText(getActivity(), "Failed to set default address", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 }
 
 
