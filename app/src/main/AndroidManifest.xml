@@ -96,6 +96,9 @@
             android:name=".EditProfile"
             android:exported="false" />
         <activity
+            android:name=".MyOrders"
+            android:exported="false" />
+        <activity
             android:name=".Splashscreen_1"
             android:exported="true">
              <intent-filter>

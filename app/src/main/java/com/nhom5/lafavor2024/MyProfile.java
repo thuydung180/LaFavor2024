@@ -141,7 +141,7 @@ public class MyProfile extends AppCompatActivity {
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(MyProfile.this, ProfileMain.class);
+                finish();
             }
         });
     }

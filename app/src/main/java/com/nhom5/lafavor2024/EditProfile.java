@@ -64,6 +64,7 @@ public class EditProfile extends AppCompatActivity {
 
         getUserInfo();
         initListener();
+        addEvents();
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -80,6 +81,15 @@ public class EditProfile extends AppCompatActivity {
                     binding.imvProfile.setImageURI(selectedPhotoUri);
 
                 }
+            }
+        });
+    }
+
+    private void addEvents() {
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

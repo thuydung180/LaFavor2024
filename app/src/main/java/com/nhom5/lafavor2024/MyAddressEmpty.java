@@ -29,6 +29,8 @@ public class MyAddressEmpty extends AppCompatActivity {
         binding = ActivityMyAddressEmptyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        addEvents();
+
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
@@ -55,6 +57,9 @@ public class MyAddressEmpty extends AppCompatActivity {
 ////                Log.e("MainActivity", "Database error: " + databaseError.getMessage());
 //            }
 //        });
+    }
+
+    private void addEvents() {
     }
 //    private void displayFragment(Fragment fragment) {
 //        getSupportFragmentManager().beginTransaction()
