@@ -22,6 +22,8 @@ public class MyAddressAdd extends AppCompatActivity {
 
     ActivityMyAddressAddBinding binding;
 
+    MyAddressEmpty myAddress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class MyAddressAdd extends AppCompatActivity {
                 Address address = new Address(fullName,phoneNumber,province,district,ward,street);
 
                 onClickAddAddress(address);
+
                 finish();
             }
         });
@@ -68,10 +71,10 @@ public class MyAddressAdd extends AppCompatActivity {
         String currentUserId = currentUser.getUid();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("Addresses");
+        DatabaseReference databaseReference = database.getReference("Addresses").child(currentUserId);
         String pathObject = String.valueOf(address.getProvince());
 
-        databaseReference.child(currentUserId).child(pathObject).setValue(address, new DatabaseReference.CompletionListener() {
+        databaseReference.child(pathObject).setValue(address, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 Toast.makeText(MyAddressAdd.this, "Add address successfully", Toast.LENGTH_SHORT).show();

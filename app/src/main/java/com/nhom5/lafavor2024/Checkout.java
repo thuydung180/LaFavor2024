@@ -148,7 +148,7 @@ public class Checkout extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     List<Cart> cartList = new ArrayList<>();
-                    double subtotalBill = 20000;
+                    double subtotalBill = 0;
                     for (DataSnapshot orderSnapshot : dataSnapshot.getChildren()) {
                         if (orderSnapshot.exists()) {
                             String productName = orderSnapshot.child("productName").getValue(String.class);
