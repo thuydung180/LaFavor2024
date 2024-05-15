@@ -149,7 +149,7 @@
                     android:text="@string/address"
                     android:textSize="16sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/edtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"

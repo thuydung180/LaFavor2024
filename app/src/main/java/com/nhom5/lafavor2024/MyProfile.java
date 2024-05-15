@@ -42,42 +42,76 @@ public class MyProfile extends AppCompatActivity {
     }
 
     public void getUserInfo() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String currentUserId = currentUser.getUid();
 
-        if (user == null) {
-            return;
-        }
-        for (UserInfo profile : user.getProviderData()) {
-            // Id of the provider (ex: google.com)
-            String providerId = profile.getProviderId();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(currentUserId);
 
-            // UID specific to the provider
-            String uid = profile.getUid();
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            // Name, email address, and profile photo Url
-            String name = profile.getDisplayName();
-            String email = profile.getEmail();
-            Uri photoUrl = profile.getPhotoUrl();
-            String phone = profile.getPhoneNumber();
-            if (name == null) {
-                binding.txtFullName2.setVisibility(View.GONE);
-            } else {
-                binding.txtFullName2.setVisibility(View.VISIBLE);
-                ///Not displayed yet
-                binding.txtFullName2.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.txtFullName2.setText(name);
-                    }
-                },500);
+                // Get user data
+                User user = snapshot.getValue(User.class);
+                if (user != null) {
+                    String name = user.getUserName();
+                    String email = user.getUserEmail();
+                    String phone = user.getUserPhone();
+                    String address = user.getUserAddress();
+
+                    binding.txtFullName2.setText(name);
+                    binding.txtMail.setText(email);
+                    binding.txtPhone.setText(phone);
+                    binding.txtAddress.setText(address);
+                    binding.imvProfile.setImageResource(R.drawable.image_profile_avatar);
+                }}
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
-            binding.txtMail.setText(email);
-            binding.txtPhone.setText("(+84) " + phone);
-            Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
+        });}
+
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        if (user == null) {
+//            return;
+//        }
+//        for (UserInfo profile : user.getProviderData()) {
+//            // Id of the provider (ex: google.com)
+//            String providerId = profile.getProviderId();
+//
+//            // UID specific to the provider
+//            String uid = profile.getUid();
+//
+//            // Name, email address, and profile photo Url
+//            String name = profile.getDisplayName();
+//            String email = profile.getEmail();
+//            Uri photoUrl = profile.getPhotoUrl();
+//            String phone = profile.getPhoneNumber();
+//            if (name == null) {
+//                binding.txtFullName2.setVisibility(View.GONE);
+//            } else {
+//                binding.txtFullName2.setVisibility(View.VISIBLE);
+//                ///Not displayed yet
+//                binding.txtFullName2.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        binding.txtFullName2.setText(name);
+//                    }
+//                },500);
+//            }
+//            binding.txtMail.setText(email);
+//            binding.txtPhone.setText("(+84) " + phone);
+//            Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
+//
+//
+//
+//        }
 
 
-
-        }
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        DatabaseReference databaseReference = database.getReference("Address");
 //
@@ -94,7 +128,7 @@ public class MyProfile extends AppCompatActivity {
 //            }
 //        });
 //
-    }
+
 
     private void addEvent() {
         binding.imvEditButton.setOnClickListener(new View.OnClickListener() {

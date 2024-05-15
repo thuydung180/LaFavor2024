@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,30 +28,39 @@ public class MyAddressEmpty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMyAddressEmptyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        addressesRef = FirebaseDatabase.getInstance().getReference("Address");
-        addressesRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
-                    // Database has addresses, display FragmentAddress
-                    displayFragment(new AddressFragment());
-                } else {
-                    // Database does not have any addresses, display FragmentEmptyAddress
-                    displayFragment(new EmptyAddressFragment());
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-//                Log.e("MainActivity", "Database error: " + databaseError.getMessage());
-            }
-        });
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        Fragment fragment  = new AddressFragment();
+        transaction.replace(R.id.containerAddressLayout, fragment, "AddressFragment");
+        transaction.addToBackStack("FEmpty");
+        transaction.commit();
+
+//        addressesRef = FirebaseDatabase.getInstance().getReference("Addresses");
+//        addressesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
+//                    // Database has addresses, display FragmentAddress
+//                    displayFragment(new AddressFragment());
+//                } else {
+//                    // Database does not have any addresses, display FragmentEmptyAddress
+//                    displayFragment(new EmptyAddressFragment());
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+////                Log.e("MainActivity", "Database error: " + databaseError.getMessage());
+//            }
+//        });
     }
-    private void displayFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.containerAddressLayout, fragment)
-                .commit();
-    }
+//    private void displayFragment(Fragment fragment) {
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.containerAddressLayout, fragment)
+//                .commit();
+//    }
 
 //    private void addEvent() {
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -22,9 +23,13 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
 
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nhom5.lafavor2024.databinding.FragmentProfileMainBinding;
 import com.nhom5.models.User;
 
@@ -52,6 +57,9 @@ public class ProfileMain extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     public ProfileMain() {
         // Required empty public constructor
@@ -81,6 +89,7 @@ public class ProfileMain extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -96,37 +105,84 @@ public class ProfileMain extends Fragment {
 
     public void showUserInfo() {
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            return;
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String currentUserId = currentUser.getUid();
 
-        }
-        for (UserInfo profile : user.getProviderData()) {
-            // Id of the provider (ex: google.com)
-            String providerId = profile.getProviderId();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(currentUserId);
 
-            // UID specific to the provider
-            String uid = profile.getUid();
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            // Name, email address, and profile photo Url
-            String name = profile.getDisplayName();
-            String email = profile.getEmail();
-            Uri photoUrl = profile.getPhotoUrl();
-            String phone = profile.getPhoneNumber();
-            if (name == null) {
-                binding.txtFullName.setVisibility(View.GONE);
-            } else {
-                binding.txtFullName.setVisibility(View.VISIBLE);
-                ///Not displayed yet
-                binding.txtFullName.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.txtFullName.setText(name);
-                    }
-                },500);
+                        // Get user data
+                        User user = snapshot.getValue(User.class);
+                        if (user != null) {
+                            String name = user.getUserName();
+                            String email = user.getUserEmail();
+                            String phone = user.getUserPhone();
+
+                            // Check if name is null or empty
+                            if (name == null || name.isEmpty()) {
+                                binding.txtFullName.setVisibility(View.GONE);
+                            } else {
+                                binding.txtFullName.setVisibility(View.VISIBLE);
+                                binding.txtFullName.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        binding.txtFullName.setText(name);
+                                    }
+                                }, 500);
+                            }
+
+                            binding.txtEmail.setText(email);
+                            binding.imvProfile.setImageResource(R.drawable.image_profile_avatar);
+                        }
+
+           }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
-            binding.txtEmail.setText(email);
-            Glide.with(this).load(photoUrl).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
+        });
+
+        //Code chính
+
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user == null) {
+//            return;
+//        }
+//        for (UserInfo profile : user.getProviderData()) {
+//            // Id of the provider (ex: google.com)
+//            String providerId = profile.getProviderId();
+//
+//            // UID specific to the provider
+//            String uid = profile.getUid();
+//
+//            // Name, email address, and profile photo Url
+//            String name = profile.getDisplayName();
+//            String email = profile.getEmail();
+//            Uri photoUrl = profile.getPhotoUrl();
+//            String phone = profile.getPhoneNumber();
+//            if (name == null) {
+//                binding.txtFullName.setVisibility(View.GONE);
+//            } else {
+//                binding.txtFullName.setVisibility(View.VISIBLE);
+//                ///Not displayed yet
+//                binding.txtFullName.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        binding.txtFullName.setText(name);
+//                    }
+//                },500);
+//            }
+//            binding.txtEmail.setText(email);
+//            Glide.with(this).load(photoUrl).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
+
+
+        //
 //        String name = user.getDisplayName();
 //        String email = user.getEmail();
 //        Uri photoUrl = user.getPhotoUrl();
@@ -141,7 +197,7 @@ public class ProfileMain extends Fragment {
 //            binding.txtEmail.setText(email);
 //            Glide.with(this).load(photoUrl).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
 
-    }}
+    }
 
     private void addEvent() {
 
@@ -182,20 +238,12 @@ public class ProfileMain extends Fragment {
                 startActivity(intent);
             }
         });
-//        binding.lnlLogOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                intent = new Intent(ProfileMain.this.getActivity(), Login.class);
-//                startActivity(intent);
-//            }
-//        });
-
-        logOut();
-
-
-
+        binding.lnlLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logOut();
+            }
+        });
     }
 
     private void logOut() {
@@ -211,13 +259,14 @@ public class ProfileMain extends Fragment {
                     editor.apply();
 
                     intent = new Intent(ProfileMain.this.getActivity(), Login.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                }
-            }
 
-        });
-
-    }
+                    // Finish the current activity
+                    ProfileMain.this.getActivity().finish();
+            };}
 
 
+        }
+);}
 }

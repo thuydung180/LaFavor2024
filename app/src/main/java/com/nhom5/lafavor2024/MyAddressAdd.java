@@ -10,6 +10,8 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -60,11 +62,15 @@ public class MyAddressAdd extends AppCompatActivity {
     }
 
     private void onClickAddAddress(Address address) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String currentUserId = currentUser.getUid();
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("Address");
+        DatabaseReference databaseReference = database.getReference("Addresses");
         String pathObject = String.valueOf(address.getProvince());
 
-        databaseReference.child(pathObject).setValue(address, new DatabaseReference.CompletionListener() {
+        databaseReference.child(currentUserId).child(pathObject).setValue(address, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 Toast.makeText(MyAddressAdd.this, "Add address successfully", Toast.LENGTH_SHORT).show();

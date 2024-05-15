@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mnSetDefault"
+        android:title="Set Default"/>
+
+    <item android:id="@+id/mnEdit"
+        android:title="Edit"/>
+
+    <item android:id="@+id/mnDelete"
+        android:title="Delete"/>
+</menu>

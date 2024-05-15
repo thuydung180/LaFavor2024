@@ -7,37 +7,41 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
-import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.nhom5.lafavor2024.databinding.ActivityEditProfileBinding;
-import com.nhom5.models.Address;
 import com.nhom5.models.User;
 
-import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class EditProfile extends AppCompatActivity {
 
@@ -59,7 +63,6 @@ public class EditProfile extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         getUserInfo();
-        addEvent();
         initListener();
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -77,13 +80,9 @@ public class EditProfile extends AppCompatActivity {
                     binding.imvProfile.setImageURI(selectedPhotoUri);
 
                 }
-
             }
         });
-
     }
-
-
 
     public Uri getSelectedPhotoUri() {
         return selectedPhotoUri;
@@ -91,52 +90,45 @@ public class EditProfile extends AppCompatActivity {
 
 
     public void getUserInfo() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            return;
-        }
-        for (UserInfo profile : user.getProviderData()) {
-            String providerId = profile.getProviderId();
-            String uid = profile.getUid();
-            // Name, email address, and profile photo Url
-            String name = profile.getDisplayName();
-            String email = profile.getEmail();
-            Uri photoUrl = profile.getPhotoUrl();
-            String phone = profile.getPhoneNumber();
-            if (name == null) {
-                binding.edtUsername.setVisibility(View.GONE);
-            } else {
-                binding.edtUsername.setVisibility(View.VISIBLE);
-                binding.edtUsername.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.edtUsername.setText(name);
-                    }
-                },500);
-            }
-            binding.edtEmail.setText(email);
-            binding.edtPhoneNumber.setText("(+84) " + phone);
-            Glide.with(this).load(photoUrl).error(R.drawable.image_profile_avatar).into(binding.imvProfile);
-        }
-    }
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String currentUserId = currentUser.getUid();
 
-    private void addEvent() {
-        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(currentUserId);
+
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String fullName = binding.edtUsername.getText().toString();
-                String email = binding.edtEmail.getText().toString();
-                String phoneNumber = binding.edtPhoneNumber.getText().toString();
-                String adddress = binding.edtAddress.getText().toString();
+                // Get user data
+                User user = snapshot.getValue(User.class);
+                if (user != null) {
+                    String name = user.getUserName();
+                    String email = user.getUserEmail();
+                    String phone = user.getUserPhone();
+                    String address = user.getUserAddress();
 
-                User user = new User(fullName,email,phoneNumber,adddress);
-//                onClickAddAddress(user);
-                finish();
+                    binding.edtUsername.setText(name);
+                    binding.edtEmail.setText(email);
+                    binding.edtPhoneNumber.setText(phone);
+                    binding.edtAddress.setText(address);
+                    binding.imvProfile.setImageResource(R.drawable.image_profile_avatar);
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+
+
+
     }
+
+
 
     private void initListener() {
         binding.imvProfile.setOnClickListener(new View.OnClickListener() {
@@ -149,49 +141,42 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onClickUpdateProfile();
-//                onClickUpdateProfileToFirebase();
             }
         });
-        binding.edtAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditProfile.this, MyAddressEmpty.class);
 
-                startActivity(intent);
-            }
-        });
     }
-
 
     private void onClickUpdateProfile() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            return;
-        }
-        progressDialog = new ProgressDialog(EditProfile.this);
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName(binding.edtUsername.getText().toString())
-                .setPhotoUri(selectedPhotoUri)
-//                .setPhoneNumber(binding.edtPhoneNumber.getText().toString())
-                .build();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String currentUserId = currentUser.getUid();
 
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        progressDialog.dismiss();
-                        if (task.isSuccessful()) {
-                            Toast.makeText(EditProfile.this, "Update successfully", Toast.LENGTH_SHORT).show();
-                            getUserInfo();
-                            myProfile.getUserInfo();
-                            profileMain.showUserInfo();
+        String fullName = binding.edtUsername.getText().toString();
+        String email = binding.edtEmail.getText().toString();
+        String phoneNumber = binding.edtPhoneNumber.getText().toString();
+        String address = binding.edtAddress.getText().toString();
 
-                            finish();
-                        }
-                    }
-                });
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(currentUserId);
 
+        Map<String, Object> updateMap = new HashMap<>();
+        updateMap.put("userName", fullName);
+        updateMap.put("userEmail", email);
+        updateMap.put("userPhone", phoneNumber);
+        updateMap.put("userAddress", address);
+        myRef.updateChildren(updateMap, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                progressDialog.show();
+                Toast.makeText(EditProfile.this, "Update successfully", Toast.LENGTH_SHORT).show();
+                myProfile.getUserInfo();
+                profileMain.showUserInfo();
+
+            }
+        });
     }
+
+    //Request Permission
 
     private void onClickRequestPermission() {
         EditProfile editProfile = this;
@@ -233,34 +218,4 @@ public class EditProfile extends AppCompatActivity {
 
 
     }
-
-//    private void onClickUpdateProfileToFirebase() {
-//        String userName = binding.edtUsername.getText().toString();
-//        String userPhone = binding.edtPhoneNumber.getText().toString();
-//
-//
-//        update(userName, userPhone);
-//
-//    }
-
-//    private void update(String userName, String userPhone) {
-//        HashMap user = new HashMap();
-//        user.put("userName", userName);
-//        user.put("userPhone", userPhone);
-//
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-//        databaseReference.updateChildren(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if (task.isSuccessful()) {
-//
-//                }else {
-//                    Toast.makeText(EditProfile.this, "Failed to update", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//        });
-//    }
-
-
 }

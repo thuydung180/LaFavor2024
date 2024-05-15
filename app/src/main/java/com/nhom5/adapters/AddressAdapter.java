@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,10 +19,18 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     Context context;
     ArrayList<Address> listAddress;
+    OnItemLongClickListener longClickListener;
 
+    public interface OnItemLongClickListener {
+        void onItemLongClick(Address address);
+    }
     public AddressAdapter(Context context, ArrayList<Address> listAddress) {
         this.context = context;
         this.listAddress = listAddress;
+    }
+
+    public AddressAdapter(OnItemLongClickListener longClickListener) {
+        this.longClickListener = longClickListener;
     }
 
     @NonNull
@@ -41,6 +50,15 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.fullName.setText(address.getFullName());
         holder.phoneNumb.setText(address.getPhoneNumber());
         holder.fullAddress.setText(address.getStreet() + ", " + address.getWard() +", " + address.getDistrict() +", "+ address.getProvince());
+        holder.itemView.setOnLongClickListener(v -> {
+            v.showContextMenu();
+            return true;
+        });
+        holder.itemView.setOnClickListener(v -> {
+            if (longClickListener != null) {
+                longClickListener.onItemLongClick(address);
+            }
+        });
     }
 
     @Override

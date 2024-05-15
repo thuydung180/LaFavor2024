@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditAddress"
+    android:padding="15dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/lnlAddAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/vector_back"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/add_address"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:paddingEnd="20dp"
+                    android:layout_weight="9"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/full_name"
+                android:textSize="16sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"/>
+
+            <EditText
+                android:id="@+id/edtUsername"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/custom_shape_edt"
+                android:hint="@string/edt_full_name"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_number"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
+
+            <EditText
+                android:id="@+id/edtMobile"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/custom_shape_edt"
+                android:hint="@string/edt_phone_numb"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="phone"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/province"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
+
+            <EditText
+                android:id="@+id/edtProvince"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/custom_shape_edt"
+                android:hint="@string/province"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+            <!--            <Spinner-->
+            <!--                android:id="@+id/spnProvince"-->
+            <!--                android:accessibilityPaneTitle="Choose Province"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="52dp"-->
+            <!--                android:background="@drawable/custom_shape_edt"/>-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/district"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/edtDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/custom_shape_edt"
+                android:hint="@string/district"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+            <!--            <Spinner-->
+            <!--                android:id="@+id/spnDistrict"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="52dp"-->
+            <!--                android:background="@drawable/custom_shape_edt" />-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ward"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
+            <EditText
+                android:id="@+id/edtWard"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/custom_shape_edt"
+                android:hint="@string/ward"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+            <!--            <Spinner-->
+            <!--                android:id="@+id/spnWard"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="52dp"-->
+            <!--                android:background="@drawable/custom_shape_edt" />-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/street"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
+
+            <EditText
+                android:id="@+id/edtStreet"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/custom_shape_edt"
+                android:hint="Street"
+                android:paddingHorizontal="10dp"
+                android:textSize="14sp"
+                android:inputType="text"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_long_button"
+                android:textColor="@color/white"
+                android:text="@string/save"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
